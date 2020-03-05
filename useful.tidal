@@ -6,6 +6,10 @@ d1 $ qtrigger 1 $ s "808 909 ab" -- 1 refers to d1
 hush
 -- clapping music
 d1$qtrigger 1$jux((slow 144$run 12/12)<~)$"cp!3~cp!~cp~cp!~"
+
+jumpIn' 1 1$jux((slow 144$run 12/12)<~)$"cp!3~cp!~cp~cp!~"
+
+-- hush is shift-cmd-h
 ------------------
 
 -- default cps is 0.5??

@@ -320,23 +320,26 @@ jumpIn' 1 1 $ s "click cp db dr_few east feel gab gretsch" -- second lot of 8
   -- euclid
 
 -- patterns by running through a bank
--- find two other banks they could try if bored
 d1 $ s "house house house house"
 jumpIn' 1 1 $ s "house!4" # n "0 1 2 3"
 jumpIn' 1 1 $ s "house!4" # n "0 1 2 3 5" -- pattern from the left, 5 does nothing
 jumpIn' 1 1 $ n "0 1 2 3 4 5 6 7" # sound "house" -- pattern from the n
+jumpIn' 1 1 $ n "0 1 2 3 4 5 6 7" # sound "<gretsch ab house>"
 -- jumpIn' 1 1 $ n "0 1 2 3 4 5 6 7" # sound "house arpy" -- interesting
 -- jumpIn' 1 1 $ n "0 1 2 3 4 5 6 7" # sound "{house arpy}%8" -- obscure but useful to know!
 -- pitches
 jumpIn' 1 1 $ up "0 1 2 3 4 5 6 7" # sound "arpy" -- pattern from the n
 jumpIn' 1 1 $ up "c d e fs g a bf c6" # sound "arpy" -- pattern from the n
 jumpIn' 1 1 $ up "[c'sevenFlat5!8, c d e fs g a bf c6]" # sound "arpy" -- pattern from the n
-jumpIn' 1 1 $ up "c d e fs g a bf c6" # sound "juno:1" # cut 1 -- or gtr
+jumpIn' 1 1 $ up "c d e fs g a bf c6" # sound "gtr" # cut 1 -- gtr or juno:1
 
 -- some effects to pattern, speed, crush, sqiuz, vowel, gain
--- math on controls not in Estuary, range?
+-- math on controls not in Estuary, use range
 d1 $ qtrigger 1 $ n "0 1 2 3 4 5 6 7" # sound "house" # speed 2
-jumpIn' 1 1 $ n (run 8) # sound "house" # speed (run 8) + 1 / 8
+-- jumpIn' 1 1 $ n (run 8) # sound "house" # speed (run 8) + 1 / 8
+jumpIn' 1 1 $ n (run 8) # sound "house" # speed (range 0.125 1 (run 8))
+jumpIn' 1 1 $ n (run 8) # sound "house" # speed (range 0.125 1 (repeatCycles 2 $ scramble 8 $ run 8))
+jumpIn' 1 1 $ n (run 16) # sound "house" # speed (range 0.125 1 (repeatCycles 1024 $ (3 ~>) $ scramble 8 $ run 8)) -- iya
 jumpIn' 1 1 $ n (run 8) # sound "house" # crush (run 8) -- 1 to 16 (bits)
 jumpIn' 1 1 $ n (run 8) # sound "house" # squiz 4
 d1 $ qtrigger 1 $ n (run 8) # sound "house" # vowel "a e i o u"
