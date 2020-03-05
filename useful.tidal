@@ -6,6 +6,7 @@ d1 $ qtrigger 1 $ s "808 909 ab" -- 1 refers to d1
 hush
 -- clapping music
 d1$qtrigger 1$jux((slow 144$run 12/12)<~)$"cp!3~cp!~cp~cp!~"
+------------------
 
 -- default cps is 0.5??
 -- in hackage defaultCps = 0.5625?
@@ -15,8 +16,6 @@ d1$qtrigger 1$jux((slow 144$run 12/12)<~)$"cp!3~cp!~cp~cp!~"
 
 setcps 0.5625
 setcps 0.5
-
-1/0.5625
 
 asap $ s "909!4"
 
