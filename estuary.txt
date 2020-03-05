@@ -2,4 +2,8 @@ repeatCycles 16 $ scramble 8 $ s "bd!2 cp hh bd sn 808 808sd" # n (run 4)
 
 scramble 8 $ s "jvbass(5,8)" # up "-12 -9 -7" # crush "{1 2 3}%8"
 
-tempo 1 % 1.5
+tempo defaults to 1 % 2
+s "909*4" at that setting gives 120 bpm four to the floor
+one cycle = 1 bar of 4/4 = 2 secs
+can do 135 % 120 to get tidal default of 135 bpm (0.5625)
+
