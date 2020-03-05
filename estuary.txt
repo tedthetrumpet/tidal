@@ -1,0 +1,5 @@
+repeatCycles 16 $ scramble 8 $ s "bd!2 cp hh bd sn 808 808sd" # n (run 4) 
+
+scramble 8 $ s "jvbass(5,8)" # up "-12 -9 -7" # crush "{1 2 3}%8"
+
+tempo 1 % 1.5
