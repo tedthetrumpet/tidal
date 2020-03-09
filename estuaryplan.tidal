@@ -19,10 +19,18 @@ jumpIn' 1 0 $ s "click cp db dr_few east feel gab gretsch" -- second lot of 8
 jumpIn' 1 0 $ s "house house house house"
 jumpIn' 1 0 $ s "house!4" # n "0 1 2 3"
 jumpIn' 1 0 $ s "house!4" # n "0 1 2 3 5" -- pattern from the left, 5 does nothing
-jumpIn' 1 0 $ n "0 1 2 3 4 5 6 7" # sound "house" -- pattern from the n
-jumpIn' 1 0 $ n "0 1 2 3 4 5 6 7" # sound "<house casio>"
+jumpIn' 1 0 $ n "0 1 2 3" # s "house" -- pattern from the n
+jumpIn' 1 0 $ n "0 1 2 3 4 5 6 7" # s "house" -- pattern from the n
+jumpIn' 1 0 $ n "0 1 2 3 4 5 6 7" # s "<house dr_few>"
 -- jumpIn' 1 1 $ n "0 1 2 3 4 5 6 7" # sound "house arpy" -- interesting
 -- jumpIn' 1 1 $ n "0 1 2 3 4 5 6 7" # sound "{house arpy}%8" -- obscure but useful to know!
+
+-- introduce some randomness here?
+
+jumpIn' 1 0 $ n (run 16) # s "amencutup"
+jumpIn' 1 0 $ n (scramble 16 $ run 16) # s "amencutup" -- also shuffle
+jumpIn' 1 0 $ s "amencutup!16" # n (choose [1,5,7,9,31])
+
 
 -- pitches
 jumpIn' 1 0 $ up "0 1 2 3 4 5 6 7" # sound "arpy" -- pattern from the n

@@ -90,6 +90,7 @@ d1 $ slow 4 $ s "dr" <| n (run 42) -- loud midi drumkit
 d1 $ s "dr2" <| n (run 6) -- six clean electro drum sounds
 d1 $ fast 2 $ s "dr55" <| n (run 4) -- four dr55 sounds
 d1 $ fast 2 $ s "dr_few" <| n (run 8) -- eight loud drum sounds
+d1 $ s "drumtraks" <| n (run 13) -- loudish kit
 d1 $ s "e" <| n (run 8) -- 8 short and quiet glitchy sounds, similar
 d1 $ slow 2 $ s "east" <| n (run 9) -- 9 'world' drum sounds, ok
 d1 $ slow 4 $ s "em2" <| n (run 6) -- six longer sounds, kalimba, flute, loon?
