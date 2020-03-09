@@ -64,9 +64,9 @@ jumpIn' 1 0 $ sometimesBy 0.9 (fast 2) $ n (run 8) # s "tabla2"
 d1 $ s "tabla2!16" # n (irand 8) # pan rand
 d1 $ repeatCycles 4 $ s "tabla2!16" # n (irand 8) # pan rand # speed (choose [1,0.5])
 
--- more interesting sounds
--- more interesting rhythms
-d1 $ stripe 3 $ n (scramble 8 $ run 8) # sound "industrial" # speed 0.125
+-- more interesting sounds, rhythms
+-- stripe no good in Estuary, slowstripe is fine?!
+d1 $ slowstripe 3 $ n (scramble 8 $ run 8) # sound "industrial" # speed 0.125
 -- iya
 d1 $ slowstripe 3 $ n (scramble 8 $ run 8) # sound "industrial" # speed (choose [2,0.125])
 d1 $ slowstripe 3 $ n (scramble 8 $ run 8) # sound "industrial" # speed (range 0.125 2 rand)
