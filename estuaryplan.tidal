@@ -61,8 +61,8 @@ jumpIn' 1 0 $ sometimesBy 0.9 (fast 2) $ n (run 8) # s "tabla2"
 
 -- rand, irand
 
-d1 $ sound "tabla2!16" # n (irand 8) # pan rand
-d1 $ repeatCycles 4 $ sound "tabla2!16" # n (irand 8) # pan rand # speed (choose [1,1/2])
+d1 $ s "tabla2!16" # n (irand 8) # pan rand
+d1 $ repeatCycles 4 $ s "tabla2!16" # n (irand 8) # pan rand # speed (choose [1,0.5])
 
 -- more interesting sounds
 -- more interesting rhythms
