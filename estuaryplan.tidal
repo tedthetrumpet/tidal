@@ -43,13 +43,13 @@ jumpIn' 1 0 $ up "c d e fs g a bf c6" # sound "juno:1" # cut 1
 -- some effects to pattern, speed, crush, sqiuz, vowel, gain
 -- math on controls not in Estuary, use range
 jumpIn' 1 0 $ n "0 1 2 3 4 5 6 7" # sound "house" # speed 2
-jumpIn' 1 1 $ n (run 8) # sound "house" # speed (range 0.125 1 (run 8))
-jumpIn' 1 1 $ n (run 8) # sound "house" # speed (choose [1,-1])
-jumpIn' 1 1 $ n (run 8) # sound "house" # speed (range 0.125 1 (repeatCycles 2 $ scramble 8 $ run 8))
-jumpIn' 1 1 $ n (run 16) # sound "house" # speed (range 0.125 1 (repeatCycles 1024 $ (3 ~>) $ scramble 8 $ run 8)) -- iya
-jumpIn' 1 1 $ n (run 8) # sound "house" # crush (run 8) -- 1 to 16 (bits)
-jumpIn' 1 1 $ n (run 8) # sound "house" # squiz 4
-jumpIn' 1 1 $ n (run 8) # sound "house" # vowel "a e i o u"
+jumpIn' 1 1 $ n (run 8) # s "house" # speed (range 0.125 1 (run 8))
+jumpIn' 1 1 $ n (run 8) # s "house" # speed (choose [1,-1])
+jumpIn' 1 1 $ n (run 8) # s "house" # speed (range 0.125 1 (repeatCycles 2 $ scramble 8 $ run 8))
+jumpIn' 1 1 $ n (run 16) # s "house" # speed (range 0.125 1 (repeatCycles 1024 $ (3 ~>) $ scramble 8 $ run 8)) -- iya
+jumpIn' 1 1 $ n (run 8) # s "house" # crush (run 8) -- 1 to 16 (bits)
+jumpIn' 1 1 $ n (run 8) # s "house" # squiz 4
+jumpIn' 1 1 $ n (run 8) # s "house" # vowel "a e i o u"
 
 -- cool transformations eg every 4 (rev), jux rev
 
