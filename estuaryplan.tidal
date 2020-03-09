@@ -9,7 +9,7 @@ jumpIn' 1 0 $ s "909 cb casio arpy" -- don't forget arpy:0 is D in estuary, C in
 jumpIn' 1 0 $ s "909 cb casio arpy bin"
 jumpIn' 1 0 $ s "[909 cb casio arpy bin]/2"
 jumpIn' 1 0 $ s "[909 cb casio arpy bin glitch blip can]/2"
-jumpIn' 1 0 $ s "[909 cb] [casio arpy] bin bleep . blip can" -- ok, I see…
+jumpIn' 1 0 $ s "[909 cb] [casio arpy] bin glitch . blip can" -- ok, I see…
 jumpIn' 1 0 $ s "click cp db dr_few east feel gab gretsch" -- second lot of 8
 
 -- lots of work here in the mini-syntax
@@ -29,6 +29,7 @@ jumpIn' 1 0 $ n "0 1 2 3 4 5 6 7" # s "<house dr_few>"
 
 jumpIn' 1 0 $ n (run 16) # s "amencutup"
 jumpIn' 1 0 $ n (scramble 16 $ run 16) # s "amencutup" -- also shuffle
+jumpIn' 1 0 $ n (repeatCycles 4 $ scramble 16 $ run 16) # s "amencutup" -- also shuffle
 jumpIn' 1 0 $ s "amencutup!16" # n (choose [1,5,7,9,31])
 
 
@@ -36,13 +37,14 @@ jumpIn' 1 0 $ s "amencutup!16" # n (choose [1,5,7,9,31])
 jumpIn' 1 0 $ up "0 1 2 3 4 5 6 7" # sound "arpy" -- pattern from the n
 jumpIn' 1 0 $ up "c d e fs g a bf c6" # sound "arpy" -- pattern from the n
 jumpIn' 1 0 $ up "[c'sevenFlat5!8, c d e fs g a bf c6]" # sound "arpy" -- pattern from the n
-jumpIn' 1 0 $ up "c d e fs g a bf c6" # sound "gtr" # cut 1 -- gtr or juno:1
+-- gtr not great estuary, use juno:4 for estuary, also a bit odd
+jumpIn' 1 0 $ up "c d e fs g a bf c6" # sound "juno:1" # cut 1
 
 -- some effects to pattern, speed, crush, sqiuz, vowel, gain
 -- math on controls not in Estuary, use range
 jumpIn' 1 0 $ n "0 1 2 3 4 5 6 7" # sound "house" # speed 2
--- jumpIn' 1 1 $ n (run 8) # sound "house" # speed (run 8) + 1 / 8
 jumpIn' 1 1 $ n (run 8) # sound "house" # speed (range 0.125 1 (run 8))
+jumpIn' 1 1 $ n (run 8) # sound "house" # speed (choose [1,-1])
 jumpIn' 1 1 $ n (run 8) # sound "house" # speed (range 0.125 1 (repeatCycles 2 $ scramble 8 $ run 8))
 jumpIn' 1 1 $ n (run 16) # sound "house" # speed (range 0.125 1 (repeatCycles 1024 $ (3 ~>) $ scramble 8 $ run 8)) -- iya
 jumpIn' 1 1 $ n (run 8) # sound "house" # crush (run 8) -- 1 to 16 (bits)
