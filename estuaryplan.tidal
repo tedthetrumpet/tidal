@@ -1,7 +1,5 @@
--------------- usable 0 sounds for estuary workshop
 hush
 
--- jumpIn' no work in estuary
 -- 1 % 2 tempo is two seconds per cycle
 jumpIn' 1 0 $ s "909" -- 1 is d1 0 is start of next cycle don't miss the tick!
 jumpIn' 1 0 $ s "909 cb casio" -- 1 is d1 0 is start of next cycle don't miss the tick!

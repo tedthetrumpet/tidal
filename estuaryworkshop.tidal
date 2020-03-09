@@ -1,0 +1,69 @@
+-- basics
+s "909"
+s "909 cb casio"
+s "909 cb casio arpy"
+s "909 cb casio arpy bin"
+s "[909 cb casio arpy bin]/2"
+s "[909 cb casio arpy bin glitch blip can]/2"
+s "[909 cb] [casio arpy] bin glitch . blip can"
+s "click cp db dr_few east feel gab gretsch"
+
+-- mini syntax
+  -- [] [,] "." {} <> ! * / ~ euclid
+
+-- patterns by running through a bank
+s "house house house house"
+s "house!4" # n "0 1 2 3"
+s "house!4" # n "0 1 2 3 5" -- pattern from the left, 5 does nothing
+n "0 1 2 3" # s "house" -- pattern from the left
+n "0 1 2 3 4 5 6 7" # s "house" -- pattern from the n
+n "0 1 2 3 4 5 6 7" # s "<house dr_few>"
+-- jumpIn' 1 1 $ n "0 1 2 3 4 5 6 7" # sound "house arpy" -- interesting
+-- jumpIn' 1 1 $ n "0 1 2 3 4 5 6 7" # sound "{house arpy}%8" -- obscure but useful
+
+-- randomness
+n (run 16) # s "amencutup"
+n (scramble 16 $ run 16) # s "amencutup" -- also shuffle
+n (repeatCycles 4 $ scramble 16 $ run 16) # s "amencutup" -- also shuffle
+s "amencutup!16" # n (choose [1,5,7,9,31])
+
+-- pitches
+up "0 1 2 3 4 5 6 7" # sound "arpy" -- pattern from the left (up)
+up "c d e fs g a bf c6" # sound "arpy"
+up "[c'sevenFlat5!8, c d e fs g a bf c6]" # sound "arpy"
+up "c d e fs g a bf c6" # sound "juno:4" # cut 1
+
+-- controls/effects, speed, crush, vowel, gain
+n "0 1 2 3 4 5 6 7" # sound "house" # speed 2
+n (run 8) # s "house" # speed (range 0.125 1 (run 8))
+n (run 8) # s "house" # speed (choose [1,-1])
+n (run 8) # s "house" # speed (range 0.125 1 (repeatCycles 2 $ scramble 8 $ run 8))
+n (run 16) # s "house" # speed (range 0.125 1 (repeatCycles 1024 $ (3 ~>) $ scramble 8 $ run 8))
+n (run 8) # s "house" # crush (run 8) -- 1 to 16 (bits)
+n (run 8) # s "house" # vowel "<a e i o u>"
+
+-- transformations
+every 4 (rev) $ n (run 8) # s "peri" -- or gretsch
+sometimes (# speed 0.25) $ n (run 8) # s "peri"
+fast 2 $ n (run 8) # s "peri"
+sometimes (fast 2) $ n (run 8) # s "peri" -- iya
+fast 2 $ n (run 8) # s "tabla2"
+sometimesBy 0.9 (fast 2) $ n (run 8) # s "tabla2"
+
+-- rand, irand
+s "tabla2!16" # n (irand 8) # pan rand
+repeatCycles 4 $ s "tabla2!16" # n (irand 8) # pan rand # speed (choose [1,0.5])
+
+-- more interesting sounds and rhythms
+slowstripe 3 $ n (scramble 8 $ run 8) # sound "industrial" # speed 0.125
+slowstripe 3 $ n (scramble 8 $ run 8) # sound "industrial" # speed (choose [2,0.125])
+slowstripe 3 $ n (scramble 8 $ run 8) # sound "industrial" # speed (range 0.125 2 rand)
+slowstripe 3 $ n (scramble 8 $ run 8) # sound "stab" # speed (range 0.125 2 rand)
+
+
+
+-------------- reminders
+-- arpy:0 is D in estuary, C in tidal
+-- 1 % 2 tempo is two seconds per cycle
+-- math on controls not in Estuary! use range
+-- stripe no good in Estuary, slowstripe is fine?!
