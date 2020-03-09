@@ -43,25 +43,25 @@ jumpIn' 1 0 $ up "c d e fs g a bf c6" # sound "juno:1" # cut 1
 -- some effects to pattern, speed, crush, vowel, gain
 -- math on controls not in Estuary, use range
 jumpIn' 1 0 $ n "0 1 2 3 4 5 6 7" # sound "house" # speed 2
-jumpIn' 1 1 $ n (run 8) # s "house" # speed (range 0.125 1 (run 8))
-jumpIn' 1 1 $ n (run 8) # s "house" # speed (choose [1,-1])
-jumpIn' 1 1 $ n (run 8) # s "house" # speed (range 0.125 1 (repeatCycles 2 $ scramble 8 $ run 8))
-jumpIn' 1 1 $ n (run 16) # s "house" # speed (range 0.125 1 (repeatCycles 1024 $ (3 ~>) $ scramble 8 $ run 8)) -- iya
-jumpIn' 1 1 $ n (run 8) # s "house" # crush (run 8) -- 1 to 16 (bits)
-jumpIn' 1 1 $ n (run 8) # s "house" # vowel "<a e i o u>"
+jumpIn' 1 0 $ n (run 8) # s "house" # speed (range 0.125 1 (run 8))
+jumpIn' 1 0 $ n (run 8) # s "house" # speed (choose [1,-1])
+jumpIn' 1 0 $ n (run 8) # s "house" # speed (range 0.125 1 (repeatCycles 2 $ scramble 8 $ run 8))
+jumpIn' 1 0 $ n (run 16) # s "house" # speed (range 0.125 1 (repeatCycles 1024 $ (3 ~>) $ scramble 8 $ run 8)) -- iya
+jumpIn' 1 0 $ n (run 8) # s "house" # crush (run 8) -- 1 to 16 (bits)
+jumpIn' 1 0 $ n (run 8) # s "house" # vowel "<a e i o u>"
 
 -- cool transformations eg every 4 (rev), jux rev
 
-jumpIn' 1 1 $ every 4 (rev) $ n (run 8) # sound "gretsch" -- peri
-jumpIn' 1 1 $ sometimes (# speed 0.25) $ n (run 8) # sound "gretsch"
-jumpIn' 1 1 $ chunk 8 (# speed 0.25) $ n (run 8) # sound "gretsch"
-jumpIn' 1 1 $ n (run 8) # sound "tabla"
-jumpIn' 1 1 $ fast 2 $ n (run 8) # sound "tabla2"
+jumpIn' 1 0 $ every 4 (rev) $ n (run 8) # s "peri" -- or gretsch
+jumpIn' 1 0 $ sometimes (# speed 0.25) $ n (run 8) # s "peri" - iya
+jumpIn' 1 0 $ fast 2 $ n (run 8) # s "peri"
+jumpIn' 1 0 $ sometimes (fast 2) $ n (run 8) # s "peri" -- iya
+jumpIn' 1 0 $ fast 2 $ n (run 8) # s "tabla2"
+jumpIn' 1 0 $ sometimesBy 0.9 (fast 2) $ n (run 8) # s "tabla2"
 
 -- rand, irand
 
 d1 $ sound "tabla2!16" # n (irand 8) # pan rand
--- repeatCycles not in Estuary?
 d1 $ repeatCycles 4 $ sound "tabla2!16" # n (irand 8) # pan rand # speed (choose [1,1/2])
 
 -- more interesting sounds
