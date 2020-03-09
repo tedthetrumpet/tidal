@@ -1,0 +1,67 @@
+-------------- usable 0 sounds for estuary workshop
+hush
+
+-- ab is pretty quiet, also do 909 first
+-- jumpIn' no work in estuary
+jumpIn' 1 0 $ s "909" -- 1 is d1 0 is start of next cycle don't miss the tick!
+jumpIn' 1 0 $ s "909 808 casio" -- 1 is d1 0 is start of next cycle don't miss the tick!
+jumpIn' 1 0 $ s "909 808 casio arpy" -- don't forget arpy:0 is D in estuary, C in tidal
+jumpIn' 1 0 $ s "909 808 casio arpy bin"
+jumpIn' 1 0 $ s "[909 808 casio arpy bin]/2" -- do need to figure out setcps in estuary
+jumpIn' 1 0 $ s "[909 808 casio arpy bin bleep blip can]/2"
+jumpIn' 1 0 $ s "[909 808] [casio arpy] bin bleep . blip can" -- ok, I see…
+jumpIn' 1 0 $ s "click cp db dr_few east feel gab gretsch" -- second lot of 8
+
+-- lots of work here in the mini-syntax
+  -- euclid
+
+-- patterns by running through a bank
+jumpIn' 1 0 $ s "house house house house"
+jumpIn' 1 0 $ s "house!4" # n "0 1 2 3"
+jumpIn' 1 0 $ s "house!4" # n "0 1 2 3 5" -- pattern from the left, 5 does nothing
+jumpIn' 1 0 $ n "0 1 2 3 4 5 6 7" # sound "house" -- pattern from the n
+jumpIn' 1 0 $ n "0 1 2 3 4 5 6 7" # sound "<house casio>"
+-- jumpIn' 1 1 $ n "0 1 2 3 4 5 6 7" # sound "house arpy" -- interesting
+-- jumpIn' 1 1 $ n "0 1 2 3 4 5 6 7" # sound "{house arpy}%8" -- obscure but useful to know!
+
+-- pitches
+jumpIn' 1 0 $ up "0 1 2 3 4 5 6 7" # sound "arpy" -- pattern from the n
+jumpIn' 1 0 $ up "c d e fs g a bf c6" # sound "arpy" -- pattern from the n
+jumpIn' 1 0 $ up "[c'sevenFlat5!8, c d e fs g a bf c6]" # sound "arpy" -- pattern from the n
+jumpIn' 1 0 $ up "c d e fs g a bf c6" # sound "gtr" # cut 1 -- gtr or juno:1
+
+-- some effects to pattern, speed, crush, sqiuz, vowel, gain
+-- math on controls not in Estuary, use range
+jumpIn' 1 0 $ n "0 1 2 3 4 5 6 7" # sound "house" # speed 2
+-- jumpIn' 1 1 $ n (run 8) # sound "house" # speed (run 8) + 1 / 8
+jumpIn' 1 1 $ n (run 8) # sound "house" # speed (range 0.125 1 (run 8))
+jumpIn' 1 1 $ n (run 8) # sound "house" # speed (range 0.125 1 (repeatCycles 2 $ scramble 8 $ run 8))
+jumpIn' 1 1 $ n (run 16) # sound "house" # speed (range 0.125 1 (repeatCycles 1024 $ (3 ~>) $ scramble 8 $ run 8)) -- iya
+jumpIn' 1 1 $ n (run 8) # sound "house" # crush (run 8) -- 1 to 16 (bits)
+jumpIn' 1 1 $ n (run 8) # sound "house" # squiz 4
+jumpIn' 1 1 $ n (run 8) # sound "house" # vowel "a e i o u"
+
+-- cool transformations eg every 4 (rev), jux rev
+
+jumpIn' 1 1 $ every 4 (rev) $ n (run 8) # sound "gretsch" -- peri
+jumpIn' 1 1 $ sometimes (# speed 0.25) $ n (run 8) # sound "gretsch"
+jumpIn' 1 1 $ chunk 8 (# speed 0.25) $ n (run 8) # sound "gretsch"
+jumpIn' 1 1 $ n (run 8) # sound "tabla"
+jumpIn' 1 1 $ fast 2 $ n (run 8) # sound "tabla2"
+
+-- rand, irand
+
+d1 $ sound "tabla2!16" # n (irand 8) # pan rand
+-- repeatCycles not in Estuary?
+d1 $ repeatCycles 4 $ sound "tabla2!16" # n (irand 8) # pan rand # speed (choose [1,1/2])
+
+-- more interesting sounds
+-- more interesting rhythms
+d1 $ stripe 3 $ n (scramble 8 $ run 8) # sound "industrial" # speed 0.125
+-- iya
+d1 $ slowstripe 3 $ n (scramble 8 $ run 8) # sound "industrial" # speed (choose [2,0.125])
+d1 $ slowstripe 3 $ n (scramble 8 $ run 8) # sound "industrial" # speed (range 0.125 2 rand)
+d1 $ slowstripe 3 $ n (scramble 8 $ run 8) # sound "stab" # speed (range 0.125 2 rand)
+
+
+hush

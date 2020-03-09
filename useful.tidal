@@ -11,6 +11,12 @@ jumpIn' 1 1$jux((slow 144$run 12/12)<~)$"cp!3~cp!~cp~cp!~"
 
 -- hush is shift-cmd-h
 ------------------
+d1 $ s "[mt mt] bd" -- quaver quaver crotchet
+d1 $ s "mt*2 bd" -- same
+d1 $ s "mt mt . bd" -- same
+d1 $ s "mt mt bd" -- triplets
+d1 $ s "mt!2 bd" -- triplets
+------------------
 
 -- default cps is 0.5??
 -- in hackage defaultCps = 0.5625?
@@ -22,8 +28,38 @@ setcps 0.5625
 setcps 0.5
 
 asap $ s "909!4"
+------------------
+6by9 7f10 7f5 7f9 7s5 7s5f9 7sus2 7sus4 9s5 9sus4 aug dim dim7 dom7 eleven elevenSharp five m11 m11s m11sharp m13m6 m6by9 m7f5 m7f9 m7flat5 m7flat9 m7s5 m7s9 m7sharp5 m7sharp5flat9 m7sharp9 m9 m9s5 m9sharp5 maj maj11 maj7 maj9 major major7 min min7 minor minor7 msharp5 nine nineSharp5 nineSus4 ninesus4 one plus sevenFlat10 sevenFlat5 sevenFlat9 sevenSharp5 sevenSharp5flat9 sevenSus2 sevenSus4 sharp5 six sixby9 sus2 sus4 thirteen
 
 
+
+----------------
+notes = timeLoop 1 $ struct "t*8" $ choose [0,1,2,3,4,5]
+
+notes = timeLoop 1 $ struct "t*8" $ (2 ~>) $ choose [0,1,2,3,4,5]
+
+d1 $ note notes # sound "arpy"
+
+let notes = timeLoop 1 $ 1 <~ (struct "t*8" $ choose [0,1,2,3,4,5])
+in
+d1 $ note notes # sound "arpy"
+
+do let notes = timeLoop 1 $ 1 <~ (struct "t*8" $ choose [0,1,2,3,4,5])
+   d1 $ note notes # sound "arpy"
+
+
+-- or
+setF "notes" $ timeLoop 1 $ 1 <~ (struct "t*8" $ choose [0,1,2,3,4,5])
+
+d1 $ note (cF_ "notes") # sound "arpy"
+
+-- or
+let setNotes = setF "notes"
+    notes = cF_ "notes"
+
+setNotes $ timeLoop 1 $ 1 <~ (struct "t*8" $ choose [0,1,2,3,4,5])
+
+d1 $ note notes # sound "arpy"
 
 
 hush
