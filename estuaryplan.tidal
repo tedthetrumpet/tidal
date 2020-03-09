@@ -1,15 +1,15 @@
 -------------- usable 0 sounds for estuary workshop
 hush
 
--- ab is pretty quiet, also do 909 first
 -- jumpIn' no work in estuary
+-- 1 % 2 tempo is two seconds per cycle
 jumpIn' 1 0 $ s "909" -- 1 is d1 0 is start of next cycle don't miss the tick!
-jumpIn' 1 0 $ s "909 808 casio" -- 1 is d1 0 is start of next cycle don't miss the tick!
-jumpIn' 1 0 $ s "909 808 casio arpy" -- don't forget arpy:0 is D in estuary, C in tidal
-jumpIn' 1 0 $ s "909 808 casio arpy bin"
-jumpIn' 1 0 $ s "[909 808 casio arpy bin]/2" -- do need to figure out setcps in estuary
-jumpIn' 1 0 $ s "[909 808 casio arpy bin bleep blip can]/2"
-jumpIn' 1 0 $ s "[909 808] [casio arpy] bin bleep . blip can" -- ok, I see…
+jumpIn' 1 0 $ s "909 cb casio" -- 1 is d1 0 is start of next cycle don't miss the tick!
+jumpIn' 1 0 $ s "909 cb casio arpy" -- don't forget arpy:0 is D in estuary, C in tidal
+jumpIn' 1 0 $ s "909 cb casio arpy bin"
+jumpIn' 1 0 $ s "[909 cb casio arpy bin]/2"
+jumpIn' 1 0 $ s "[909 cb casio arpy bin glitch blip can]/2"
+jumpIn' 1 0 $ s "[909 cb] [casio arpy] bin bleep . blip can" -- ok, I see…
 jumpIn' 1 0 $ s "click cp db dr_few east feel gab gretsch" -- second lot of 8
 
 -- lots of work here in the mini-syntax
