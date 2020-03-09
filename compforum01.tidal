@@ -4,7 +4,9 @@
 -- remember to load own samples in sc
 
 -- ppsus 29
-d1 $ slowstripe 3 $ n (scramble 8 $ run 8 + 20 ) # sound "ppsus" # speed (range 0.125 2 rand) -- slower, more spacious, start with lower pitches
+d1 $ slowstripe 3 $ slow "4" $ n (run 2) # sound "ppsus" # speed (range 0.25 2 rand)
+d1 $ slowstripe 3 $ slow "4 0.25" $ n (run 2) # sound "ppsus" # speed (range 0.25 2 rand)
+d1 $ slowstripe 3 $ n (scramble 8 $ run 8 + 20 ) # sound "ppsus" # speed (range 0.125 2 rand)
 d1 $ n (scramble 8 $ run 8 + 20 ) # sound "ppsus" # speed (range 0.125 2 rand)
 d1 $ n (repeatCycles 4 $ scramble 8 $ run 8 + 20 ) # sound "ppsus" # speed (range 0.125 2 rand)
 d1 $ n (repeatCycles 4 $ scramble 8 $ run 8 + 20 ) # sound "ppsus"
@@ -22,6 +24,7 @@ do
   solo 3
   jumpIn' 3 1 $ slow 2 $ s "superreese" <| up "e'min(3,8) f'maj(3,8,2) c'min(3,8) ef'min(3,8)" # legato 2 # release 1 # gain 1.1
 
+-- drop in bassline here as well
 unsolo 3
 
 

@@ -61,5 +61,15 @@ setNotes $ timeLoop 1 $ 1 <~ (struct "t*8" $ choose [0,1,2,3,4,5])
 
 d1 $ note notes # sound "arpy"
 
+------------
+d1 $ stripe 3 $ sound "bd sd ~ [mt ht]"
+
+d2 $ sound "cp"
+
+d1 $ slowstripe 19 $ sound "bd sd ~ [mt ht]"
+
+d2 $ sound "cp"
+
+
 
 hush
