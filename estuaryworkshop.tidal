@@ -67,3 +67,5 @@ slowstripe 3 $ n (scramble 8 $ run 8) # sound "stab" # speed (range 0.125 2 rand
 -- 1 % 2 tempo is two seconds per cycle
 -- math on controls not in Estuary! use range
 -- stripe no good in Estuary, slowstripe is fine?!
+-- chords https://tidalcycles.org/index.php/chords
+-- mini notation syntax https://tidalcycles.org/index.php/Mini_notation_syntax
