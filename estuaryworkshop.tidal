@@ -18,8 +18,8 @@ s "house!4" # n "0 1 2 3 5" -- pattern from the left, 5 does nothing
 n "0 1 2 3" # s "house" -- pattern from the left
 n "0 1 2 3 4 5 6 7" # s "house" -- pattern from the n
 n "0 1 2 3 4 5 6 7" # s "<house dr_few>"
--- jumpIn' 1 1 $ n "0 1 2 3 4 5 6 7" # sound "house arpy" -- interesting
--- jumpIn' 1 1 $ n "0 1 2 3 4 5 6 7" # sound "{house arpy}%8" -- obscure but useful
+-- jumpIn' 1 1 $ n "0 1 2 3 4 5 6 7" # s "house arpy" -- interesting
+-- jumpIn' 1 1 $ n "0 1 2 3 4 5 6 7" # s "{house arpy}%8" -- obscure but useful
 
 -- randomness
 n (run 16) # s "amencutup"
@@ -28,13 +28,13 @@ n (repeatCycles 4 $ scramble 16 $ run 16) # s "amencutup" -- also shuffle
 s "amencutup!16" # n (choose [1,5,7,9,31])
 
 -- pitches
-up "0 1 2 3 4 5 6 7" # sound "arpy" -- pattern from the left (up)
-up "c d e fs g a bf c6" # sound "arpy"
-up "[c'sevenFlat5!8, c d e fs g a bf c6]" # sound "arpy"
-up "c d e fs g a bf c6" # sound "juno:4" # cut 1
+up "0 1 2 3 4 5 6 7" # s "arpy" -- pattern from the left (up)
+up "c d e fs g a bf c6" # s "arpy"
+up "[c'sevenFlat5!8, c d e fs g a bf c6]" # s "arpy"
+up "c d e fs g a bf c6" # s "juno:4" # cut 1
 
 -- controls/effects, speed, crush, vowel, gain
-n "0 1 2 3 4 5 6 7" # sound "house" # speed 2
+n "0 1 2 3 4 5 6 7" # s "house" # speed 2
 n (run 8) # s "house" # speed (range 0.125 1 (run 8))
 n (run 8) # s "house" # speed (choose [1,-1])
 n (run 8) # s "house" # speed (range 0.125 1 (repeatCycles 2 $ scramble 8 $ run 8))
@@ -55,10 +55,10 @@ s "tabla2!16" # n (irand 8) # pan rand
 repeatCycles 4 $ s "tabla2!16" # n (irand 8) # pan rand # speed (choose [1,0.5])
 
 -- more interesting sounds and rhythms
-slowstripe 3 $ n (scramble 8 $ run 8) # sound "industrial" # speed 0.125
-slowstripe 3 $ n (scramble 8 $ run 8) # sound "industrial" # speed (choose [2,0.125])
-slowstripe 3 $ n (scramble 8 $ run 8) # sound "industrial" # speed (range 0.125 2 rand)
-slowstripe 3 $ n (scramble 8 $ run 8) # sound "stab" # speed (range 0.125 2 rand)
+slowstripe 3 $ n (scramble 8 $ run 8) # s "industrial" # speed 0.125
+slowstripe 3 $ n (scramble 8 $ run 8) # s "industrial" # speed (choose [2,0.125])
+slowstripe 3 $ n (scramble 8 $ run 8) # s "industrial" # speed (range 0.125 2 rand)
+slowstripe 3 $ n (scramble 8 $ run 8) # s "stab" # speed (range 0.125 2 rand)
 
 
 
