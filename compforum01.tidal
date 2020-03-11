@@ -1,7 +1,7 @@
 -- abstract to algorave
--- score in hydra
--- livecode the players
 -- remember to load own samples in sc
+-- livecode the players
+-- score in hydra
 
 -- ppsus 29
 d1 $ slowstripe 3 $ slow "4" $ n (run 2) # sound "ppsus" # speed (range 0.25 2 rand)
@@ -27,14 +27,12 @@ do
 -- drop in bassline
 do
   unsolo 3
-  jumpIn' 4 0 $ s "superhoover!16" # up "<e4 a4 c4 f4>" # legato 0.8
+  jumpIn' 4 0 $ s "superhoover!4" # up "<e4 a4 c4 f4>" # legato 0.8
 
 do
   clutchIn 1 7 $ silence
   clutchIn 2 8 $ silence
   clutchIn 3 10 $ silence
   clutchIn 4 9 $ silence
-
-
 
 hush
