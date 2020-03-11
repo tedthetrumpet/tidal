@@ -1,0 +1,55 @@
+play? yeah, that's fine
+I don't want to interfere but could we have a little more, um, movement? activity?
+You don't *have* to do what I say
+can we head back to the opening texture
+ish?
+I wonder what the audience make of this?
+Leaving it like that for now, keep going
+do more?
+
+
+repeatCycles
+
+-- ppsus 29
+d1 $ slowstripe 3 $ slow "4" $ n (run 5) # sound "ppsus" # speed (range 0.25 2 rand)
+d1 $ slowstripe 3 $ slow "4 0.25" $ n (run 2) # sound "ppsus" # speed (range 0.25 2 rand)
+-- I feel like the group were playing better before
+-- oh well
+d1 $ slowstripe 3 $ n (scramble 8 $ run 8 + 20 ) # sound "ppsus" # speed (range 0.125 2 rand)
+d1 $ n (scramble 8 $ run 8 + 20 ) # sound "ppsus" # speed (range 0.125 2 rand)
+d1 $ n (repeatCycles 4 $ scramble 8 $ run 8 + 20 ) # sound "ppsus" # speed (range 0.5 2 rand)
+d1 $ n (repeatCycles 4 $ scramble 8 $ run 8 + 20 ) # sound "pp"
+d1 $ n (repeatCycles 1024 $ (0 ~>) $ scramble 8 $ run 8 + 20 ) # sound "ppsus"
+jumpIn' 1 0 $ n (repeatCycles 1024 $ (0 ~>) $ scramble 8 $ run 8 + 20 ) # sound "threequal" # gain 1.2
+-- good!
+-- shall I?
+-- do you want it?
+-- now?????
+
+jumpIn' 2 0 $ s "909!4" # gain 1.3
+jumpIn' 2 0 $ s "[909!4, [~ cp]!2]" # gain 1.3
+
+jumpIn' 1 0 $ n (repeatCycles 1024 $ (1 ~>) $ scramble 16 $ run 16 ) # sound "threequal" # gain 1.2 # speed 2 -- etc
+
+-- drop to acid chords, need to time correctly for the solo 3
+
+do
+  solo 3
+  jumpIn' 3 0 $ slow 2 $ s "superreese" <| up "e'min(3,8) f'maj(3,8,2) c'min(3,8) ef'min(3,8)" # legato 2 # release 1 # gain 1.1
+
+-- drop in bassline
+do
+  unsolo 3
+  jumpIn' 4 0 $ s "superhoover!16" # up "<e4 a4 c4 f4>" # legato 0.8 # gain 1.2
+
+
+do
+  clutchIn 1 7 $ silence
+  clutchIn 2 8 $ silence
+  clutchIn 3 10 $ silence
+  clutchIn 4 9 $ silence
+
+hush
+
+not sure if that is the end
+ok it is
