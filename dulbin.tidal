@@ -303,6 +303,5 @@ d1 $ s "superpiano" <| n "c cs d ef e f fs g af a bf b c6"
 -- d1 $ s "arpy" <| n "c cs d ef e f fs g af a bf b c6" not n!
 d1 $ s "arpy" <| up "c cs d ef e f fs g af a bf b c6" -- use up
 
-
-
---------------------
+-------------------- chop like slice
+d1 $ slow 2 $ repeatCycles 4 $ shuffle 16 $ chop 16 $ s "sldiwaloops" # n "<0 1>*8"
