@@ -2,7 +2,7 @@
 
 d1 $ s "[bd*4]" # n 8
 d1 $ s "[bd*4,[~ cp]*2]" # n 8
-d1 $ s "bd(3,8)!2" # n 8 # crush 3
+d1 $ s "bd(3,8)!2" # n 8 # crush "<3 4 2 7>"
 d1 silence
 
 -- iya
@@ -18,17 +18,26 @@ d3 silence
 
 once $ s "sldiwaloops:41" # speed 2 -- trumpets
 
--- getting there, longer phrase?
 d4 $ s "sldiwaloops:41" # begin (0/16) # end (2/16) <| speed "4 2 1"
-d4 $ s "sldiwaloops:42" # begin (0/16) # end (2/16) <| speed "4 2 1"
 d4 $ s "sldiwaloops:41" # begin ("<0 4>"/16) # end ("<2 6>"/16) <| speed "4 2 1"
+d4 $ s "sldiwaloops:41" # begin (0/16) # end (2/16) <| speed "4 2 1"
+
+
+d4 $ s "sldiwaloops:41" # begin (0/16) # end (2/16) <| speed "4 2 1"
+d4 $ slice 8 0 $ s "sldiwaloops:41" <| speed "4 2 1"
+
 
 d4 silence
 
+unsolo 4
 
-d1 $ s "bev" # begin (2/16) # end (4/16)
+-- ok, same
+d1 $ s "bev" # begin (2/16) # end (4/16) <| speed "4 2 1"
+d1 $ slice 8 1 $ s "bev" <| speed "4 2 1"
+d1 $ slice 8 1 $ s "bev!3" # speed "4 2 1"
 
-Is there a better way to select slices of a longer sample to play? If I do this `d1 $ s "bev" # begin (0/16) # end (2/16)` and then want to change which slice of the file I'm playing, I have to change two numbers: `d1 $ s "bev" # begin (2/16) # end (4/16)`. Could I, umm do something like (pseudocode) `var x = 0; begin (x/16) # end ((x+2)/16)`. Or is there a better way? (Maybe using `chop`, which I don't understand at all!)
+However: hmm. These two sound the same, `d1 $ s "bev" # begin (2/16) # end (4/16)` and `d1 $ slice 8 1 $ s "bev"` but these two, `d1 $ s "bev" # begin (2/16) # end (4/16) <| speed "4 2 1"` and `d1 $ slice 8 1 $ s "bev" <| speed "4 2 1"` don't. Something I don't understand here.
+
 
 
 
