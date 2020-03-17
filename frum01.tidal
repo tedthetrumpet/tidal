@@ -23,17 +23,17 @@ jumpIn' 1 0 $ n (repeatCycles 1024 $ (1 ~>) $ scramble 16 $ run 16 ) # sound "th
 
 do
   solo 3
-  jumpIn' 3 0 $ slow 2 $ s "superreese" <| up "e'min(3,8) f'maj(3,8,2) c'min(3,8) ef'min(3,8)" # legato 2 # release 1 # gain 1.1
+  jumpIn' 3 0 $ slow 2 $ s "superreese" <| up "c'min(3,8) ef'min(3,8) e'min(3,8) f'maj(3,8,2)" # legato 2 # release 1 # gain 1.1
 
--- drop in bassline
+-- drop in weird rong bassline
 do
   unsolo 3
-  jumpIn' 4 0 $ s "superhoover!4" # up "<e4 a4 c4 f4>" # legato 0.8
+  jumpIn' 4 0 $ s "superhoover!4" # up "<a4 c4 f4 e4>" # legato 0.8
 
-do
-  clutchIn 1 7 $ silence
-  clutchIn 2 8 $ silence
-  clutchIn 3 10 $ silence
-  clutchIn 4 9 $ silence
+-- 'right' bassline
+-- jumpIn' 4 0 $ s "superhoover!4" # up "<c4 ef4 e4 f4>*2" # legato 0.8
 
-hush
+-- ease out
+jumpIn' 4 0 $ s "superhoover!4" # up "<a4 c4 f4 e4>" # legato 0.8 # gain 0.6
+
+jumpIn' 3 0 $ slow 2 $ s "superreese" <| up "c'min(3,8) ef'min(3,8) e'min(3,8) f'maj(3,8,2)" # legato 2 # release 1 # gain 0.6
