@@ -70,6 +70,15 @@ d1 $ slowstripe 19 $ sound "bd sd ~ [mt ht]"
 
 d2 $ sound "cp"
 
+-----------------
+do
+  {
+    resetCycles;
+    d2 $ seqPLoop [
+    (0, 4, fast 2 $ s "voodoo*8" # n "[1 2 3 4]*3" # freq "200 300"),
+    (4, 8, fast 2 $ s "sid*8" # n "[1 2 3 4]*3" # freq "100 300 400")
+    ]
+  }
 
 
 hush

@@ -33,7 +33,7 @@ do
 -- 'right' bassline
 -- jumpIn' 4 0 $ s "superhoover!4" # up "<c4 ef4 e4 f4>*2" # legato 0.8
 
--- ease out
+-- could ease into enox01 from here?!?
 jumpIn' 4 0 $ s "superhoover!4" # up "<a4 c4 f4 e4>" # legato 0.8 # gain 0.6
 
 jumpIn' 3 0 $ slow 2 $ s "superreese" <| up "c'min(3,8) ef'min(3,8) e'min(3,8) f'maj(3,8,2)" # legato 2 # release 1 # gain 0.6
