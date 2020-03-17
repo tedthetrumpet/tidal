@@ -16,16 +16,26 @@ d3 $ juxBy 0.3 rev $ sometimes (fast 2) $ s "psr*8" # n "1 2 3 4 6"
 d3 $ fast 2 $ s "sid*8" # n "[1 2 3 4]*3" # freq "100 300 400"
 d3 silence
 
-once $ s "sldiwaloops:41" # speed 2 -- one of the flutes
+once $ s "sldiwaloops:41" # speed 2 -- trumpets
 
 -- getting there, longer phrase?
 d4 $ s "sldiwaloops:41" # begin (0/16) # end (2/16) <| speed "4 2 1"
 d4 $ s "sldiwaloops:42" # begin (0/16) # end (2/16) <| speed "4 2 1"
+d4 $ s "sldiwaloops:41" # begin ("<0 4>"/16) # end ("<2 6>"/16) <| speed "4 2 1"
+
+d4 silence
+
+
+d1 $ s "bev" # begin (2/16) # end (4/16)
+
+Is there a better way to select slices of a longer sample to play? If I do this `d1 $ s "bev" # begin (0/16) # end (2/16)` and then want to change which slice of the file I'm playing, I have to change two numbers: `d1 $ s "bev" # begin (2/16) # end (4/16)`. Could I, umm do something like (pseudocode) `var x = 0; begin (x/16) # end ((x+2)/16)`. Or is there a better way? (Maybe using `chop`, which I don't understand at all!)
 
 
 
 
-
+do
+  n 0
+  d1 $ s "bev" # begin (0/16) # end (2/16) <| speed "4 2 1"
 
 
 
