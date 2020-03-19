@@ -1,0 +1,20 @@
+/* _          _ _   _        _                            _
+  | |_ ___ __| | |_| |_  ___| |_ _ _ _  _ _ __  _ __  ___| |_
+  |  _/ -_) _` |  _| ' \/ -_)  _| '_| || | '  \| '_ \/ -_)  _|
+   \__\___\__,_|\__|_||_\___|\__|_|  \_,_|_|_|_| .__/\___|\__|
+@tedthetrumpet - Glasgow - Scotland          |_|              */
+////////////////////////////////////////////////////////////////
+
+-- This is not my official set, just a kind of open rehearsal
+-- Filling in an empty slot
+-- SuperCollider playing some stuff in the backround already
+
+d1 $ slow 2 $ s "threequal!32" # n (shuffle 32 $ run 32) # gain 1.2
+
+-- nae idea what slowstripe does
+-- seems to have the effect I want of not having a beat
+-- but maybe lets do that now
+-- no, just not in the mood for tempo this morning
+
+-- winding up now, yaxu taking over
+-- the end

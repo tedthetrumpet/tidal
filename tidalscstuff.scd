@@ -16,6 +16,8 @@ SuperDirt.start(path:"/Users/jsimon/Dropbox/SuperCollider/sldiwaloops/")
 
 ~dirt.loadSoundFiles("/Users/jsimon/Library/Application Support/SuperCollider/downloaded-quarks/Dirt-Samples/*")
 
+~folders
+~listloops.fork
 
 
 ().play
