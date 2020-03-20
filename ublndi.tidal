@@ -1,17 +1,26 @@
 -- ublndi
+-- just started this one yesterday
+-- next album perhaps
+-- now for one of my longer samples
+
+-- I can't remember any transitions
+-- just going to fade that out manually
+-- bye all…………
+
+
 
 d1 $ s "[bd*4]" # n 8
-d1 $ s "[bd*4,[~ cp]*2]" # n 8
+d1 $ s "[bd*4,[~ cp]*2]" # n 8 # gain 1.1
 d1 $ s "bd(3,8)!2" # n 8 # crush "<3 4 2 7>"
 d1 silence
 
 -- iya
-d2 $ fast 2 $ s "voodoo*8" # n "[1 2 3 4]*3" # freq "200 300"
+d2 $ fast 2 $ s "voodoo*8" # n "[1 2 3 4]*3" # freq "200 300" # gain 1.1
 -- var
-d2 $ fast 2 $ s "sid*8" # n "[1 2 3 4]*3" # freq "100 300 400"
+d2 $ fast 2 $ s "sid*8" # n "[1 2 3 4]*3" # freq "100 300 400" # gain 1.1
 d2 silence
 
-d3 $ juxBy 0.3 rev $ sometimes (fast 2) $ s "psr*8" # n "1 2 3 4 6"
+d3 $ juxBy 0.3 rev $ sometimes (fast 2) $ s "psr*8" # n "1 2 3 4 6" # gain 1.1
 -- as above
 d3 $ fast 2 $ s "sid*8" # n "[1 2 3 4]*3" # freq "100 300 400"
 d3 silence

@@ -1,21 +1,31 @@
 setcps (135/240)
--- ppsus 29
+-- ppsus 29 prepared piano sounds
+-- used this improvising with some string players the other day
+-- lets revisit that
+-- without the string players, obvs
+-- gotta let those long reverse samples play out heh
 d1 $ slowstripe 3 $ slow "4" $ n (run 2) # sound "ppsus" # speed (range 0.25 2 rand)
-d1 $ slowstripe 3 $ slow "4 0.25" $ n (run 2) # sound "ppsus" # speed (range 0.25 2 rand)
-d1 $ slowstripe 3 $ n (scramble 8 $ run 8 + 20 ) # sound "ppsus" # speed (range 0.125 2 rand)
-d1 $ slowstripe 3 $ n (scramble 8 $ run 8 + 20 ) # sound "ppsus" # speed (sometimes (* (-1)) $ range 0.125 2 rand)
+d1 $ slowstripe 3 $ slow "4 0.25" $ n (run 4) # sound "ppsus" # speed (range 0.25 2 rand)
+d1 $ slowstripe 3 $ n (scramble 8 $ run 8 + 5 ) # sound "ppsus" # speed (range 0.125 2 rand)
+d1 $ slowstripe 3 $ n (scramble 8 $ run 8 + 9 ) # sound "ppsus" # speed (sometimes (* (-1)) $ range 0.125 2 rand)
 d1 $ n (scramble 8 $ run 8 + 20 ) # sound "ppsus" # speed (range 0.125 2 rand)
 d1 $ n (repeatCycles 4 $ scramble 8 $ run 8 + 20 ) # sound "ppsus" # speed (range 0.125 2 rand)
 d1 $ n (repeatCycles 4 $ scramble 8 $ run 8 + 20 ) # sound "ppsus"
-d1 $ n (repeatCycles 1024 $ (0 ~>) $ scramble 8 $ run 8 + 20 ) # sound "ppsus"
+-- some groove now
+d1 $ n (repeatCycles 1024 $ (3 ~>) $ scramble 8 $ run 8 + 20 ) # sound "ppsus"
 jumpIn' 1 0 $ n (repeatCycles 1024 $ (0 ~>) $ scramble 8 $ run 8 + 20 ) # sound "threequal" # gain 1.2
 
+-- hmm, I wonder what this does jejeje
+-- also sorry no webcam, you can't see my moves
 jumpIn' 2 0 $ s "909!4" # gain 1.3
 jumpIn' 2 0 $ s "[909!4, [~ cp]!2]" # gain 1.3
 
-jumpIn' 1 0 $ n (repeatCycles 1024 $ (1 ~>) $ scramble 16 $ run 16 ) # sound "threequal" # gain 1.2 # speed 2 -- etc
+jumpIn' 1 0 $ n (repeatCycles 1024 $ (1 ~>) $ scramble 16 $ run 16 ) # sound "threequal" # gain 1.2 # speed 2
+
+d2 silence
 
 -- drop to acid chords, need to time correctly for the solo 3
+-- ok, lets try....
 do
   solo 3
   jumpIn' 3 0 $ slow 2 $ s "superreese" <| up "c'min(3,8) ef'min(3,8) e'min(3,8) f'maj(3,8,2)" # legato 2 # release 1 # gain 1.1
@@ -23,7 +33,11 @@ do
 -- drop in weird rong bassline
 do
   unsolo 3
-  jumpIn' 4 0 $ s "superhoover!4" # up "<a4 c4 f4 e4>" # legato 0.8
+  jumpIn' 4 0 $ s "superhoover!16" # up "<a4 c4 f4 e4>" # legato 0.8
+
+unsolo 4
+
+d4 silence
 
 -- 'right' bassline
 -- jumpIn' 4 0 $ s "superhoover!4" # up "<c4 ef4 e4 f4>*2" # legato 0.8
