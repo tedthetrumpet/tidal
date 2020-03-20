@@ -19,6 +19,8 @@ SuperDirt.start(path:"/Users/jsimon/Dropbox/SuperCollider/sldiwaloops/")
 ~folders
 ~listloops.fork
 
+SuperDirt.free
+
 
 ().play
 

@@ -1,0 +1,19 @@
+
+-- ok, same
+d1 $ s "bev" # begin (2/16) # end (4/16) <| speed "4 2 1"
+d1 $ slice 8 1 $ s "bev" <| speed "4 2 1"
+d1 $ slice 8 1 $ s "bev!3" # speed "4 2 1"
+
+However: hmm. These two sound the same, `d1 $ s "bev" # begin (2/16) # end (4/16)` and `d1 $ slice 8 1 $ s "bev"` but these two, `d1 $ s "bev" # begin (2/16) # end (4/16) <| speed "4 2 1"` and `d1 $ slice 8 1 $ s "bev" <| speed "4 2 1"` don't. Something I don't understand here.
+
+
+
+
+
+do
+  n 0
+  d1 $ s "bev" # begin (0/16) # end (2/16) <| speed "4 2 1"
+
+
+
+hush

@@ -1,8 +1,4 @@
--- abstract to algorave
--- remember to load own samples in sc
--- livecode the players
--- score in hydra
-
+setcps (135/240)
 -- ppsus 29
 d1 $ slowstripe 3 $ slow "4" $ n (run 2) # sound "ppsus" # speed (range 0.25 2 rand)
 d1 $ slowstripe 3 $ slow "4 0.25" $ n (run 2) # sound "ppsus" # speed (range 0.25 2 rand)
@@ -20,7 +16,6 @@ jumpIn' 2 0 $ s "[909!4, [~ cp]!2]" # gain 1.3
 jumpIn' 1 0 $ n (repeatCycles 1024 $ (1 ~>) $ scramble 16 $ run 16 ) # sound "threequal" # gain 1.2 # speed 2 -- etc
 
 -- drop to acid chords, need to time correctly for the solo 3
-
 do
   solo 3
   jumpIn' 3 0 $ slow 2 $ s "superreese" <| up "c'min(3,8) ef'min(3,8) e'min(3,8) f'maj(3,8,2)" # legato 2 # release 1 # gain 1.1
@@ -33,7 +28,15 @@ do
 -- 'right' bassline
 -- jumpIn' 4 0 $ s "superhoover!4" # up "<c4 ef4 e4 f4>*2" # legato 0.8
 
--- could ease into enox01 from here?!?
-jumpIn' 4 0 $ s "superhoover!4" # up "<a4 c4 f4 e4>" # legato 0.8 # gain 0.6
+-- where to now? could be ublindi
 
-jumpIn' 3 0 $ slow 2 $ s "superreese" <| up "c'min(3,8) ef'min(3,8) e'min(3,8) f'maj(3,8,2)" # legato 2 # release 1 # gain 0.6
+
+
+
+
+
+
+
+
+
+hush

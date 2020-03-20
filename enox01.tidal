@@ -1,0 +1,23 @@
+
+d1 $ often (ply 2) $ s "hamburg!2 <flext threequal> pp*2" # n (shuffle 4 $ run 8) + 0 # speed "1.25 1 1.5" # cps (range 0.5 1 $ slow 4 rand) # gain 0.7
+
+d1 $ often (ply 2) $ s "hamburg!2 <flext threequal> pp*2" # n (shuffle 4 $ run 8) + 0 # speed "1.25 1 1.5" # gain 0.1
+
+d2 $ slow 2 $ slice 16 (shuffle 16 $ run 16) $ s "sldiwaloops" # n "<13 12>" # release 0.3 # gain 0.0
+
+setcps (135/240)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+hush
