@@ -368,6 +368,14 @@ d1 $ s "sldiwaloops" # n 0 # begin (0/16) # sustain (1/16) # release 1
 
 d1 $ s "sldiwaloops" # n 0 # begin (0/16)
 
+-- do synths release correctly?
+-- computer says no
+
+d1 $ s "tutorial2a!4"
+
+d2 $ s "909"
+
+
 
 
 ----------------------
