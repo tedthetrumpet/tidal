@@ -305,3 +305,78 @@ d1 $ s "arpy" <| up "c cs d ef e f fs g af a bf b c6" -- use up
 
 -------------------- chop like slice
 d1 $ slow 2 $ repeatCycles 4 $ shuffle 16 $ chop 16 $ s "sldiwaloops" # n "<0 1>*8"
+
+-------------- different style, 06:23 Sat 21 Mar Ivan Abreu
+
+-- putting it all in one stack more compact, but less flexible?
+-- dont' understand why first line out different bit
+d1 $ stack [
+  n "{0? 1? 2@e 4}%8" # s "{print sid industrial}%4" # gain 0.9,
+  n "0!16" # s "metal" # gain (range 0.8 1 $ slow 1.1 saw),
+  s "dr2!4" # n "{3 5}%4"
+]
+
+-- 2020-03-22
+-- on a single sound, can't detect a difference
+
+d1 $ s "{e}%4" |> n "0 1 2 3 5" -- structure of four
+d1 $ s "e!4" |> n "0 1 2 3 5" -- also?
+d1 $ s "e*4" |> n "0 1 2 3 5" -- also?!
+-- test other way
+d1 $ s "{e}%4" <| n "0 1 2 3 5" -- same
+d1 $ s "e!4" <| n "0 1 2 3 5" -- same
+d1 $ s "e*4" <| n "0 1 2 3 5" -- same
+
+
+d1 $ s "arpy e"
+d1 $ s "{arpy e}%4" |> n "2 4 6 8 10" -- four
+d1 $ s "[arpy e]!2" |> n "2 4 6 8 10" -- four, but
+d1 $ s "[arpy e]*2" |> n "2 4 6 8 10" -- four, but
+
+----------------
+asap $ s "sldiwaloops" # n 0
+
+-- no, loopAt repitches
+d1 $ loopAt 2 $ s "sldiwaloops" # n 0
+
+-- ok, but very short release, nasty click
+d1 $ s "sldiwaloops" # n 0 # begin (0/16) # end (1/16)
+-- this is not right, its like a decay, not a release
+d1 $ s "sldiwaloops" # n 0 # begin (0/16) # end (1/16) # release 0.5
+d1 $ s "sldiwaloops" # n 0 # begin (0/16) # end (1/16) # release 0.5
+
+d1 $ s "sldiwaloops" # n 0 # begin (0/16) # end (1/16)
+
+I'm still struggling with how to neatly use sections from a longer cycle. If I do this, the envelope at the end of the sample is very short indeed, and you get a distinct click at the end:
+
+d1 $ s "bev" # n 0 # begin (0/16) # end (1/16)
+
+If I do this, then it does not do what I would expect, which would be to play up to the 'end' and then add a release tail. Instead of being a 'release', it's more like the 'decay' of an up-and-down a/d envelope.
+
+d1 $ s "bev" # n 0 # begin (0/16) # end (1/16) # release 0.5
+
+In the slicing sampler I use in SC, I have a fast attack but a release tail at the end of the sample of 0.1, which I find works well. How can I do that in Tidal? Do I need to hack SuperDirt?
+
+-----------------
+
+-- ok, this is better than begin and end, but same problem with release
+-- (effectively, this is a bit like dice, but not as good)
+d1 $ slice 16 "0" $ s "sldiwaloops" # n 0
+
+-- also sustain, still not right
+d1 $ s "sldiwaloops" # n 0 # begin (0/16) # sustain (1/16) # release 1
+
+d1 $ s "sldiwaloops" # n 0 # begin (0/16)
+
+
+
+----------------------
+-- ideas from building up patterns, meh
+
+d1 $ chunk 4 (|- n 12) $ rarely (ply 2) $ arp "up down pinkyup updown" $ n "c4'maj7 ef4'maj7" # s "supermandolin" # legato 5 # room 0.7 # size 0.9
+
+
+
+
+
+hush

@@ -5,7 +5,6 @@ SuperDirt.start(path:"/Users/jsimon/Dropbox/SuperCollider/sldiwaloops/")
 
 "/Users/jsimon/Library/Application Support/SuperCollider/downloaded-quarks/Dirt-Samples/".openOS
 
-
 "https://tidalcycles.org/index.php/Userbase".openOS
 
 ~dirt.freeAllSoundFiles
@@ -13,14 +12,14 @@ SuperDirt.start(path:"/Users/jsimon/Dropbox/SuperCollider/sldiwaloops/")
 
 ~dirt.loadSoundFiles("/Users/jsimon/Dropbox/SuperCollider/lcode09/../bfsamples/*")
 ~dirt.loadSoundFiles("/Users/jsimon/Dropbox/SuperCollider/sldiwaloops/")
-
 ~dirt.loadSoundFiles("/Users/jsimon/Library/Application Support/SuperCollider/downloaded-quarks/Dirt-Samples/*")
+"/Users/jsimon/Dropbox/SuperCollider/lcode09/../bfsamples/".openOS
+"/Users/jsimon/Dropbox/SuperCollider/sldiwaloops/".openOS
 
 ~folders
 ~listloops.fork
 
 SuperDirt.free
-
 
 ().play
 
