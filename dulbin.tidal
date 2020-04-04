@@ -385,6 +385,18 @@ d1 $ s "bev" # n 0 # begin (0/16) # end (1/16) + 3 # release 0.2
 
 d1 $ chunk 4 (|- n 12) $ rarely (ply 2) $ arp "up down pinkyup updown" $ n "c4'maj7 ef4'maj7" # s "supermandolin" # legato 5 # room 0.7 # size 0.9
 
+---------------------
+setcps (160/240)
+
+d1 $ s "ul!8" # n (shuffle 4 $ run 8) -- iya
+d1 $ every 4 (rev) $ s "ul!8" # n (repeatCycles 4 $ shuffle 4 $ run 8)
+
+jumpIn' 2 0 $ n "[c2,c3] " # gain 0.7 # s "superzow"
+
+
+
+
+
 
 
 
