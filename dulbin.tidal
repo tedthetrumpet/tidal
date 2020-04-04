@@ -389,7 +389,7 @@ d1 $ chunk 4 (|- n 12) $ rarely (ply 2) $ arp "up down pinkyup updown" $ n "c4'm
 setcps (160/240)
 
 d1 $ s "ul!8" # n (shuffle 4 $ run 8) -- iya
-d1 $ every 4 (rev) $ s "ul!8" # n (repeatCycles 4 $ shuffle 4 $ run 8)
+jumpIn' 1 0 $ every 4 (rev) $ s "ul!8" # n (repeatCycles 4 $ shuffle 4 $ run 8)
 
 jumpIn' 2 0 $ n "[c2,c3] " # gain 0.7 # s "superzow"
 
