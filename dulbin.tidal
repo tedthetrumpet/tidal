@@ -391,7 +391,9 @@ setcps (160/240)
 d1 $ s "ul!8" # n (shuffle 4 $ run 8) -- iya
 jumpIn' 1 0 $ every 4 (rev) $ s "ul!8" # n (repeatCycles 4 $ shuffle 4 $ run 8)
 
-jumpIn' 2 0 $ n "[c2,c3] " # gain 0.7 # s "superzow"
+jumpIn' 2 0 $ superimpose (|+ n 12) $ n "c2" # gain 0.7 # s "superzow"
+
+jumpIn' 2 0 $ superimpose (|+ n 12) $ cat [n "c2", n "c3 bf2 g2 bf2 ~ g2 f2 ~"] # gain 0.7 # s "superzow"
 
 
 
