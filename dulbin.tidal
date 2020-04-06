@@ -396,9 +396,15 @@ jumpIn' 2 0 $ superimpose (|+ n 12) $ n "c2" # gain 0.7 # s "superzow"
 jumpIn' 2 0 $ superimpose (|+ n 12) $ cat [n "c2", n "c3 bf2 g2 bf2 ~ g2 f2 ~"] # gain 0.7 # s "superzow"
 
 
+------------------- iya during that trashpanda thing
 
+d1 $ slowstripe 4 $ slice 128 (shuffle 5 $ run 128) $ s "hmm" # gain 1.5 # speed (slow 2 $ range 4 0.25 $ perlin)
 
+d2 $ slowstripe 5 $ often (slow 8) $ s "insect!3 crow" # gain "1.4 1" # speed (slow 2 $ range 0.25 0.125 $ sine) # n (run 3)
 
+d3 $ sometimesBy 0.25 ((hurry 4) . rev) $ s "supervibe" # n "c4'maj7" +| n "0 <3 5> 7 5 -2" # sustain 1 # room 0.5 # sz 0.8
+
+d4 $ s "amencutup!16" # n (scramble 32 $ run 32)
 
 
 
