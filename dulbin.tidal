@@ -435,6 +435,8 @@ d1 $ splice 64 (run 8) $ s "ade"
 d1 $ splice 64 (run "<8 16 32 64>") $ s "ade"
 -- back to slice? pitches always same
 d1 $ slice 64 (run "<8 16 32 64>") $ s "ade"
+-- just messing
+d1 $ slice 64 (run "<8 16 32 64>") $ s "ade" # speed (slow 8 $ range 2 0.25 sine)
 
 
 
