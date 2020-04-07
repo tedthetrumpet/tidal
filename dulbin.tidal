@@ -406,6 +406,35 @@ d3 $ sometimesBy 0.25 ((hurry 4) . rev) $ s "supervibe" # n "c4'maj7" +| n "0 <3
 
 d4 $ s "amencutup!16" # n (scramble 32 $ run 32)
 
+-------------------- investigate long sample again
+
+let bpm x = setcps (x/120/2)
+
+bpm 120
+
+once "ade"
+-- pitches it to one current cycle
+d1 $ loopAt 1 $ s "ade"
+-- or four
+d1 $ loopAt 4 $ s "ade"
+-- plays one of 64 slices, length played is 1/64
+d1 $ slice 64 1 $ s "ade"
+-- seems clumsy, also that nasty fast release
+-- js style 'slice' is just not really possible!
+d1 $ s "ade" # begin (1/64) # legato 1
+-- also doesn't work
+d1 $ s "ade" # begin ("1 2" / 64) # legato 1
+
+-- go with the idiom
+
+d1 $ slice 64 (run 8) $ s "ade" -- pitch is same as orig sample
+-- don't understand, pitch is now lower?
+d1 $ splice 64 (run 8) $ s "ade"
+-- ah, is kind of granular, so pitch depends on how many samples you run through
+-- horrible envelope for granular!
+d1 $ splice 64 (run "<8 16 32 64>") $ s "ade"
+-- back to slice? pitches always same
+d1 $ slice 64 (run "<8 16 32 64>") $ s "ade"
 
 
 
