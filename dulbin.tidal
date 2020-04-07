@@ -410,7 +410,7 @@ d4 $ s "amencutup!16" # n (scramble 32 $ run 32)
 
 let bpm x = setcps (x/120/2)
 
-bpm 120
+bpm 130
 
 once "ade"
 -- pitches it to one current cycle
