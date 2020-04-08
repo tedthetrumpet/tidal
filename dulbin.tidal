@@ -394,6 +394,9 @@ jumpIn' 1 0 $ every 4 (rev) $ s "ul!8" # n (repeatCycles 4 $ shuffle 4 $ run 8)
 jumpIn' 2 0 $ superimpose (|+ n 12) $ n "c2" # gain 0.7 # s "superzow"
 
 jumpIn' 2 0 $ superimpose (|+ n 12) $ cat [n "c2", n "c3 bf2 g2 bf2 ~ g2 f2 ~"] # gain 0.7 # s "superzow"
+-- oops forgot about octave, much simpler!
+jumpIn' 2 0 $ cat [n "c2", n "c3 bf2 g2 bf2 ~ g2 f2 ~"] # gain 0.7 # s "superzow" # octave "[5,6]"
+
 
 
 ------------------- iya during that trashpanda thing
@@ -437,6 +440,33 @@ d1 $ splice 64 (run "<8 16 32 64>") $ s "ade"
 d1 $ slice 64 (run "<8 16 32 64>") $ s "ade"
 -- just messing
 d1 $ slice 64 (run "<8 16 32 64>") $ s "ade" # speed (slow 8 $ range 2 0.25 sine)
+
+--------------- longer term change (sldiwaloops)
+
+bpm 120
+
+-- think this is right as a pattern, but does not sound great
+d1 $ slice 16 (repeatCycles 4 $ shuffle 16 $ run 16)
+  $ s "sldiwaloops" # n "<0 1 2 3>/4" +| n "<0 8>/16" # legato 0.9
+
+
+d1 $ cat [sound "bd*2 sn", sound "arpy crow*2"]
+
+d1 $ fast 32 $ s "<bd cp>/16" |+ s "<sd 808 909 ul>/4"
+
+d1 $ interlace (sound  "bd sn kurt") (every 3 rev $ sound "crow ul")
+
+-- iya! <> is overlay as an operator
+d1 $ sound ("bd sn:2" <> "jungle:5*3" <> "hh!12" <> "808:8(5,12,1)" <> "psr:6!6")
+
+-- this is quite long and nicely varied
+-- pulse needs to vary on longer term, perhaps
+
+d1 $ rarely (hurry 0.25) $ slow 2 $ n (repeatCycles 4 $ shuffle 32 $ run 32) # s "<flext erra tptm pp>/8"
+
+
+
+
 
 
 
