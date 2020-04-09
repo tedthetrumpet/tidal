@@ -466,6 +466,54 @@ d1 $ rarely (hurry 0.25) $ slow 2 $ n (repeatCycles 4 $ shuffle 32 $ run 32) # s
 
 
 
+---------------
+-- bit extreme!
+d1 $ repeatCycles 4 $ s "supergrind" <| shuffle "<5 6>" (n "0 .. 7" * 2 - 24) # detune (slow 4 $ range 0 200 sine) # voice 4 # sustain 1
+
+d1 $ slow 4 $ s "supervibe" <| n "c'major7 bf4'major7 [cs4,d5,fs5,a5]" # attack 0.1 # release 4
+
+
+----------------- trying to figure out envelopes again
+-- legato?
+-- sustain?
+-- attack?
+-- release?
+
+bpm 120
+
+d2 $ s "click!4"
+-- Can anyone explain the difference between 'legato' and 'sustain'? In each of the examples I'm trying below the effect is the same, except for the last one?!?
+
+-- legato
+d1 $ s "superzow" # n "c" # legato 1
+d1 $ s "superzow" # n "c" # legato 2
+d1 $ s "superzow!2" # n "c" # legato 0.5
+d1 $ s "superzow" # n "c" # legato 0.5 -- different?
+-- sustain
+d1 $ s "superzow" # n "c" # sustain 1
+d1 $ s "superzow" # n "c" # sustain 2
+d1 $ s "superzow!2" # n "c" # sustain 0.5
+d1 $ s "superzow" # n "c" # sustain 0.5 -- different?```
+-- attack seems to set sustain to zero?!?
+d1 $ s "superzow" # n "c" # attack 0.1
+-- release also sets sustain to zero?!?
+d1 $ s "superzow" # n "c" # release 0.5
+-- attack plus release, again sustain is zero
+d1 $ s "superzow" # n "c" # attack 0.1 # release 0.5
+-- sustain and/or legato makes no difference?!?
+d1 $ s "superzow" # n "c" # attack 0.1 # release 0.5 # sustain 1
+d1 s "superzow" # n "c" # attack 0.1 # release 0.5 # legato 1
+-- so, it seems to be impossible to control the length and attack/decay of a synth independently in tidal?
+
+
+
+
+
+
+
+
+
+
 
 
 
