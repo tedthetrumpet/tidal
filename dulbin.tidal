@@ -494,16 +494,17 @@ d1 $ s "superzow" # n "c" # sustain 1
 d1 $ s "superzow" # n "c" # sustain 2
 d1 $ s "superzow!2" # n "c" # sustain 0.5
 d1 $ s "superzow" # n "c" # sustain 0.5 -- different?```
--- attack seems to set sustain to zero?!?
+```-- attack seems to set sustain to zero?
 d1 $ s "superzow" # n "c" # attack 0.1
--- release also sets sustain to zero?!?
+-- release also sets sustain to zero?
 d1 $ s "superzow" # n "c" # release 0.5
 -- attack plus release, again sustain is zero
 d1 $ s "superzow" # n "c" # attack 0.1 # release 0.5
--- sustain and/or legato makes no difference?!?
+-- sustain and/or legato makes no difference?
 d1 $ s "superzow" # n "c" # attack 0.1 # release 0.5 # sustain 1
 d1 s "superzow" # n "c" # attack 0.1 # release 0.5 # legato 1
--- so, it seems to be impossible to control the length and attack/decay of a synth independently in tidal?
+```
+so, it seems to be impossible to control the length and attack/decay of a synth independently in tidal?
 
 
 
