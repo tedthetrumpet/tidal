@@ -2,12 +2,13 @@ SuperDirt.start
 ~dirt.loadSoundFiles("/Users/jsimon/Dropbox/SuperCollider/lcode09/../bfsamples/*")
 ~dirt.loadSoundFiles("/Users/jsimon/Dropbox/SuperCollider/sldiwaloops/")
 
-
+~dirt.loadSoundFiles("/Users/jsimon/Documents/ Simon's music/ Big audio files/samples-extra/*")
 
 SuperDirt.start(path: "/Users/jsimon/Dropbox/SuperCollider/lcode09/../bfsamples/*")
 SuperDirt.start(path:"/Users/jsimon/Dropbox/SuperCollider/sldiwaloops/")
 
-
+"/Users/jsimon/Documents/ Simon's music/ Big audio files/samples-extra".openOS // grr
+PathName.new("/Users/jsimon/Documents/ Simon's music/ Big audio files/samples-extra").asString.openOS
 
 "/Users/jsimon/Library/Application Support/SuperCollider/downloaded-quarks/Dirt-Samples/".openOS
 
