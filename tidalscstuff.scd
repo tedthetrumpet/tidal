@@ -1,7 +1,13 @@
 SuperDirt.start
-SuperDirt.start(path: "/Users/jsimon/Dropbox/SuperCollider/lcode09/../bfsamples/*")
+~dirt.loadSoundFiles("/Users/jsimon/Dropbox/SuperCollider/lcode09/../bfsamples/*")
+~dirt.loadSoundFiles("/Users/jsimon/Dropbox/SuperCollider/sldiwaloops/")
 
+
+
+SuperDirt.start(path: "/Users/jsimon/Dropbox/SuperCollider/lcode09/../bfsamples/*")
 SuperDirt.start(path:"/Users/jsimon/Dropbox/SuperCollider/sldiwaloops/")
+
+
 
 "/Users/jsimon/Library/Application Support/SuperCollider/downloaded-quarks/Dirt-Samples/".openOS
 
@@ -10,8 +16,6 @@ SuperDirt.start(path:"/Users/jsimon/Dropbox/SuperCollider/sldiwaloops/")
 ~dirt.freeAllSoundFiles
 ~dirt.postSampleInfo
 
-~dirt.loadSoundFiles("/Users/jsimon/Dropbox/SuperCollider/lcode09/../bfsamples/*")
-~dirt.loadSoundFiles("/Users/jsimon/Dropbox/SuperCollider/sldiwaloops/")
 ~dirt.loadSoundFiles("/Users/jsimon/Library/Application Support/SuperCollider/downloaded-quarks/Dirt-Samples/*")
 "/Users/jsimon/Dropbox/SuperCollider/lcode09/../bfsamples/".openOS
 "/Users/jsimon/Dropbox/SuperCollider/sldiwaloops/".openOS

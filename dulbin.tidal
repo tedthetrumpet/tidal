@@ -506,9 +506,22 @@ d1 s "superzow" # n "c" # attack 0.1 # release 0.5 # legato 1
 ```
 so, it seems to be impossible to control the length and attack/decay of a synth independently in tidal?
 
+---------------------
+bpm 120
+
+do
+{
+  resetCycles;
+  d1 $ rotL 0 $ seqP [
+    (0, 12, sound "bd bd*2"),
+    (4, 12, sound "hh*2 [sn cp] cp future*4"),
+    (8, 12, sound (samples "arpy*8" (run 16)))
+  ]
+}
 
 
-
+jumpIn' 1 1 $ s "909"
+jumpIn' 1 8 $ silence
 
 
 
