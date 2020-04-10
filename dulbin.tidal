@@ -506,7 +506,7 @@ d1 s "superzow" # n "c" # attack 0.1 # release 0.5 # legato 1
 ```
 so, it seems to be impossible to control the length and attack/decay of a synth independently in tidal?
 
----------------------
+--------------------- larger structures
 bpm 120
 
 do
@@ -523,8 +523,34 @@ do
 jumpIn' 1 1 $ s "909"
 jumpIn' 1 8 $ silence
 
+p "drums" $ s "bd(3,8) drum*4"
+
+xfadeIn "drums" 4 $ s "arpy*8" # n (run 8)
+clutchIn "drums" 4 $ s "arpy*8" # n (run 8)
+jumpIn' "drums" 4 $ s "arpy*8" # n (run 8)
+anticipateIn "drums" 4 $ s "arpy*8" # n (run 8)
+
+-- transition between two named patterns??
+-- ur? with repeatCycles? yes, that's it, looks deep!
+
+let pats = [("drums", s "drum cp*2"),
+            ("melody", s "arpy:2 arpy:3 arpy:5"),
+            ("craziness", s "cp:4*8" # speed ( sine + 0.5))
+           ]
+    fx = [("higher", (# speed 2))]
+in
+d1 $ ur 8 "[drums, melody] [drums,craziness,melody] melody:higher" pats fx
 
 
+------------------ agint
+-- 0 == c
+
+d1 $ n "[-13,-2,1,3,6]" # s "superpiano"
+
+let chorda = "[-13,-2,1,3,6]"
+    chordb = "[-22,-3,0,4,6]"
+in
+d1 $ n "chorda chordb" # s "superpiano"
 
 
 
