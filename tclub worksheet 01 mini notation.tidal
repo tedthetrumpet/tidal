@@ -1,0 +1,49 @@
+-- Mini-notation worksheet, number one!
+
+-- Play a "kick" sound (the first one in the folder)
+d1 $ sound "kick"
+
+-- Play a different sound from the "kick" folder (the fourth one, counting from zero)
+d1 $ sound "kick:3"
+
+-- Play a kick - snare loop. Notice two sounds fit in the same time as one did above
+d1 $ sound "kick snare"
+
+-- The more you add, the faster it goes - the 'cycle' stays constant
+d1 $ sound "kick snare kick snare"
+
+d1 $ sound "kick snare kick snare kurt hi lo hi lo"
+
+-- Again, we can pick sounds with : and a number
+
+d1 $ sound "cpu:0 cpu:2 cpu:4 cpu:6 cpu:0 cpu:2 cpu:6 cpu:8"
+
+-- If they're all from the same folder, it's easier to pattern
+-- the sounds using a separate "n" pattern, like this:
+d1 $ n "0 2 4 6 0 2 6 8" # sound "cpu"
+
+-- `#` combines together patterns of different kinds, in this case a 'sound'
+-- and an 'n' pattern.
+-- We'll come back to `#` (and how it differs from '$') in the future!
+
+-- You can have an 'empty' step, known as a musical rest, with '~'
+d1 $ sound "kick snare ~ clap:4"
+
+d1 $ n "0 2 2 ~ 8 ~ 8 ~" # sound "cpu"
+
+-- You can also "break down" a step into a subsequence, with []
+
+-- Lets start with a simple pattern
+d1 $ sound "hi lo hi lo"
+
+-- And squeeze a two-step subsequence inside that third step:
+d1 $ sound "hi lo [hi hi] lo"
+
+-- It works for 'n' patterns too
+d1 $ n "0 1 [5 5 5] 4" # sound "drum"
+
+-- You can even break down a step inside a subsequence:
+d1 $ sound "hi lo [hi [hi lo hi lo]] lo"
+
+-- It's easy to make nice compount time signatures:
+d1 $ sound "[hi lo hi] [hi lo hi lo]"
