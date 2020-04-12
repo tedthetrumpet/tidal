@@ -1,4 +1,24 @@
-d1 $ s "bd sn"
+-- efairbanks
+-- Jamming out some nice 5/4 rhythms with the samples from the TidalCycles course a bit here:
 
-d2 $ s "arpy"
-  # crush 3
+bpm 60
+
+d1 $ inside 4 (every 12 (bite 8 "<{5 6 7 2 1}%8>")) $ stack [
+  splice 32 (inside 4 (every 5 (const $ "{2 3 4}%8")) $ "{0 1 2 3 4 9 12 11 13 1}%32") $ s "break"
+  ,s "{bd ~ ~ bd ~ <~ snare> <snare ~> ~ bd ~}%32"
+  ]
+
+-- take apart
+
+d1 $ splice 32 (inside 4 (every 5 (const $ "{2 3 4}%8")) $ "{0 1 2 3 4 9 12 11 13 1}%32") $ s "break"
+
+d1 $ splice 32 (every 5 (const $ "{2 3 4}%8") $ "{0 1 2 3 4 9 12 11 13 1}%32") $ s "break"
+
+jumpIn' 1 0 $ splice 32 "{0 1 2 3 4 9 12 11 13 1}%32" $ s "break"
+
+d2 $ s "909 snare!4" -- use of {}%32 gives weird/non relationship to cycle!
+
+--
+bpm 120
+
+d1 $ n  s "claus"

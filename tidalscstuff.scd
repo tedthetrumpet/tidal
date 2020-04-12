@@ -33,6 +33,7 @@ s.latency
 
 // extras
 // break (33) bsbass (9) bsguitar (19) bshihat (3) bskick (9) bsnoise (22) bsperc (7) bssnare (8) bsvocals (13) clap (8) claus (16) cpu (23) cpu2 (29) dsynth (3) foley (287) hi (8) kick (21) lo (8) rash (73) snare (90)
+// don't use bs… ones, too specific
 
 /////// question
 Maybe I'm thinking about this wrong?

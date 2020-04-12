@@ -590,20 +590,20 @@ d1 $ sometimes (# speed 2) $ loopAt 1 $ shuffle 16 $ chop 16 $ s "break:1"
 -- if just using run, then chop would be better, these have same effect
 d1 $ loopAt 4 $ slice 32 (shuffle 32 $ run 32) $ s "break:0" -- chop is simpler:
 d1 $ loopAt 4 $ chop 32 $ shuffle 32 $ s "break:0"
--- but eg
+-- chop into half 'bit rate' often better
 
 
 
 -- samples extra actual
   -- 33 breaks
-once "break:19"
+once "break:29"
 bpm 90
 bpm 120
 bpm 160
 d1 $ loopAt 4 $ chop 32 $ shuffle 32 $ s "break:0" -- four bars, eights
 d1 $ loopAt 1 $ chop 16 $ shuffle 16 $ s "break:1" -- amen one bar, sixteens
 d1 $ loopAt 2 $ chop 32 $ shuffle 32 $ s "break:2" -- two bars same, sixteens
-d1 $ loopAt 2 $ chop 32 $ shuffle 32 $ s "break:3" -- two bars, sixteens, iya
+d1 $ loopAt 2 $ chop 32 $ shuffle 32 $ s "break:3" -- two bars, 16s, iya (funky drummer)
 d1 $ loopAt 1 $ chop 16 $ shuffle 16 $ s "break:4" -- one bar, sixteens
 d1 $ loopAt 2 $ chop 32 $ shuffle 32 $ s "break:5"  -- two bars, sixteens
 d1 $ loopAt 1 $ chop 16 $ shuffle 16 $ s "break:6" -- one bar sixteens
@@ -624,3 +624,37 @@ d1 $ loopAt 2 $ chop 8 $ shuffle 8 $ s "break:16" -- four bars same, eights, tak
 d1 $ loopAt 1 $ chop 16 $ shuffle 16 $ s "break:17" -- one bar 16 hats only
 -- d1 $ loopAt 4 $ chop 8 $ shuffle 8 $ s "break:18" -- four bars swing 8s
 d1 $ loopAt 2 $ chop 8 $ shuffle 8 $ s "break:18" -- better
+d1 $ loopAt 4 $ chop 32 $ shuffle 32 $ s "break:19" -- four bars, sixteens, 32 better
+d1 $ loopAt 2 $ chop 32 $ shuffle 32 $ s "break:20" -- two bars same, sixteens, try 8
+d1 $ loopAt 2 $ chop 16 $ shuffle 16 $ s "break:21" -- two bars 16s, chop 16 better
+d1 $ loopAt 2 $ chop 16 $ shuffle 16 $ s "break:22" -- two bars 16s
+d1 $ loopAt 2 $ chop 16 $ shuffle 16 $ s "break:23" -- two bars 16s
+d1 $ loopAt 2 $ chop 16 $ shuffle 16 $ s "break:24" -- two bars 16s
+d1 $ loopAt 2 $ chop 16 $ shuffle 16 $ s "break:25" -- two bars 16s, (rappers delight)
+d1 $ loopAt 2 $ chop 8 $ shuffle 8 $ s "break:26" -- two bars 16s, iya, or chop 16
+d1 $ loopAt 1 $ chop 8 $ shuffle 8 $ s "break:27" -- one bar swing 16s, 8s better
+d1 $ loopAt 2 $ chop 16 $ shuffle 16 $ s "break:28" -- two bars 16s
+d1 $ loopAt 4 $ chop 32 $ shuffle 32 $ s "break:29" -- four bars 16s (amen)
+d1 $ loopAt 2 $ chop 16 $ shuffle 16 $ s "break:30" -- two bars swing 16s
+d1 $ loopAt 2 $ chop 16 $ shuffle 16 $ s "break:31" -- two bars 16s
+d1 $ loopAt 2 $ chop 16 $ shuffle 16 $ s "break:32" -- two bars 16s
+d1 $ loopAt 2 $ chop 16 $ shuffle 16 $ s "break:33" -- two bars 16s, iya
+
+-- play
+d1 $ loopAt "{2 4}%4" $ chop 16 $ repeatCycles 4 $ shuffle 16 $ s "break:33" # lpf (slow 2 $ range 1000 3000 sine) # lpq (range 0.1 0.6 perlin) -- iya
+
+-- don't bother with ones starting with bs
+-- clap (8) wisott
+-- claus (16) actually impulse responses!
+-- cpu = 808 sounds
+-- cpu2 = 909 ect
+
+
+
+
+
+
+
+
+
+hush
