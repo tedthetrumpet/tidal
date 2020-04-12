@@ -21,4 +21,4 @@ d2 $ s "909 snare!4" -- use of {}%32 gives weird/non relationship to cycle!
 --
 bpm 120
 
-d1 $ n  s "claus"
+d1 $ n "5 [1 7] [1 0] [3 4] [6 8 9 11 12]" # s "claus"
