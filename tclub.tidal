@@ -20,5 +20,11 @@ d2 $ s "909 snare!4" -- use of {}%32 gives weird/non relationship to cycle!
 
 --
 bpm 120
+-- setcps 0.5
 
-d1 $ n "5 [1 7] [1 0] [3 4] [6 8 9 11 12]" # s "claus"
+-- iya!! this is a whole composition
+d1 $ repeatCycles 4 $ iter "5 2" $  n "5 [1 7] [1 [2 10]] [3 4] [6 8 9 11 12]" # s "{claus cpu2}%16" # shape 0.4 # room (range 0 0.3 perlin) # speed (range 0.25 2 perlin)
+
+-- could take a drifty ambient chord progression
+
+clutchIn 1 16 silence
