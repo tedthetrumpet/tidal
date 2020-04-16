@@ -641,6 +641,8 @@ d1 $ loopAt 2 $ chop 16 $ shuffle 16 $ s "break:32" -- two bars 16s
 d1 $ loopAt 2 $ chop 16 $ shuffle 16 $ s "break:33" -- two bars 16s, iya
 
 -- play
+bpm 120
+
 d1 $ loopAt "{2 4}%4" $ chop 16 $ repeatCycles 4 $ shuffle 16 $ s "break:33" # lpf (slow 2 $ range 1000 3000 sine) # lpq (range 0.1 0.6 perlin) -- iya
 
 -- don't bother with ones starting with bs
@@ -649,10 +651,23 @@ d1 $ loopAt "{2 4}%4" $ chop 16 $ repeatCycles 4 $ shuffle 16 $ s "break:33" # l
 -- cpu = 808 sounds
 -- cpu2 = 909 ect
 
+---------------- midi
+
+d1 $ slow 2 $ n "c'major7 bf4'major7" # s "midi" # legato 0.2
+
+d2 $ n "c3(5,8)" # s "superreese" # gain 0.65 # room 0.5 # sustain 0.4
 
 
+------------------ tidal version 1.4.9
 
+drawLine "[a b <c [d e]>, x(3,8,<0 2 4>)]"
+draw "[a b <c [d e]>, x(3,8,<0 2 4>)]"
 
+drawLine "kick [kick/2 kick]"
+
+```draw "kick [kick/2 kick]"
+|k-------i-------c-------k-------kick-ick
+```
 
 
 
