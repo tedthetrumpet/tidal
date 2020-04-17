@@ -83,3 +83,24 @@ d1 $ loopAt "{2 4}%4" $ chop 16 $ repeatCycles 4 $ shuffle 16 $ s "break:33" # l
 bpm 120
 
 d1 $ iter 4 $ n "0 [1 [4 10]] [2 5 [6 11 12]] [3 7 8 [9 13 14 15]]" # s "snare" |+ n "<16 32>" # speed 0.5 # lpf (fast 4 $ range 50 2000 perlin) # lpq 0.9 # gain 0.5
+
+
+-- foley (287!)
+
+once $ s "foley:5" -- beep
+
+d1 $ superimpose (hurry "0.25 0.75") $ slowstripe 2 $ up "-7 <-8 5> -6 . 4 2 . <19 -8> -28? -32? -29? -31?" # s "foley:5" # pan 0.7
+
+d1 $ off 0.25 (hurry "0.25 0.75") $ slowstripe 2 $ up "-7 <-8 5> -6 . 4 2 . <19 -8> -28? -32? -29? -31?" # s "foley:5" # pan 0.7
+
+d1 $ off "0.25 0.5" (# up "{2 -2 -9 -14? -15?}%8") $ slowstripe 2 $ up "-7 <-8 5> -6 . -4 -2 . <19 -8> -28? -32? -29? -31?" # s "foley:5" # pan 0.7
+
+d1 silence
+
+once $ s "foley:11" -- typewriter?
+
+d2 $ superimpose (hurry 0.125) $ slowstripe 9 $ shuffle 19 (up $ run 19) # s "foley:11" # room 0.4 # sz 1.5 # hpf (range 1000 5000 $ slow "8 4" sine) # hpq 0.5
+
+xfadeIn 8 2 silence -- reverb becomes infinte?
+
+d2 $ room 0
