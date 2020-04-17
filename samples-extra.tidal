@@ -103,4 +103,20 @@ d2 $ superimpose (hurry 0.125) $ slowstripe 9 $ shuffle 19 (up $ run 19) # s "fo
 
 xfadeIn 8 2 silence -- reverb becomes infinte?
 
-d2 $ room 0
+d2 $ s "foley:11" # room 0 # silence
+
+once $ s "foley:26" -- some kind of machine running down?
+-- not sure what rev actually is here!
+
+d3 $ slowstripe 4 $ off 0.2 (hurry 0.25) $ hurry "0.125!4 2" $ striate 16 $ s "foley:26" # attack 0.01 # release 1 # rev 2 # room 0.5 # leslie (range 0.5 1 $ slow 4 sine) # lsize 6
+
+d3 silence
+
+
+
+
+
+
+
+
+hush
