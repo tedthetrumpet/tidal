@@ -80,8 +80,21 @@ d1 $ s "kick [kick/2 kick]"
 drawLine "kick [kick/2 kick]"
 draw "kick [kick/2 kick]"
 
-
-
 d2 $ s "clap"
 
------------------
+----------------- @ and %
+
+
+d1 $ rarely (hurry "1%4")$ off "1%5 1%3" (|+ n 3) $ iter 4 $ n "1@2%5 <3@2%3 3>!2 2 <5@1%3 5> 8 <9@0.5 9>" # s "claus" # octave 4
+
+-- tidal_version 1.4.9
+
+-- I am going to stream a 30-min long performance in tidal as part of the LCCC (Live coders collective Copenhagen) event. Tonight 8 PM CEST (GMT + 2), here is the link to the streaming. https://www.twitch.tv/inspiralpattern
+
+
+
+
+
+
+
+hush

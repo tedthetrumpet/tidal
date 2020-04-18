@@ -101,7 +101,7 @@ once $ s "foley:11" -- typewriter?
 
 d2 $ superimpose (hurry 0.125) $ slowstripe 9 $ shuffle 19 (up $ run 19) # s "foley:11" # room 0.4 # sz 1.5 # hpf (range 1000 5000 $ slow "8 4" sine) # hpq 0.5
 
-xfadeIn 8 2 silence -- reverb becomes infinte?
+xfadeIn 2 8 silence -- reverb becomes infinte?
 
 d2 $ s "foley:11" # room 0 # silence
 
@@ -112,9 +112,25 @@ d3 $ slowstripe 4 $ off 0.2 (hurry 0.25) $ hurry "0.125!4 2" $ striate 16 $ s "f
 
 d3 silence
 
+once $ s "foley:46" -- typewriter return?
 
+d4 $ off 1 (# up "-12") $ slow 6 $ up (scramble 8 $ run 8) # s "foley:46" # speed "-0.25!3 0.25 0.5? -0.5?"
 
+xfadeIn 4 8 silence
 
+once $ s "foley:74"
+
+-- disnae quite wurk?
+-- sends supercollider over 100%
+d1 $ s "foley:74" # speed (1/32) # fshift (fast 4 $ segment 128 $ range 100 2000 sine)
+
+d1 $ s "foley:74" # speed (1/32) <| fshift "100 200 400 800 1600" |* (segment 16 $ range 100 2000 sine)
+
+xfade 1 silence
+
+once $ s "foley:118" -- water drop
+
+d1 $ slowstripe 16 $ s "foley:118!4 foley:117!4 foley:116!4" # up (-64) |+ up (range 0 32 perlin)
 
 
 
