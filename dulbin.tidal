@@ -670,5 +670,18 @@ drawLine "kick [kick/2 kick]"
 ```
 
 
+--------------
+
+
+----------- calum
+-- https://www.twitch.tv/further_in
+let (>) = (#)
+
+-- ssh mute function
+-- kindohm has gtfo
+-- let gtfo p = (const $ midinote "~") $ p
+-- let shh = (# gain 0) from  diegodorado / tidal-songs
+-- buffer flood how to?
+
 
 hush
