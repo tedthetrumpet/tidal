@@ -82,6 +82,7 @@ d1 $ loopAt "{2 4}%4" $ chop 16 $ repeatCycles 4 $ shuffle 16 $ s "break:33" # l
 -- snare (90)?!
 bpm 120
 
+-- snares with resonant filter
 d1 $ iter 4 $ n "0 [1 [4 10]] [2 5 [6 11 12]] [3 7 8 [9 13 14 15]]" # s "snare" |+ n "<16 32>" # speed 0.5 # lpf (fast 4 $ range 50 2000 perlin) # lpq 0.9 # gain 0.5
 
 
@@ -103,7 +104,9 @@ d2 $ superimpose (hurry 0.125) $ slowstripe 9 $ shuffle 19 (up $ run 19) # s "fo
 
 xfadeIn 2 8 silence -- reverb becomes infinte?
 
-d2 $ s "foley:11" # room 0 # silence
+do
+  d2 $ s "foley:11" # room 0 # sz 0
+  d2 silence
 
 once $ s "foley:26" -- some kind of machine running down?
 -- not sure what rev actually is here!
@@ -131,6 +134,8 @@ xfade 1 silence
 once $ s "foley:118" -- water drop
 
 d1 $ slowstripe 16 $ s "foley:118!4 foley:117!4 foley:116!4" # up (-64) |+ up (range 0 32 perlin)
+
+
 
 
 
