@@ -66,6 +66,7 @@ let setI = streamSetI tidal
     setB = streamSetB tidal
 :}
 
-:set prompt "tidal> "
 
 let bpm x = setcps (x/120/2)
+
+:set prompt "tidal> "

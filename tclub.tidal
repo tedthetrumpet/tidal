@@ -108,6 +108,30 @@ let (>) = (#)
 let mylist = [0, 2 ..]
     pat = segment 1 $ (mylist !!) <$> sig floor
 
+----------
+
+
+----- rev
+
+-- I accidentally typed `rev` as a controller, and seem to have stumbled upon a mystery undocumented effect? Sounds like some sort of reverb? But throws and error in SuperCollider if I try to pattern it. Any ideas what is going on here?
+
+-- ```d1 $ s "claus" # rev 0.01
+
+-- d1 $ s "claus" # rev 0.1
+
+-- d1 $ s "claus" # rev 0.5
+
+-- d1 $ s "claus" # rev 0.9
+-- d1 $ s "claus" # rev "0.1 0.01 0.5 0.9"
+-- > no synth or sample named '0.9' could be found. module 'sound': instrument not found: nil
+-- ```
+-- 
+
+d1 $ n "0 2 9 3 7 5 6 5" # s "cpu2"
+
+
+
+
 
 
 hush

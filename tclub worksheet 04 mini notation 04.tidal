@@ -1,0 +1,60 @@
+-- Tidal has lots of effects we can use to change the way things sound.
+
+-- vowel is a filter which adds a vowel sound
+-- try a, e, i, o and u
+
+d1 $ n "0 1 0 [2 4] 2 4 1*2 3" # s "cpu"
+
+d1 $ n "0 1 0 [2 4] 2 ~ 1*2 3" # s "cpu" # vowel "a"
+
+d1 $ n "0 1 0 [2 4] 2 ~ 1*2 3" # s "cpu" # vowel "o"
+
+-- We can use the mini notation to create sequences of effects too:
+
+d1 $ n "0 1 0 [2 4] 2 ~ 1*2 3" # s "cpu" # vowel "a o e"
+
+-- Tidal does its best to map patterns across to one another.
+
+-- You can add a non-vowel letter to pause the vowel effect
+
+d1 $ n "0 1 0 [2 4] 2 ~ 1*2 3" # s "cpu" # vowel "a p"
+
+-- 'squiz' is a nice distortion effect
+d1 $ n "0 1 0 [2 4] 2 ~ 1*2 3" # s "cpu" # squiz "4 1 0 3"
+
+-- With '#' structure comes from the left - try swapping the parameters around
+
+d1 $ squiz "4 1 0 3" # n "0 1 0 [2 4] 2 ~ 1*2 3" # s "cpu"
+
+-- Now there are only four sounds per cycle, because there's four in the leftmost
+-- 'squiz' pattern
+
+-- We'll learn more about how things in patterns get matched up later!
+
+-- 'gain' changes the volume of different sounds
+
+d1 $ sound "kick kick snare snare" # gain "1 0.7 0.6 0.5"
+
+d1 $ sound "[hh*16, kick:8 snare:4 [~ kick:8] snare]" # gain "[1 1.2]*8"
+
+-- speed can be used to pitch samples
+-- (we can also use 'note' to do this, but we'll look at that later)
+
+-- speed changes the speed of playback,
+-- e.g. 2 = play the sample twice as fast - which moves the note up an octave
+
+d1 $ sound "numbers:1 numbers:2 numbers:3 numbers:4" # speed "1 1.5 2 0.5"
+
+-- Or we can take the pattern from the speed parameter
+
+d1 $ speed "1*2 2*2 4*6" # sound "jungbass:6"
+
+-- pan allows us to create stereo effects - 0 = left, 0.5 = middle, 1 = right
+
+d1 $ sound "numbers:1 numbers:2 numbers:3 numbers:4" # pan "0 0.5 1"
+
+-- shape adds distortion (but be careful - it also makes the sound much louder)
+
+d1 $ sound "kurt:4 kurt:4"
+
+d1 $ sound "kurt:4(3,8)" # shape "0 0.98" # gain "0.7"
