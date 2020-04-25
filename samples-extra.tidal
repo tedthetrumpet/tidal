@@ -144,11 +144,58 @@ d1 $ hurry (1/4) $ s "foley:173"
 oops
 
 
-once $ s "foley:186"
+d1 $ slow 2 $ n "[ 190 .. 199 ]" + 10 # s "foley"
 
+d1 $ shuffle 10 $ n "[ 190 .. 199 ]" + 10 # s "foley" # speed "{0.25 0.125}%8"
 
+d1 $ repeatCycles 4 $ shuffle 10 $ n "[ 190 .. 199 ]" + 10 # s "foley" # speed "{0.25 0.125}%8"
 
+-- hmm, something like a note in there at 210
+-- ah, guitar open notes!
+d1 $ repeatCycles 4 $ shuffle 10 $ n "[ 190 .. 199 ]" + 20 # s "foley"
 
+-- another note a fourth above at 221
+d1 $ repeatCycles 4 $ shuffle 10 $ n "[ 190 .. 199 ]" + 30 # s "foley"
+
+d1 $ "foley:221 foley:210"
+
+-- and another fourth above at 232
+d1 $ repeatCycles 4 $ shuffle 10 $ n "[ 190 .. 199 ]" + 40 # s "foley"
+
+d1 $ "foley:221 foley:210 foley:232"
+
+-- and another at 243
+d1 $ repeatCycles 4 $ shuffle 10 $ n "[ 190 .. 199 ]" + 50 # s "foley"
+
+d1 $ "foley:221 foley:210 foley:232 foley:243"
+
+-- and at 254
+d1 $ repeatCycles 4 $ shuffle 10 $ n "[ 190 .. 199 ]" + 60 # s "foley"
+
+d1 $ "foley:221 foley:210 foley:232 foley:243 foley:254"
+
+-- and at 265
+d1 $ repeatCycles 4 $ shuffle 10 $ n "[ 190 .. 199 ]" + 70 # s "foley"
+
+d1 $ "foley:210 foley:221 foley:232 foley:243 foley:254 foley:265"
+
+d1 $ "foley:210 foley:221 foley:232 foley:243 foley:254 foley:265" # note "0 2 2 1 0 0"
+
+d1 $ n "210 221 232 243 254 265" # note "0 2 2 1 0 0" # s "foley"
+
+d1 $ n "210 221 232 243 254 265" # note "0 <2 0> 2 <1 2> <0 2> 0" # s "foley"
+
+--------------
+-- ok, it's a synth note over about five octaves
+d1 $ n "[ 0 .. 32 ]" # s "rash"
+
+-- like
+d1 $ hurry 0.25 $ n "[ 0 .. 31 ]" # s "snare"
+
+-- heavy lifting poly trick iya
+d1 $ fast "[2 | 1] <1 1.5>" $ repeatCycles 4 $ shuffle 8 $ iter 4 $ n "{0 1, 2 3 4, 6 7 8 9}%8" + 30 # s "<kick lo hi>" # speed "{2 5.25, 1.5 0.75 0.25 0.125}%5" # hpf (slow 16 $ range 50 1000 saw) # hresonance 0.1
+
+clutchIn 1 8 silence
 
 
 hush
