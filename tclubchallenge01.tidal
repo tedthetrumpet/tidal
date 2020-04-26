@@ -11,9 +11,13 @@
 -- Then compare them, thinking about the difference that tempo makes to the rhythms that you're working with. Next, leave them some hours, maybe even sleep on it and come back to them the next day. Listen again, without thinking about the code. Do they sound different, if so how? What would you do differently next time?
 
 -- first piece
-bpm 90
+bpm 60
+-- not liking this at all
+d1 $ s "[foley:210, foley:221]!4" # up "[-4, 8.25]" # attack 1 # release 4 # room (range 0.1 0.5 $ slow 4 sine) # size 0.9 # gain 0.8
 
-d1 $ slow 2 $ n "0 <1 9 2> 8@0.5 [7 4] 6? . <3 5> 10(3,8) . [12 | 11!2] 13/2 13(7,16) 15" # s "claus" # speed "0.5 0.25 1 1.25 0.125"
+
+
+
 
 bpm 180
 
