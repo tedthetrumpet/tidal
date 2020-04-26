@@ -660,7 +660,19 @@ d1 $ struct "1!8" $ n (fast 8 $ range (-5) 5 perlin) # s "superpiano"
 -- how could I make a random walk constrained to a particular named scale?
 -- this is not it quite it, adds random *chromatic* intervals
 d1 $ n (scale "pelog" "0!8" |+ (fast 8 $ range (-5) 5 perlin)) # s "superpiano"
+
 ```
+`d1 $ n (scale "pelog" ("0!8" |+ (fast 8 $ range (-5) 5 perlin))) # s "superpiano"`
+
+```• Couldn't match type ‘Double’ with ‘Int’
+      Expected type: Pattern Int
+        Actual type: Pattern Double
+    • In the second argument of ‘scale’,
+```
+
+-- yaxu
+
+d1 $ n (scale "pelog" $ struct "t!8" (floor <$> (fast 8 $ range (-5) 5 perlin))) # s "superpiano"
 
 
 

@@ -1,0 +1,28 @@
+-- Ok here's challenge number one - record two pieces!
+--
+-- Wondering how to record? In supercollider, just click on the numbers on the bottom right.. You should see a menu with 'start recording' and 'stop recording' - that's what you want! The location of the recorded audio file will be printed in the post window.
+--
+-- First, make some patterns at a tempo you like, say setcps 0.8, and record them for 2-3 minutes. They don't have to be complicated, but while you record, tweak some parameters, to give the recording some shape.
+--
+-- Then make a big tempo change, maybe even as much as doubling or halving the tempo, i.e. setcps 0.4 or setcps 1.6.
+--
+-- Then work with the patterns for a while, until they work well with the tempo, and record that, again while tweaking the patterns a little.
+--
+-- Then compare them, thinking about the difference that tempo makes to the rhythms that you're working with. Next, leave them some hours, maybe even sleep on it and come back to them the next day. Listen again, without thinking about the code. Do they sound different, if so how? What would you do differently next time?
+
+-- first piece
+bpm 90
+
+d1 $ slow 2 $ n "0 <1 9 2> 8@0.5 [7 4] 6? . <3 5> 10(3,8) . [12 | 11!2] 13/2 13(7,16) 15" # s "claus" # speed "0.5 0.25 1 1.25 0.125"
+
+bpm 180
+
+d1 $ s "909!4"
+
+setcps 0.5
+
+
+
+
+hush
+
