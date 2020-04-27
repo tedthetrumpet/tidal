@@ -222,9 +222,19 @@ bpm 160
 d1 $ every 5 (# vowel "a e i o u") $ every 3 degrade $ every 4 rev $ s "{can coins e}%13" <| n (run 16) # speed "{0.25 0.5}%5" # room 0.1 # sz 0.9
 
 
-bpm 80
+-----------
 
+-- from https://www.youtube.com/watch?v=PzrSSAjUErA
+-- alex doing the tempo challenge
 
+mask "t(3,8)"
+mask (iter 4 "t(3,8)")
 
+mask "f(3,8)"
+mask (iter 4 "f(3,8)")
+
+qtrigger 2 $ slow 16 envL
+
+d1 $ s "bd future odx kick:4" # begin 0.2
 
 hush

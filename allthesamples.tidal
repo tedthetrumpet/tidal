@@ -98,7 +98,7 @@ d1 $ s "erk" -- voice 'one two three hit it'
 d1 $ s "f" -- one short synth note, actually a bit below Eb
 d1 $ s "feel" <| n (run 7) -- quite nice bank of 7 drum sounds
 d1 $ slow 2 $ s "feelfx" <| n (run 8) -- varied effected sounds, bit longer, ok
-d1 $ s "fest" -- voice saying 'bling?' or 'berlin?'
+d1 $ s "fest" -- voice saying 'bling?' or 'berlin?' 
 d1 $ slow 8 $ s "fire" -- longish sample of fire sounds, low ambience
 d1 $ slow 2 $ s "flick" <| n (run 17) -- mix of 17 hits couple of long Cs
 d1 $ slow 16 $ s "fm" <| n (run 17) -- whole bank of loops! inc '31 seconds…'
