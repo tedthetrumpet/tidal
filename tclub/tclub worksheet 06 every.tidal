@@ -1,0 +1,109 @@
+
+-- every
+
+-- 'every' is one of a family of Tidal functions, that takes another
+-- function as one of its inputs.
+
+-- Let's say we had a simple pattern like this:
+d1 $ sound "bd sd ~ cp"
+
+-- ... and we wanted to speed it up like this:
+d1 $ fast 2 $ sound "bd sd ~ cp"
+
+-- ... but only one cycle out of three.
+
+-- Here's how we'd use 'every' to do that:
+d1 $ every 3 (fast 2) $ sound "bd sd ~ cp"
+
+-- You can read this as "every 3rd cycle, make 'sound "bd sd ~ cp"',
+-- go faster by a factor of two."
+
+-- We'll take this apart to work out why we sometimes use (), and
+-- sometimes '$' later. First, lets look at more, practical examples
+-- of using 'every'.
+
+-- We can use every with any function that takes single pattern as
+-- input (and returns a transformed version as output). For example,
+-- we can use 'hurry' instead of fast:
+d1 $ every 3 (hurry 2) $ sound "bd sd [~ bd] [cp bd*2]"
+
+-- Or use 'rev':
+d1 $ every 3 (rev) $ sound "bd sd [~ bd] [cp bd*2]"
+
+-- Because 'rev' is a single word, we don't actually need to put it in
+-- parenthesis:
+d1 $ every 3 rev $ sound "bd sd [~ bd] [cp bd*2]"
+
+-- Here's a trick with using effects as functions..
+-- Lets look at this:
+d1 $ sound "bd sd [~ bd] [cp bd*2]"
+   # squiz "5"
+
+-- We can treat the '# speed 5' bit as a function. If you think about
+-- it, it does something to a pattern, just like 'fast 2' does.
+
+-- So.. does this work?
+d1 $ every 3 (# squiz 5) $ sound "bd sd [~ bd] [cp bd*2]"
+
+-- Yes it does!
+
+-- You can also add more than one 'every' manipulation, giving them
+-- different periods for their first input, to create longer form
+-- variety:
+d1 $ every 3 (# squiz 5) $ sound "bd sd [~ bd] [cp bd*2]"
+
+d1 $ every 2 (hurry 2) $ every 3 (# squiz 5) $ sound "bd sd [~ bd] [cp bd*2]"
+
+-- keep going..
+d1 $ every 4 rev $ every 2 (hurry 2) $ every 3 (# squiz 5)
+   $ sound "bd sd [~ bd] [cp bd*2]"
+
+-- In Tidal, the pattern that a function is manipulating is generally
+-- its final input, which makes it easy to 'chain together' functions
+-- like this.
+
+-- Ok as promised, lets go back to our original, simple example:
+d1 $ every 3 (fast 2) $ sound "bd sd ~ cp"
+
+-- Lets go through the three 'inputs' (also sometimes called
+-- 'parameters' or 'arguments') for every.
+
+-- [a] 3 - how often a function is applied
+-- [b] fast 2 - the function that is applied
+-- [c] sound "bd sd ~ cp" - the pattern that it's applied to.
+
+-- Looking again at this pattern, you can see that the inputs are
+-- given in three different ways:
+d1 $ every 3 (fast 2) $ sound "bd sd ~ cp"
+
+-- '3' is just on its own. It's a single number so tidal has no
+-- problem knowing it's a single input.
+
+-- 'fast 2' is in parenthesis '(fast 2)'. Then the word 'fast' and
+-- number '2' are grouped together into a function, _before_ being
+-- passed to 'every' as its second input.
+
+-- 'sound "bd sd ~ cp"' has $ in front. We *could* have done this
+-- instead:
+d1 $ every 3 (fast 2) (sound "bd sd ~ cp")
+
+-- That works fine, but '$' does the same kind of job. It passes
+-- what's on its left, to the function on its right, as a single
+-- parameter. '$' has really low priority, which means everything on
+-- its right is worked out first before being passed to the left.
+d1 $ every 3 (fast 2) $ sound "bd sd ~ cp"
+
+-- This saves you from having to match up ( and ) around a function's
+-- final input. It doesn't work with anything other than the final
+-- input, so unfortunately this _doesn't_ work
+
+d1 $ every 3 $ fast 2 $ sound "bd sd ~ cp"
+
+-- The above would work out 'fast 2 $ sound "bd sd ~ cp"' first, and
+-- would then try to pass that to 'every' as its second parameter,
+-- which doesn't make sense to tidal, so it returns an error.
+
+-- Note that when Tidal makes an error, if there was already a
+-- pattern running, it will keep that going. If you're live coding
+-- in front of an audience, you probably don't want an error to
+-- result in silence!
