@@ -227,14 +227,33 @@ d1 $ every 5 (# vowel "a e i o u") $ every 3 degrade $ every 4 rev $ s "{can coi
 -- from https://www.youtube.com/watch?v=PzrSSAjUErA
 -- alex doing the tempo challenge
 
-mask "t(3,8)"
-mask (iter 4 "t(3,8)")
+-- making two over-busy patterns complementary
 
-mask "f(3,8)"
-mask (iter 4 "f(3,8)")
+bpm 150
 
+d1 $ s "cpu2" <| n (chunk 4 (rev) $ run 16)
+d1 $ mask "t(7,16)" $ s "cpu2" <| n (chunk 4 (rev) $ run 16) -- true
+d1 $ mask "t(7,16)" $ s "cpu2" <| n (chunk 4 (rev) $ run 16)
+d1 $ mask "t(7,16)" $ s "cpu2" <| n (chunk 4 (rev) $ run 16) # pan 0
+d1 $ iter 4 $ mask "t(7,16)" $ s "cpu2" <| n (chunk 4 (rev) $ run 16)
+d1 $ iter 4 $ mask "t(7,16)" $ s "808bd" <| n (chunk 4 (rev) $ run 16)
+
+d2 $ s "db" <| n (chunk 4 (rev) $ run 16)
+d2 $ mask "f(7,16)" $ s "db" <| n (chunk 4 (rev) $ run 16) -- false
+d2 $ mask "f(7,16)" $ s "db" <| n (chunk 4 (rev) $ run 16) # pan 1
+d2 $ iter 4 $ mask "f(7,16)" $ s "db" <| n (chunk 4 (rev) $ run 16)
+d2 $ iter 4 $ mask "f(7,16)" $ s "808sd" <| n (chunk 4 (rev) $ run 16)
+
+d2 silence
+
+
+-- need to look back and see what this was!
 qtrigger 2 $ slow 16 envL
 
-d1 $ s "bd future odx kick:4" # begin 0.2
+
+-- shaving the front off a hit, nice trick
+d1 $ struct "t!16" $ s "bd future odx kick:4" # begin "<0 0.1 0.2 0.3>"
+d1 $ s "{bd future odx kick:4}%16" # begin "<0 0.1 0.2 0.3>"
+
 
 hush
