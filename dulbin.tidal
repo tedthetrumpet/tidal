@@ -674,6 +674,23 @@ d1 $ n (scale "pelog" "0!8" |+ (fast 8 $ range (-5) 5 perlin)) # s "superpiano"
 
 d1 $ n (scale "pelog" $ struct "t!8" (floor <$> (fast 8 $ range (-5) 5 perlin))) # s "superpiano"
 
+--------
+-- jarm
+-- Important discovery:
+let wheel = spaceOut ([0.1,0.2..1]) . (#accelerate “-2”)
+
+-- For the perfect psyche drop
+
+
+
+
+-----------------
+
+
+
+
+
+
 
 
 

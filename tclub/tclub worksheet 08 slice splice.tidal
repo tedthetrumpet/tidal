@@ -1,0 +1,26 @@
+setcps 0.6
+
+-- Hear it straight
+d1 $ splice 8 "0 1 2 3 4 5 6 7" $ sound "break:4"
+
+setcps 0.7
+setcps 0.4
+
+-- Now with a more messed-up pattern
+d1 $ splice 8 "6 1 [2 3] ~ 4 1 6*2 7" $ sound "break:4"
+
+-- Try changing the cps to hear it at different speeds
+
+-- Try manipulating the pattern of slices
+d1 $ splice 8 (fast "1 [0.5 0.75]" "6 1 [2 3] ~ 4 1 6*2 7")
+   $ sound "break:4"
+
+-- Now try all the above with 'slice' instead of 'splice'.
+-- Slice _doesn't_ do the pitching up/down thing to splice the
+-- sound to the step.
+
+-- Here I put six slices from a loop originally in 4/4, to create
+-- a 3/4 waltz
+d1 $ splice 8 ("0 1 2 3 4 5") $ sound "break:4" # gain 1.1
+
+d2 $ sound "kick snare*2 clap:4" # speed 2

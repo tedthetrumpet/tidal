@@ -1,0 +1,66 @@
+-- https://youtu.be/A199q_kMhb0
+-- alex: chop and striate are 'older' than slice and splice
+-- he now uses splice mainly
+
+
+-- Let's take a nice break:
+once $ sound "break:8"
+
+-- We can use 'begin' and 'end' to only play part of the sound, in this
+-- case the final quarter of it:
+d1 $ sound "break:8*4" # begin 0.75 # end 1
+
+-- We can also use 'unit "c"' to change the behaviour of 'speed' so it
+-- changes the playback speed to match the cps
+d1 $ sound "break:8" # speed 1 # unit "c" # begin 0.75 # end 1
+
+-- Lets play four of those to fill the cycle
+d1 $ sound "break:8*4" # speed 1 # unit "c" # begin 0.75 # end 1
+
+-- Then play with the cps to hear it change, fitting the cps perfectly
+setcps 1.2
+setcps 0.8
+setcps 0.4
+
+-- Normally, I wouldn't use 'unit', 'begin' and 'end' by hand. Instead
+-- I'd use splice / slice from the previous lesson, or 'chop' to cut
+-- a sound into bits, and set the length of the loop in cycles with
+-- 'loopAt'
+d1 $ loopAt 2 $ chop 4 $ sound "break:8"
+
+-- The above sounds pretty continuous, but it is chopped into four parts.
+-- We can hear that by reversing the chopped up parts:
+d1 $ loopAt 2 $ rev $ chop 4 $ sound "break:8"
+
+-- If we slow the pattern we can hear each part separately:
+d1 $ slow 2 $ loopAt 2 $ chop 4 $ sound "break:8"
+
+-- Here's a different sample:
+d1 $ slow 2 $ loopAt 2 $ chop 4 $ sound "break:9"
+
+-- Now what happens if we put both breaks in the sequence?
+d1 $ slow 2 $ loopAt 2 $ chop 4 $ sound "break:8 break:9"
+
+-- With 'chop', it will play all the parts of break:8, followed by
+-- all the parts of 'break:9'.
+
+-- If we swap 'chop' for its friend 'striate', then parts from the
+-- two breaks are instead interlaced:
+d1 $ slow 2 $ loopAt 2 $ striate 4 $ sound "break:8 break:9"
+
+-- Play with that striate value for fun:
+d1 $ slow 2 $ loopAt 2 $ striate 16 $ sound "break:8 break:9"
+
+-- If you use the *same* loop multiple times with striate, it kind
+-- of stretches it:
+d1 $ slow 4 $ loopAt 1 $ striate 64 $ sound "break:1*4"
+d1 $ slow 2 $ loopAt 1 $ striate 64 $ sound "break:1*4" -- iya
+d1 $ slow 2 $ loopAt 1 $ striate "<64 57>" $ sound "break:1*4"
+
+-- Here's what that normally sounds like:
+once $ sound "break:1"
+
+-- 'bev' is an even longer sample..
+d1 $ loopAt 16 $ striate 32 $ sound "bev"
+
+d1 $ slow 4 $ jux rev $ loopAt 16 $ striate 128 $ sound "bev*4"

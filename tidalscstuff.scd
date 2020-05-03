@@ -3,6 +3,8 @@ SuperDirt.start
 
 ~dirt.loadSoundFiles("/Users/jsimon/Dropbox/SuperCollider/lcode09/bfsamples/*")
 ~dirt.loadSoundFiles("/Users/jsimon/Dropbox/SuperCollider/sldiwaloops/")
+~dirt.loadSoundFiles("/Users/jsimon/Dropbox/github_repositories/tidal-jsgit/nmsamples/*")
+
 
 SuperDirt.start(path: "/Users/jsimon/Dropbox/SuperCollider/lcode09/../bfsamples/*")
 SuperDirt.start(path:"/Users/jsimon/Dropbox/SuperCollider/sldiwaloops/")
@@ -15,6 +17,10 @@ SuperDirt.start(path:"/Users/jsimon/Dropbox/SuperCollider/sldiwaloops/")
 
 "/Users/jsimon/Dropbox/SuperCollider/lcode09/../bfsamples/".openOS
 "/Users/jsimon/Dropbox/SuperCollider/bfsamples/".openOS
+
+"/Users/jsimon/Dropbox/github_repositories/tidal-jsgit/nmsamples/"
+
+
 
 ~dirt.freeAllSoundFiles
 ~dirt.postSampleInfo
