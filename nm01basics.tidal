@@ -1,0 +1,23 @@
+-- short demo video (ideally once the sounds are there)
+-- must use chrome
+-- link to estuary
+-- https://intramuros.mcmaster.ca/
+-- using solo mode
+-- typing in code
+-- play
+-- stopping code
+-- saving
+-- maybe have two google docs, one cannot edit to copy from
+-- suggest each person makes their own google page as a scrapbook
+
+setcps (1/2)
+
+d1 $ s "demung"
+d1 $ s "demung saron"
+d1 $ s "demung saron peking"
+-- (cycle always running may start anywhere)
+d1 $ s "demung saron peking kendhang kendhang kendhang"
+-- (hush doesn't work, # silence)
+d1 $ s "demung saron peking kendhang kendhang kendhang" # silence
+-- introduce using second pane here? (like d1 and d2?)
+d2 $ s "gong"

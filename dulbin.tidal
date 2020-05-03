@@ -686,6 +686,20 @@ let wheel = spaceOut ([0.1,0.2..1]) . (#accelerate “-2”)
 
 -----------------
 
+-- yaxu
+-- Yes I was puzzling over the difference between reset, trigger and qtrigger.
+
+d1 $ trigger 1 $ sound "clap*4" # speed (rand + 1)
+
+-- This quantises to the nearest cycle start (the 'sam')
+
+d1 $ qtrigger 1 $ sound "clap*4" # speed (rand + 1)
+
+-- I'll have to have a proper look, but I'm not sure of the difference between qtrigger and reset
+-- The '1' refers to the 1 in 'd1' by the way
+
+
+
 
 
 

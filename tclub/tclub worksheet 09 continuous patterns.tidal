@@ -1,0 +1,85 @@
+-- 'Continuous functions' provide different kinds of waveforms.
+-- There's a nice graphic showing sine, square, triangle and sawtooth
+-- waves here: https://en.wikipedia.org/wiki/Waveform
+
+-- Here's what the sine waveform sounds like applied to sample playback
+-- speed:
+d1 $ sound "bd*32" # speed sine
+
+-- and to panning:
+d1 $ sound "bd*32" # pan sine
+
+-- and to waveshape distortion (gets loud):
+d1 $ sound "bd*32" # shape sine
+
+-- You can manipulate continuous patterns just like other kinds of
+-- patterns, for example slowing down:
+d1 $ sound "bd*32" # shape (slow 2 sine)
+
+-- The waveforms all move between 0 and 1. So at its lowest point, sine
+-- will be 0, and at its highest point it will be 1. Having a value
+-- near 0 can be problematic with 'speed', as you can end up with
+-- sounds played very slowly that take a long time to complete.
+
+-- To get around this you can add to the sine:
+d1 $ sound "bd*32" # speed (sine + 0.5)
+
+-- Or use the 'range' function:
+d1 $ sound "bd*32" # speed (range 0.5 1.5 sine)
+
+-- Lets listen to triangle, sawtooth and square waves:
+d1 $ sound "bd*32" # speed (range 0.5 1.5 tri)
+
+d1 $ sound "bd*32" # speed (range 0.5 1.5 saw)
+
+d1 $ sound "bd*32" # speed (range 0.5 1.5 square)
+
+-- What happens if you put the continuous pattern on the left?
+-- Remember that with '#', the rhythmic structure comes from the
+-- left. Try this:
+d1 $ speed (range 0.5 1.5 sine) # sound "bd"
+
+-- Silence! Why's that?
+-- It's because continuous functions don't actually contain any
+-- events. They have values which continually change, without
+-- triggering anything.
+
+-- If we want to trigger events in a continuous pattern, we have
+-- to explicitly sample values from it. One way to do that is with
+-- the 'segment' function:
+d1 $ speed (segment 32 $ range 0.5 2.5 sine) # sound "bd"
+
+-- The above samples 32 values per cycle, generating discrete
+-- events from them.
+
+-- Another way to do this is with 'binary' or 'boolean' patterns,
+-- using the 'struct' function:
+d1 $ speed (struct "t(3,8)" $ slow 2 $ range 0.5 2.5 sine)
+  # sound "bd"
+
+-- 't' stands for 'true'. So that euclidean rhythm is used to sample
+-- events from the continuous sine function. We'll return to
+-- binary patterns in another video.
+
+-- You can also add or multiply continous patterns together:
+d1 $ sound "bd*32" # speed (range 0.5 2.5 (sine + (slow 2 saw)))
+
+d1 $ sound "bd*32" # speed (range 0.5 2.5 (sine * (slow 2 saw)))
+
+-- I slowed the 'saw' down in the above patterns, so you end
+-- up with a sine wave that rises in pitch over two cycles.
+
+-- In Tidal, random functions are also often continous.
+-- For example, rand works like sine, saw etc, but returns random
+-- values:
+d1 $ sound "bd(5,8)" # speed (range 1 3 rand)
+
+-- Perlin is similar, but returns 'perlin noise'. In Tidal, this
+-- means that the pattern smoothly transitions between random values,
+-- every cycle:
+d1 $ sound "bd(5,8)" # speed (range 1 3 perlin)
+
+-- Lets try that with some reverb:
+d1 $ sound "bd(7,16)"
+   # room 0.7
+   # sz (range 0.4 1 $ slow 4 perlin)

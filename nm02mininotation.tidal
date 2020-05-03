@@ -1,0 +1,53 @@
+-- Mini-notation worksheet, number one!
+
+-- Play a "kick" sound (the first one in the folder)
+d1 $ s "kendhang"
+
+-- Play a different sound from the "kick" folder (the fourth one, counting from zero)
+d1 $ s "kendhang:3"
+
+-- Play a kick - snare loop. Notice two sounds fit in the same time as one did above
+d1 $ s "kendhang kenong"
+
+-- The more you add, the faster it goes - the 'cycle' stays constant
+d1 $ s "kendhang kenong kendhang kenong"
+
+d1 $ s "kendhang kenong kendhang kenong saron demung peking"
+
+-- Again, we can pick sounds with : and a number
+
+d1 $ s "demung:6 demung:5 demung:3 demung:2"
+
+-- If they're all from the same folder, it's easier to pattern
+-- the sounds using a separate "n" pattern, like this:
+d1 $ n "6 5 3 2" # sound "demung"
+
+-- `#` combines together patterns of different kinds, in this case a 'sound'
+-- and an 'n' pattern.
+-- We'll come back to `#` (and how it differs from '$') in the future!
+
+-- You can have an 'empty' step, known as a musical rest, with '~'
+d1 $ s "saron demung ~ kendhang"
+
+d1 $ n "6 5 3 2 ~ 3 2 3" # sound "saron"
+
+-- You can also "break down" a step into a subsequence, with []
+
+-- Lets start with a simple pattern
+d1 $ s "saron demung saron demung"
+
+-- And squeeze a two-step subsequence inside that third step:
+d1 $ s "saron demung [saron saron] demung"
+
+-- It works for 'n' patterns too
+d1 $ n "3 4 [4 4] 4 3 4 2 ~" # sound "saron"
+
+-- to get the effect of damping (sort of) try this
+-- shit, bad feeling neither 'cut' nor 'release' work in minitidal
+d1 $ n "3 4 [4 4] 4 3 4 2 ~" # sound "saron" # cut 1
+
+-- You can even break down a step inside a subsequence:
+d1 $ n "3 4 [4 [4 4]] 4 3 4 2 ~" # sound "saron" # cut 1
+
+-- You can use more than one subsequence in the same pattern
+d1 $ n "[6 5 3 2] [1 4 7]" # sound "saron" # cut 1
