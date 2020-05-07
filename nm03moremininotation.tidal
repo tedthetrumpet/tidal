@@ -1,0 +1,97 @@
+-- available sounds are:
+-- demung (8 samples) gong (9) kendhang (19) kenong (8) peking (8) saron (8) slenthem (8)
+-- actually hundreds more sounds in estuary, but those are the gamelan ones :)
+
+-- using comments instead of # silence
+-- two dashes is a 'comment' tells midi-tidal to ignore the following code
+-- so when you execute that code you get silence!
+
+-- 'cut' now works! this sounds messy, no damping of the notes:
+
+setcps (60/240)
+
+d2 $ n "6 ~ 6 ~ 5 6 ~ 5 6 ~ 5 6 ~ 5 6  ~ 5 6 5 ~ 6 5 ~ 6 5 ~ 6 5 ~ 6 5 ~" # s "kenong"
+
+-- better: don't ask me what the '1' after 'cut' means, it just works :)
+d2 $ n "6 ~ 6 ~ 5 6 ~ 5 6 ~ 5 6 ~ 5 6  ~ 5 6 5 ~ 6 5 ~ 6 5 ~ 6 5 ~ 6 5 ~" # s "kenong" # cut 1
+
+-----------------
+setcps (120/240)
+
+-- Speeding up, repeating, and slowing down
+
+-- speeding up a step with "*"
+
+-- make a step go 'faster', so it repeats itself within its step:
+d1 $ s "saron demung*3"
+
+-- it works with subsequences too
+d1 $ s "saron [saron demung]*2"
+
+-- and 'n' patterns
+d1 $ n "[1 ~ 1] 2 [3 6]*2 2" # s "saron" # cut 1
+
+-- slowing down a step with "/"
+
+-- Make 'demung' sound only every other cycle:
+d1 $ s "saron demung/2"
+
+-- Make 'demung' sound only every third cycle:
+d1 $ s "saron demung/3"
+
+-- Slow down a subsequence, so only one step sounds per cycle:
+d1 $ s "demung:2 [saron:6 saron:5 saron:3]/3" # cut 1
+
+-- Take two steps from a six step sequence each cycle, by slowing it by 3:
+d1 $ n "1 1 1 [2 3 4 5 6 7]/3" # s "saron" # cut 1
+
+-- Make things strange by slowing down with funky ratios
+-- I'm not going to try to explain what is happening here!
+d1 $ n "1 1 1 [2 3 4 5 6 7]/2.5" # s "saron" # cut 1
+
+-- repeating a step with "!"
+-- https://www.youtube.com/watch?v=h_f11uago28&t=275s
+
+-- as we've seen already, you can repeat steps with !
+-- So this:
+d1 $ s "peking saron!3"
+
+-- Is the same as this:
+d1 $ s "peking saron saron saron"
+
+-- You can also use an ! on its own for a single repeat. So this:
+d1 $ s "peking saron !"
+
+-- Is the same as this:
+d1 $ s "peking saron saron"
+
+-- or you can use multiple !'s
+d1 $ s "kendhang ! ! !"
+
+-- is the same as
+d1 $ s "kendhang kendhang kendhang kendhang"
+-- or
+d1 $ s "kendhang!4"
+
+-- You can repeat subsequences too, so these are the same:
+d1 $ s "kendhang kendhang [demung peking] !"
+
+d1 $ s "kendhang kendhang [demung peking] [demung peking]"
+
+-- of course all of these work with n patterns as well
+
+d1 $ n "3 ! ! 4!3 [6 3 ~]/3 2*4" # s "demung"
+
+-- to control the volume you can use # gain
+d1 $ s "demung" # gain 0.4 -- very quiet
+d1 $ s "demung" # gain 1 -- default volume
+d1 $ s "demung" # gain 2 -- maximum
+d1 $ s "demung" # gain 9 -- won't go higher than 2
+
+-- advanced topic, but useful, play following two lines together:
+d1 $ n "6 5 3 2" # s "demung"
+d2 $ s "gong"
+-- gong is in the wrong place, this will move it back 1/4 of a cycle:
+d2 $ (0.25 <~) $ s "gong"
+-- or of course just do this:
+d2 $ s "~!3 gong"

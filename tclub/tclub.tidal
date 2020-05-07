@@ -256,4 +256,26 @@ d1 $ struct "t!16" $ s "bd future odx kick:4" # begin "<0 0.1 0.2 0.3>"
 d1 $ s "{bd future odx kick:4}%16" # begin "<0 0.1 0.2 0.3>"
 
 
+-----------------
+-- I just wanted to add that you can write
+
+d1 $ every 2 (hurry 2) $ every 2 (# squiz 2) $ "bd sd"
+
+-- more compact like this:
+
+d1 $ every 2 ((hurry 2).(# squiz 2)) $ "bd sd"
+
+-- If you are only using functions like fast, slow, striate, hurry, stut (functions that don't need a # inside the every-function) you can omit the brackets
+
+d1 $ every 2 (hurry 2 . striate 16) $ "bd sd"
+
+-- You can do this with as many functions as you like
+
+d1 $ every 2 (hurry 2 . striate 16 . stut 4 0.5 0.3) $ "bd sd"
+
+
+
+
+
+
 hush

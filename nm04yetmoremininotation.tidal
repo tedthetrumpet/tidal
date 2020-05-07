@@ -1,0 +1,144 @@
+
+-----------------------
+
+-- POLYPHONY WITH ","
+-- https://www.youtube.com/watch?v=h_f11uago28&t=668s
+
+-- With ',' you can have more than one subsequence happening at the same time.
+-- Where you have the possibility of more than one note happening at once,
+-- that's called musical "polyphony"
+
+-- This is like where you have multiple channels d1 and d2 active at the same time:
+d1 $ s "bd sd"
+
+d2 $ sound "rs rs rs"
+
+-- .. but with ","" you can put them both in the same pattern. This sounds
+-- the same as the two above patterns playing at once:
+d1 $ s "[bd sd, rs rs rs]"
+
+-- The subsequences line up to fill the same cycle.
+-- So "[a b, c d e]" lines up like this:
+-- |a--b--|
+-- |c-d-e-|
+
+-- There's an 'alphabet' sample set in the default samples that can help with
+-- this!
+d1 $ n "[0 1, 2 3 4]" # s "alphabet"
+
+-- There's another way of getting subsequences to align, using { } instead of [ ]:
+d1 $ n "{0 1, 2 3 4}" # s "alphabet"
+
+-- Video explanation: https://www.youtube.com/watch?v=h_f11uago28&t=822s
+
+-- The first three cycles of this looks like this:
+-- |ababab|
+-- |cdecde|
+
+-- What's happening? Well Tidal aligns the first subsequence, "0 1", to fit
+-- the cycle, as before. But then it fits the others to it *stepwise*. So
+-- now the steps align, but the cycles don't! In the space of three
+-- cycles, there are three repetitions of "a b" and two repetitions of "c d e"
+
+-- The [ ] notation creates what is called a musical 'polyrhythm' - multiple
+-- rhythms happening within the same timeframe, e.g.:
+d1 $ n "[0 5 2 ~, 0 3 4*2 0 3]" # s "cpu2"
+
+-- The { } notation creates a 'polymetre' - where metres of different durations
+-- phase in and out of each other, e.g.:
+d1 $ n "{0 5 2 ~, 0 3 4*2 0 3}" # s "cpu2"
+
+-- I (Alex) get mixed up between polyrhythm and polymetre all the time, and
+-- tend to just call them both polyrhythm for simplicity..
+
+-- 'Traditional' music software with linear 'piano roll' style notation systems
+-- can really struggle with polyrhythm/metre, but it's really easy with Tidal
+-- and a *lot* of fun to explore.
+
+-- RHYTHMIC FEET WITH "."
+-- https://www.youtube.com/watch?v=h_f11uago28&t=988s
+
+-- You can 'mark out' regular rhythmic 'feet' with "."
+
+-- So this:
+d1 $ s "bd sd . mt ht lt . arpy arpy:4 . snare clap:4 bd"
+
+-- Is another way of saying exactly this:
+d1 $ s "[bd sd] [mt ht lt] [arpy arpy:4] [snare clap:4 bd]"
+
+-- So the "." breaks up a sequence into parts of equal duration
+
+-- To break down a step _within_ the "." notation, you can still
+-- use [], etc:
+d1 $ s "bd sd . mt [ht mt] lt . arpy [arpy:4 arpy:5] . snare clap:4 bd"
+
+-- That's the same as:
+d1 $ s "[bd sd] [mt [ht mt] lt] [arpy [arpy:4 arpy:5]] [snare clap:4 bd]"
+
+-- ONE STEP PER CYCLE WITH "<>"
+-- https://www.youtube.com/watch?v=h_f11uago28&t=1166s
+
+-- Often it's nice to pick one step from a subsequence every cycle.
+-- One way is this:
+d1 $ s "hi [arpy arpy:1 arpy:2 arpy:3]/4"
+
+-- You can do the same thing with < > - it picks one step per cycle, without
+-- you having to worry about how many steps there are inside:
+d1 $ s "hi <arpy arpy:1 arpy:2 arpy:3>"
+
+-- REVISION TASKS
+
+-- Copy each of the following patterns in turn, and edit them so that they
+-- are shorter, using the "<>", "!", "[]" and/or "." introduced above.
+
+d1 $ s "kick snare snare"
+-- ans
+d1 $ s "kick snare!2"
+
+d1 $ s "kick [snare snare]"
+-- ans
+d1 $ s "kick [snare!2]"
+-- or (better)
+d1 $ s "kick snare*2"
+
+d1 $ s "kick snare kick snare kick snare"
+-- ans
+d1 $ s "[kick snare]*3"
+-- or
+d1 $ s "[kick snare]!3"
+
+d1 $ n "0 [1 2 3]/3" # s "cpu2"
+-- ans
+d1 $ n "0 <1 2 3>" # s "cpu2"
+
+d1 $ n "[0 0 2] [4 5 6 7] [4 1] [0 3 0 3]" # s "cpu2"
+-- ans
+d1 $ n "0*2 2 . 4 5 6 7 . 4 1 . [0 3]*2" # s "cpu2"
+-- or
+d1 $ n "0!2 2 . 4 5 6 7 . 4 1 . [0 3]!2" # s "cpu2"
+
+d1 $ s "kick snare kick snare kick snare clap"
+-- ans, this one is hard! impossible? yes, yaxu agrees!
+d1 $ s "[kick snare]!3 clap" -- not right
+-- finally using the @
+d1 $ s "[kick snare]!3 clap@0.5"
+
+d1 $ s "[kick snare kick snare kick snare] clap"
+-- ans
+d1 $ s "[kick snare]*3 clap"
+
+d1 $ s "bd sd sd sd bd [sd sd sd]"
+-- ans
+d1 $ s "bd sd!3 bd sd*3"
+
+
+-- Trying to make code as short as possible is called "golfing" for some reason.
+-- It can be useful as a form of practice, but sometimes longer code
+-- is actually much easier to understand and edit!
+
+
+
+
+
+
+hush
