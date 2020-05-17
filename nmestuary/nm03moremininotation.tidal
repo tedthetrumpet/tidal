@@ -50,7 +50,6 @@ d1 $ n "1 1 1 [2 3 4 5 6 7]/3" # s "saron" # cut 1
 d1 $ n "1 1 1 [2 3 4 5 6 7]/2.5" # s "saron" # cut 1
 
 -- repeating a step with "!"
--- https://www.youtube.com/watch?v=h_f11uago28&t=275s
 
 -- as we've seen already, you can repeat steps with !
 -- So this:

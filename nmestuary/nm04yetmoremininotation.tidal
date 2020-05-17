@@ -1,0 +1,64 @@
+-- not going to follow alex here
+-----------------------
+
+-- One thing I noticed people trying to do the other day was to play two patterns in the one box. It is possible, but you have to use stack, it looks like this:
+
+d1 $ stack  [s "~ kenong", s "demung ~"]
+
+-- or even this, can get a bit confusing:
+
+d1 $ stack  [n "1 2 3" # s "kenong", n "6 5 3 2" # s "demung" # cut 1]
+
+-- there is a nice way of making variation from one cycle to another using < and >
+
+d1 $ n "<6 7> 5 3 2" #  s "slenthem" # cut 1
+
+-- on the first cycle you get six and on the second you get seven, overall pattern is "6 5 3 2 7 5 3 2". Can go further with that:
+
+d1 $ n "6 <3 [5 3] 4*3> 2 1" # s "saron" # cut 1
+
+-- also possible with sounds:
+
+d1 $ n "5 7 6 4" # s "<slenthem demung saron peking>" # cut 1
+
+-- this brings up the slightly complex topic of combing patterns. Try this:
+
+d1 $ n "5 3 2 1" # s "peking demung"
+
+-- here there are two patterns, an n pattern of four notes on the left and an s pattern of two sounds on the right, combined using the #. What happens is that the 5 and 3 are played on peking, and the 2 and 1 on demung. You could draw it out like this:
+
+|5321|
+|p-d-| p = peking, d = demung
+
+-- This can get confusing: what if we have four notes but three sounds?
+
+d1 $ n "5 3 2 1" # s "peking demung kenong"
+
+-- it gets worked out like this:
+
+|5--3--2--1--|
+|p---d---k---|
+
+-- so you can maybe see that the peking (p) sound is active during the 5 and the 3, the kenong (k) sound is active during the 2 and the demung (s) sound is active during the 1
+
+-- an important rule of thumb to remember is 'the structure comes from the left'. So, in this case, with just two notes on the left and three on the right, the gong never plays!
+
+d1 $ n "6 5" # s "demung saron gong"
+
+|6--5--|
+|d-s-g-|
+
+-- one final nice thing is the so-called 'euclidian' patterns, a quick way to play with interesting syncopations, try these one by one:
+
+d1 $ s "kendhang(3,8)"
+d1 $ s "kendhang(5,8)"
+d1 $ s "kendhang(5,8,1)"
+d1 $ s "kendhang(5,8,<0 1>)"
+d1 $ s "kendhang(<5 3>,8,<0 1>)"
+
+-- this example is a bit naughty, I haven't shown this so far: it's a little bit like stack, using square brackets and a comma to have two patterns playing at once:
+
+d1 $ s "[kendhang(<7 5>,16,<0 1>), kenong!4]"
+
+-- also with n patterns:
+d1 $ n "[1(<7 5>,16,<0 1>), 6!4]" # s "demung" # cut 1

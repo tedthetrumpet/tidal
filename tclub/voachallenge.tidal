@@ -2,4 +2,15 @@ once $ "voa:3"
 
 bpm 120
 
+-- not feeling it
 d1 $ splice 8 (run "32 7 8 4") $ s "voa" <| n "0 1 2 3"
+d1 $ splice 8 "7@2 6!3 1 [4 2] ~ " $ s "voa"
+d1 $ splice 8 "7@2 6!3 1 [4 2] ~ " $ s "voa" # n "0 1 2 3"
+d1 $ splice 8 "7@2 6!3 1 [4 2] ~ " $ s "voa" # n "<0 1 2 3>/4"
+d1 $ sometimes (fast 2) $ splice 8 "7@2 6!3 1 [4 2] ~ " $ s "voa" # n "<0 1 2 3>/4"
+
+-- still not finding much here
+-- this could have a half-time drum beat
+-- pattern sounds much simpler than the code!
+
+d1 $ fast ("4 2 8@0.125" * (1/8)) $ iter 4 $ splice 7 "[5 8!9 7 4!3 0!10]" $ s "voa" # n "<0 1 2 3>/16"

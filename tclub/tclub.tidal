@@ -274,6 +274,35 @@ d1 $ every 2 (hurry 2 . striate 16) $ "bd sd"
 d1 $ every 2 (hurry 2 . striate 16 . stut 4 0.5 0.3) $ "bd sd"
 
 
+-----------------
+-- doing the vocal challenge https://www.youtube.com/watch?v=Yty49cdy3KQ
+-- 11'49 make your own random number generator!
+
+d1 $ rev $ iter 8 $ iter 4 $ splice ("0 1 2 3 4 5 6 7") $ s "maybe"
+
+d1 $ jux rev $ iter 8 $ iter 4 $ slow 2
+  $ striate 32 $ s "maybe*2"
+
+------------
+-- you can specify points and then interpolate between with smooth.
+d1 $ s "rm*16" # speed (smooth "0.1 1@5 0.5 0.2")
+
+
+----------
+dirt.soundLibrary.addSynth(\panic, (play: { ~dirt.orbits.do(_.freeSynths) }));
+
+once $ s "panic"
+
+
+d1 $ n "[1,3 .. <9 12>]" # s "superpiano"
+
+
+reset 1 probably works
+
+
+jux (iter 4) with polymetric {} stuff
+
+jux (iter 4 . hurry 2)
 
 
 

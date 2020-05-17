@@ -78,3 +78,39 @@ d4 $ slow 2 $ s "gong:0" # octave "[4,5,6]"
 
 
 hush
+------------------
+
+
+------------------
+-- ideas for next set of tutorials
+-- finish off on mini-notation, don't need to do everything
+  -- did not do {} , @ e .
+  -- but must do euclidian and <>
+  -- nice, as they can be combined
+-- yes or no to combining patterns?
+-- not very many useful controllers?
+  -- vowel, gain, speed
+  -- see what else works, djf, delay?
+-- could move on to some functions?
+
+
+rev
+sometimes rev
+fast 2
+slow 2
+fast 0.5
+hurry?
+shuffle/scramble
+-- this is a step too far!
+sometimes (fast 2)
+sometimes (shuffle 8)
+often
+rarely
+every 4 (scramble 8)
+
+---------------
+
+
+
+
+hush

@@ -5,9 +5,9 @@ d1 $ s "808" <| n (run 6) -- 6 misc 808 sound
 d1 $ slow 2 $ s "808bd" <| n (run 25) -- 25 rather similar 808 kicks!
 d1 $ slow 2 $ s "808cy" <| n (run 25) -- 25 808 cymbals
 d1 $ fast 2 $ s "808hc" <| n (run 5) -- 5 808 high congas
-d1 $ fast 2 $ s "808ht" <| n (run 5) -- 5 808 high toms
-d1 $ fast 2 $ s "808lc" <| n (run 5) -- 5 808 low congas
-d1 $ fast 2 $ s "808lt" <| n (run 5) -- 5 808 low toms
+d1 $ fast 2 $ s "808ht" <| n (run 5) -- 5 808 high toms, bit noisy
+d1 $ fast 2 $ s "808lc" <| n (run 5) -- 5 808 low congas, noisy
+d1 $ fast 2 $ s "808lt" <| n (run 5) -- 5 808 low toms, noisy
 d1 $ fast 2 $ s "808mc" <| n (run 5) -- 5 808 medium congas
 d1 $ fast 2 $ s "808oh" <| n (run 5) -- 5 808 open hats
 d1 $ slow 2 $ s "808sd" <| n (run 25) -- 25 808 snares

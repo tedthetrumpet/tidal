@@ -1,0 +1,271 @@
+-- https://youtu.be/7Hzc-28ergY
+-- transcriptions from video, a bit different to the worksheet
+-- using different sample for now
+
+-- rand
+-- rand is infinitely detailed, has no structure
+-- infinite number of values in every cycle, that are sampled
+d1 $ n "0 ~ 3 1" # s "cpu" # speed (rand + 1)
+d1 $ n "0!16" # s "cpu" # speed (rand + 2)
+-- is a function of time
+-- can hear is same if reset time to start
+resetCycles
+
+d1 $ repeatCycles 4 $ n "0!16" # s "cpu" # speed (rand + 2)
+d1 $ fast 8 $ repeatCycles 16 $ n "0!16" # s "cpu" # speed (rand + 2)
+
+-- irand
+
+d1 $ n (irand 8) # s "rash" -- makes no sound, no structure
+d1 $ n (struct "t(5,8)" $ irand 8 + 24) # s "rash"
+d1 $ n (scale "major" $ struct "t(5,8)" $ irand 8 + 24) # s "rash"
+
+-- randomness in mininotation
+-- [|]
+
+d1 $ n "0 1 2 3" # s "cpu"
+d1 $ n "[0 | 1 | 2 | 3]" # s "cpu"
+-- now four subsequences picks one at random each time
+d1 $ n "[0 | 1 | 2 | 3 4 5]" # s "cpu"
+-- eg one step within a longer pattern (an ossia?)
+d1 $ n "0 [0|1*3|2*8|3 4 5] 2 3" # s "cpu"
+
+-- ?
+
+d1 $ s "bd bd bd clap?"
+d1 $ s "bd bd bd clap?0.9" -- 90% probability of no event
+d1 $ s "bd bd bd clap?0.1"
+-- with repeated notes, probability within
+d1 $ s "bd*8?0.75"
+-- ah, question! disnae wurk
+d1 $ s "bd!8?"
+-- this is ok
+d1 $ s "[bd!8]?"
+-- yaxu suggested bug report, done
+
+-- scramble
+
+
+d1 $ scramble 6 $ n "0 1 2 3" # s "arpy"
+d1 $ scramble 4 $ n "0 1 2 3 4 5 6 7 " # s "arpy" -- pairs
+
+-- interesting
+d1 $ scramble 8 $ n "0 1 2 3" # s "arpy"
+-- d1 $ scramble 6 $ n "0 1 2 3" # s "arpy" -- swing syncopation ish?
+-- d2 $ up "-34!3" # s "arpy" # gain 0.9
+
+-- shuffle, similar, different principle
+
+d1 $ scramble 8 $ n "0 1 2 3 4 5 6 7" # s "arpy"
+
+-- choose
+
+d1 $ sound (choose ["bd", "arpy", "kick"]) -- like that no structure
+d1 $ sound (segment 1 $ choose ["bd", "arpy", "kick"]) -- 1 per cycle
+d1 $ sound (segment 8 $ choose ["bd", "arpy", "kick"]) -- jeje
+d1 $ sound (struct "t(5,8)" $ choose ["bd", "arpy", "kick"])
+
+-- wchoose
+-- hack
+d1 $ sound (struct "t(5,8)" $ choose ["bd", "bd", "bd", "arpy", "kick"])
+-- quick lookup!
+:t wchoose -- t> wchoose :: [(a, Double)] -> Pattern a
+-- wants a list (square brackets)
+-- in that list wants 'a thing'
+-- and then how likely it is as a double, which is a kind of floating point
+
+d1 $ s "bd*8" # squiz (wchoose [(1,2), (4,0.1), (10,0.5)])
+
+--------------------------------------------
+-- end of video transcription
+-- but see below for not on 'deterministic'
+
+-- randcat
+-- wrandcat
+
+
+
+
+
+-- Let's start with a look at the 'rand' waveform that we
+-- met in the last lesson:
+
+d1 $ n "1*8" # sound "drum"
+  # speed (range 1 8 rand)
+
+-- The 'resetCycles' resets the cycle count to '0', as
+-- though you'd just started Tidal:
+resetCycles
+
+-- If you run resetCycles while the above pattern is running,
+-- you'll notice that you also reset the random stream. You
+-- will always get the same 'random' numbers every time you
+-- start or reset Tidal.
+
+-- You can apply rand to any numerical effect, but might have
+-- to adjust the range. For example with the low pass filter
+-- that cuts out frequencies higher than the given amount:
+d1 $ sound "drum:5(5,8,<0 4>)"
+   # lpf (range 200 8000 rand)
+   # lpq 0.2
+
+-- 'irand' is similar to 'rand', but creates integers, or
+-- whole numbers, from 0 up to (and not including) the given
+-- number. This is particularly useful for the 'n' and
+-- 'note' controls:
+
+d1 $ sound "rash(5,8)" # n (irand 32)
+   # room 0.3 # sz 0.5
+
+-- There are a couple of ways of doing random things in the
+-- mininotation too. To randomly choose between subsequences,
+-- put a | (vertical bar) between them
+
+-- The second step in this sequence is a randomly pick from
+-- four subsequences:
+d1 $ n "0 [0|1*3|2*8|3 4 5] 2 3" # sound "cpu"
+   # speed 1.5
+
+-- Also, ? randomly 'drops' an event. In the following the
+-- second step has a 50-50 chance of being played.
+d1 $ sound "kick clap? kick snare"
+  # delay 0.3 # delaytime (1/3) # delayfb 0.8 # speed 1.5
+
+-- (I've added some echo delay to make it sound cool. Delay is the
+-- amount of sound to be delayed, delaytime is the length of the
+-- echo, delayfb is the feedback of the delay into itself)
+
+-- You can adjust the probability of ? working with a decimal
+-- (floating point) number. For example, to have an 80% chance
+-- of dropping that clap (and therefore 20% chance of playing
+-- it)
+d1 $ sound "kick clap?0.8 kick snare"
+  # speed 1.5
+
+-- If you apply ? to a subsequence, it'll work individually
+-- on each value in the subsequence
+d1 $ sound "kick [clap:4 off clap:5]? kick snare"
+  # speed 1.5
+
+d1 $ sound "bd*8? clap:4"
+
+-- Ok, onward to functions, starting with scramble. scramble
+-- takes a number, which is the number of parts to equally
+-- divide a pattern into. It'll then play those parts at
+-- random.
+d1 $ scramble 4 $ n "0 1 2 3 4 5 6 7" # sound "arpy"
+   # room 0.3 # sz 0.8
+
+-- The above is divided into four parts, and there are
+-- eight events in them, so they are played in pairs. This
+-- means that 0 is always followed by 1, 2 is always followed
+-- by 3, and so on.
+
+-- shuffle takes the same parameters as scramble, and sounds
+-- very similar. Can you hear the difference?
+d1 $ shuffle 4 $ n "0 1 2 3 4 5 6 7" # sound "arpy"
+  # room 0.3 # sz 0.8
+
+-- Whereas scramble picks part at random, shuffle plays the
+-- parts in random order. The difference is that with shuffle,
+-- every cycle, you'll hear each part exactly once. With
+-- scramble, there's a (small) chance that you'll hear only
+-- one part, played four times.
+
+
+-- You can maybe hear this better if you play a clap at the
+-- same time, to mark the start of the cycle. Then you can
+-- hear that parts aren't repeating within the cycle.
+d1 $ shuffle 4 $ n "0 1 2 3 4 5 6 7" # sound "arpy"
+  # room 0.3 # sz 0.8
+
+d2 $ sound "clap"
+
+-- The "choose" function is for when you want to pick between
+-- single values. It produces a continuous stream, with no
+-- structure, so the following won't produce any events:
+d1 $ sound (choose ["bd", "arpy", "snare"])
+
+-- You'll need to provide some structure, with a function like
+-- 'segment', which in this case picks 8 values per cycle:
+d1 $ sound (segment 8 $ choose ["bd", "arpy", "snare"])
+
+-- Or 'struct', which picks values according to a binary pattern:
+d1 $ sound (struct "t t ~ t" $ choose ["bd", "arpy", "kick"])
+
+d1 $ sound (struct "t(5,8)" $ choose ["bd", "arpy", "kick"])
+
+-- Or by combining it with a pattern that *does* have structure:
+d1 $ squiz "0*2 4 2 5 0 6*2 4 7"
+  # sound (choose ["bd", "arpy", "kick"])
+
+-- Another 'gotcha' - the parameters to choose are a list of values,
+-- *not*, patterns, so you can't normally use mininotation there.
+
+-- This *won't* work.
+d1 $ squiz "0*2 4 2 5 0 6*2 4 7"
+  # sound (choose ["bd*5", "arpy*2", "kick clap"])
+
+-- I'll try to fix this in a future version of tidal! There is a
+-- workaround, which is to use the 'innerJoin' function. Then you
+-- can choose between patterns:
+d1 $ squiz "0*2 4 2 5 0 6*2 4 7"
+  # sound (innerJoin $ choose ["bd*5", "arpy*2", "kick clap"])
+
+-- You can use choose with any parameter.
+
+-- For example:
+d1 $ sound "clap:4(3,8)"
+  # speed (choose [2,5,0.5])
+
+-- The following example is a bit different to the above, because
+-- a new value is chosen only once per cycle:
+d1 $ sound "clap:4(3,8)"
+  # speed "[2|5|0.5]"
+
+-- You could get the same behaviour from choose with 'segment'ing it
+-- by a cycle:
+d1 $ sound "clap:4(3,8)"
+  # speed (segment 1 $ choose [2,5,0.5])
+
+-- The 'wchoose' function is like 'choose', but you can give
+-- a 'weighting' for each possibility. So something with a weighting
+-- of '4' would be twice as likely to be chosen as one with a weighting
+-- of '2', for example:
+d1 $ sound "clap*4" # speed (wchoose [(2, 4), (-2, 2)])
+
+-- The above claps will play either with a speed of '2' , or '-2'.
+-- You can hear that negative speeds cause sounds to play backwards!
+-- '2' has a weighting of '4', and '-2' has a weighting of
+-- '2', so is half as likely to play.
+
+-- Here I've weighted things so you get a lot of kicks, occasional
+-- claps, and rarer snares:
+d1 $ squiz "1 4*8 8*2 0*3"
+  # sound (wchoose [("bd", 8), ("snare", 0.5), ("clap", 1)])
+
+-- Ok one more thing! In Tidal, randomness is "deterministic". At
+-- a certain cycle time, you will always get the same number. We
+-- saw this at the start of the lesson, with resetCycles. That
+-- resets the cycle count, as if you just started Tidal up. You
+-- can then hear that the 'random' numbers are the same.
+
+-- This can result in unexpected results.
+-- Listen to this:
+d1 $ sound "clap*2" # speed (range 0.1 2 rand) # pan rand
+
+-- You can hear that on the left speaker, the 'speed' of the
+-- sound is always low, and when it pans to the right, it's
+-- always high. Strange! This is because the same 'random'
+-- number stream is used for both the speed and the pan, so
+-- they get the same numbers, and seem to interact.
+
+-- This can be nice! But if you don't want this effect, you can
+-- avoid it by manipulating the timeline of one of the random
+-- patterns. For example:
+d1 $ sound "clap*2" # speed (range 0.1 2 rand)
+  # pan (slow 1.001 rand)
+
+-- I only slowed that 'rand' down by a tiny amount, but that's
+-- enough to end up with totally different numbers. So now
+-- you're as likely to get lower speeds on the left as on the right.
