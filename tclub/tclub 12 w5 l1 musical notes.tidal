@@ -1,0 +1,152 @@
+-- https://youtu.be/ZtCx-YMrwVU
+
+-- If you 'run' a pattern by itself, without a 'd1' or so, then Tidal
+-- will do its best at telling you what's in the first cycle. For
+-- example:
+
+note "3"
+
+-- gives:
+
+-- (0>1)|note: 3.0f
+
+-- 0>1 tells you it's an event that starts at position 0 (the start of
+-- the first cycle) and lasts up to 1 (the start of the next cycle).
+-- note is the name of the 'control' or 'effect' 3.0f is the value
+-- ('f' tells you that it's a floating point, decimal number).
+
+note "3 ~ 5"
+
+-- the above gives two events:
+
+-- (0>⅓)|note: 3.0f
+-- (⅔>1)|note: 5.0f
+
+-- We can listen to them:
+
+d1 $ note "3 ~ 5" # s "superpiano"
+
+-- Great notes!
+
+-- (.. if you don't hear any, you probably need to install "sc3plugins".)
+
+-- Tidal can also understand note names, and turn them into numbers
+-- for you.
+
+-- For example 'c' is the same as '0'
+
+note "c"
+
+-- This:
+
+note "a b c d e f g"
+
+-- is the same as:
+
+note "9 11 0 2 4 5 7"
+
+-- What happened to 1, 3, 6, 8, and 10?
+-- You can get to them by adding 's' for 'sharp', to add 1 to a note:
+
+note "cs ds fs gs as"
+
+-- or by using 'f' for 'flat' to subtract 1:
+
+note "df ef gf af bf"
+
+-- In theory, you can get to them all via really sharp 'c'
+-- notes. These two notes are identical:
+d1 $ note "csssssss g" # s "superpiano"
+
+-- In practice, that surely doesn't make a lot of sense.
+
+-- Normally, there are twelve notes in an octave. The default octave
+-- is 5, you can pick notes from other octaves by adding a different
+-- number:
+note "c5 c6 c4 c6"
+
+-- Lets have a listen
+d1 $ note "c5 c6 c4 c6" # s "superpiano"
+
+-- Lets think about the difference between 'note', 'n', synths and
+-- samples.
+
+-- There is no folder of samples called 'superpiano', the sounds you
+-- hear are being synthesised on-the-fly.
+
+-- With synths, you can use either 'note' or 'n' to specify notes,
+-- they mean the same thing.
+
+d1 $ n "c a f e" # s "superpiano"
+
+d1 $ note "c a f e" # s "superpiano"
+
+-- For samples, they mean something different. 'n' chooses a sample,
+-- 'note' plays it at a different speed, corresponding to a note.
+
+-- Different sounds:
+d1 $ n "0 1" # sound "dsynth"
+
+-- Different notes:
+d1 $ note "0 1" # sound "dsynth"
+
+-- If you pick a high note, then you'll notice the sound is a lot
+-- shorter, because it's making it higher by playing it faster.
+d1 $ note "0 24" # sound "dsynth"
+
+-- You might feel that's not good, because it doesn't sound as natural
+-- as a synthesiser
+-- You might feel that's great, because nature is a myth and this is
+-- how old school 'tracker' music from early rave music and the
+-- demoscene works
+-- You might change your mind on different days
+
+-- You can still use note names in mininotation:
+d1 $ note "c a f e" # sound "dsynth"
+
+-- (Actually you can use do this in any control/effect pattern that
+-- expects a number.. Tidal just treats them as numbers)
+
+-- This dsynth sample is in 'c'. If it wasn't, the notes would
+-- probably sound out of tune with another synth or samplebank.
+
+-- The 'dbass' sample has three bass sounds, again in 'c', of
+-- different lengths.  So it makes sense to use *both* 'note' and 'n'
+-- together, to pattern both the pitch and the sample that's used:
+d1 $ note "c a f e" # sound "dbass" # n "<0 1 2>"
+
+-- The 'rash' samplebank is organised differently.. There's a load of
+-- samples, one for each note of 6 octaves. There's 12 notes in an
+-- octave, so that's 72 samples. (actually there's 73, there's an
+-- extra one note-084.wav which you could delete..) I sampled these
+-- from my lovely Roland JV1080 synth.
+
+-- So you can play notes as numbers using the 'n' instead of the
+-- 'note' pattern. This sounds a bit more 'natural' than pitching them
+-- up with 'note'.
+d1 $ n "20 50" # sound "rash"
+
+-- You can still use note names, but whereas for synths '0' is *middle*
+-- c, with these samples that's right at the *bottom* of the scale.
+d1 $ n "c a f e" # sound "rash"
+
+-- So in this case you'll want to pick a higher octave
+d1 $ n "c7 a7 f8 e7" # sound "rash"
+
+-- I tend to add a few octaves like this:
+d1 $ n "c a f e" # sound "rash"
+  |+ n 24
+
+-- Adding notes together is fun :
+d1 $ n "c a f e" # sound "rash"
+  |+ n 24
+  |+ n "<0 2 7 12>"
+
+-- You can also do it this way, adding together number patterns
+-- 'inside' a single control pattern
+d1 $ n ("c a f e" |+ 24 |+ "<0 2 7 12>")
+  # sound "rash"
+
+-- There's also an 'octave' control to jump up/down in twelves:
+d1 $ note "c a f e" # sound "superpiano"
+  # octave "<4 6 3>"

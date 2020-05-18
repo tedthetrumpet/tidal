@@ -543,7 +543,7 @@ in
 d1 $ ur 8 "[drums, melody] [drums,craziness,melody] melody:higher" pats fx
 
 
------------------- agint
+------------------ giant
 -- 0 == c
 
 d1 $ n "[-13,-2,1,3,6]" # s "superpiano"
@@ -561,8 +561,8 @@ do
 
 d1 $ reset (-4) $ slow 4 $ n "[-13,-2,1,3,6] [-22,-3,0,4,6] [-17,-3,-1,2,6] [-14,-4,0,2,5] [-21,-5,-2,2,5]@2 [-15,-1,0,4,7] [-22,-3,0,4,6] [-17,-3,-1,2,6] [-14,-4,0,2,5] [-21,-5,-2,2,5] [-18,-2,1,4,8] [-13,-2,1,3,6]@2 [-19,-2,0,3,7] [-14,-4,0,2,5]" # s "superpiano"
 
--- still not right!
-d1 $ reset 1 $ n "{[-13,-2,1,3,6] [-22,-3,0,4,6] [-17,-3,-1,2,6] [-14,-4,0,2,5] [-21,-5,-2,2,5]@2 [-15,-1,0,4,7] [-22,-3,0,4,6] [-17,-3,-1,2,6] [-14,-4,0,2,5] [-21,-5,-2,2,5] [-18,-2,1,4,8] [-13,-2,1,3,6]@2 [-19,-2,0,3,7] [-14,-4,0,2,5]}%2" # s "superpiano"
+-- maybe this
+d1 $ trigger 1 $ n "{[-13,-2,1,3,6] [-22,-3,0,4,6] [-17,-3,-1,2,6] [-14,-4,0,2,5] [-21,-5,-2,2,5]@2 [-15,-1,0,4,7] [-22,-3,0,4,6] [-17,-3,-1,2,6] [-14,-4,0,2,5] [-21,-5,-2,2,5] [-18,-2,1,4,8] [-13,-2,1,3,6]@2 [-19,-2,0,3,7] [-14,-4,0,2,5]}%2" # s "superpiano"
 
 
 -- minimal example
@@ -711,17 +711,7 @@ d2 $ off "1 2 3" ((# s "ppsus") . (# up 7)) $ fast "<2 3 5 7>" $ s "ppsus" # att
 d2 $ off "1 2 3" (# up 7) $ fast "<2 3 5 7>" $ s "ppsus" # attack 1 # release 5 # gain (slow 4 $ range 0.5 0.9 sine) <| n "0 9 11 15" -- iya, lovely!
 
 
----------- talbum
-d1 $ slow 2 $ s "808bd" <| n (run 25)
-d2 $ slow 2 $ s "808sd" <| n (run 25)
 
-d1 $ mask "t(<15 13>,25)" $ slow 2 $ s "808bd" <| n (run 25)
-d2 $ mask "f(<15 13>,25)" $ slow 2 $ s "808sd" <| n (run 25)
-
-d1 $ slow 2 $ s "808bd" <| n (run 25) # djf ((4 <~) $ slow 4 sine)
-d2 $ slow 2 $ s "808sd" <| n (run 25) # djf (slow 4 sine)
-
-d3 $ slow 4 $ s "psin"
 
 ---------- allthe synths?
 once $ s "panic"
@@ -838,5 +828,72 @@ https://github.com/overtone/overtone/blob/master/src/overtone/synth/retro.clj
 
 
 
+---------- talbum
+-- superminimal
+d1 $ slow 2 $ s "808bd" <| n (run 25)
+d1 $ slow 2 $ s "808bd" <| n (run 25) # lpf (fast 5 $ range 100 6000 perlin) # lpq 0.4
+d1 silence
+
+d2 $ slow 2 $ s "808sd" <| n (run 25)
+d2 $ slow 2 $ s "808sd" <| n (run 25) # lpf (fast 5 $ range 100 6000 perlin) # lpq 0.4
+d2 $ slow 2 $ s "808sd" <| n "{0 1 2 3 4}%25" |+ n "<0 6 12 18>/2"
+d2 $ slow 2 $ s "808sd" <| n "{0 1 2 3 4 5}%25" |+ n "<0 6 12 18>/2"
+d2 $ slow 2 $ s "808sd" <| n "{0 1 2 3 4 5}%25" |+ n "<0 6 12 18>/2" # speed 0.5
+d2 silence
+
+d1 $ mask "t(<15 13>,25)" $ slow 2 $ s "808bd" <| n (run 25)
+d2 $ mask "f(<15 13>,25)" $ slow 2 $ s "808sd" <| n (run 25)
+
+d1 $ slow 2 $ s "808bd" <| n (run 25) # djf ((4 <~) $ slow 4 sine)
+d2 $ slow 2 $ s "808sd" <| n (run 25) # djf (slow 4 sine)
+
+-- not yet
+d3 $ degradeBy 0.1 $ rarely (hurry 2) $ n "{as3@4}%25" # s "supersquare" # sustain 0.1 # gain 0.7
+
+d3 silence
+
+once $ "panic"
+
+
+
+
+-- giant again, really this is a stupid exercise!
+
+import Sound.Tidal.Chords
+
+chordList
+
+once $ n "b4'maj7'iiii" # sound "superpiano"
+once $ n "d5'dom7'ii" # sound "superpiano"
+once $ n "g4'maj7'iii" # sound "superpiano"
+once $ n "bf4'thirteen" # sound "superpiano"
+once $ n "ef4'maj7'iii" # sound "superpiano"
+once $ n "a4'm9" # sound "superpiano"
+once $ n "d4'dom7'iii" # sound "superpiano"
+
+once $ n "g4'maj7'iiii" # sound "superpiano"
+once $ n "bf4'dom7'ii" # sound "superpiano"
+once $ n "ef4'maj7'iii" # sound "superpiano"
+once $ n "fs4'thirteen" # sound "superpiano"
+once $ n "b3'maj7'iii" # sound "superpiano"
+once $ n "f4'm9" # sound "superpiano"
+once $ n "bf3'dom7'iii" # sound "superpiano"
+
+once $ n "ef4'maj7'iii" # sound "superpiano"
+
+once $ n "a4'm9" # sound "superpiano"
+once $ n "d4'dom7'iii" # sound "superpiano"
+once $ n "g4'maj7'iiii" # sound "superpiano"
+
+once $ n "cs5'm9" # sound "superpiano"
+once $ n "fs4'thirteen" # sound "superpiano"
+once $ n "b3'maj7'iiii" # sound "superpiano"
+
+once $ n "f5'm9" # sound "superpiano"
+once $ n "bs4'thirteen" # sound "superpiano"
+once $ n "ef4'maj7'iiii" # sound "superpiano"
+
+
+'bma7
 
 hush

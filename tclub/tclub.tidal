@@ -293,18 +293,40 @@ dirt.soundLibrary.addSynth(\panic, (play: { ~dirt.orbits.do(_.freeSynths) }));
 
 once $ s "panic"
 
-
 d1 $ n "[1,3 .. <9 12>]" # s "superpiano"
 
-
 reset 1 probably works
-
 
 jux (iter 4) with polymetric {} stuff
 
 jux (iter 4 . hurry 2)
 
+--------------
 
+qtrigger is quantised trigger, should start from start!
+trigger is unquantised, like asap
+
+
+
+d1 $ note "c e g" # "superpiano"
+d1 $ n "c e g" # "superpiano"
+d1 $ up "c e g" # "superpiano"
+d1 $ note "c e g" # "jvbass"
+d1 $ up "c e g" # "jvbass"
+
+
+-------
+-- omg inversions
+
+-- You can do it with roman numerals, e.g. c'maj'ii for second inversion. To specify number of notes in the chord put that immediately in front e.g. c'maj'4ii
+
+------------
+
+bpm 170
+
+```setcps (170/240)
+
+d1 $ trigger 1 $ slow 2 $ n "[~ 0 0 0] [1 1 2 2 2 ~]" |+ n "<f4'min bf4'min>" # s "superpiano"```
 
 
 hush

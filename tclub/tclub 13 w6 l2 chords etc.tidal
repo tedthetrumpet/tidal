@@ -1,0 +1,74 @@
+-- https://youtu.be/oDsXT68J9Kw
+-- Ok chords! We can play a 'major' chord like this:
+
+d1 $ n "'maj" # sound "supermandolin"
+  # legato 2 # gain 1.4
+
+-- The default is c major, you can choose others like this, e.g. to
+-- play c then e major:
+d1 $ n "c'maj e'maj" # sound "supermandolin"
+  # legato 2 # gain 1.4
+
+-- Karaoke (algoraoke) time
+-- Lets take the chord from a well known song:
+-- https://ukutabs.com/r/radiohead/creep/
+
+d1 $ n "<g'maj b'maj c'maj c'min>" # s "supermandolin"
+  # room 0.6 # sz 0.9
+
+-- and strum it a bit with struct:
+d1 $ qtrigger 1 $ jux ((|- n "12") . rev) $ struct "t(5,8,<0 4>)" $ n "<g'maj b'maj c'maj c'min>" # s "supermandolin"
+  # room 0.6 # sz 0.9
+
+-- You can get a list of all the chords like this:
+import Sound.Tidal.Chords
+
+chordList
+
+-- Try some out:
+d1 $ n "c'sevenFlat9 a'm9sharp5" # sound "supermandolin"
+
+-- Here's the raw data:
+chordTable
+
+-- Again, this all ends up being turned into plain note numbers. These
+-- two patterns are the same:
+d1 $ n "c'sevenFlat9 a'm9sharp5" # sound "supermandolin"
+
+d1 $ n "[0,4,7,10,13] [9,10,23]" # sound "supermandolin"
+
+-- You can say how many notes you want in a chord, with another ' and
+-- the number of notes you want.
+
+-- If you ask for more notes than exist in the basic chord, it will go
+-- up the octaves to find more notes, sounding more and more impressive:
+d1 $ n "c'maj'4" # s "superpiano"
+d1 $ n "c'maj'8" # s "superpiano"
+d1 $ n "c'maj'12" # s "superpiano"
+
+-- This is clearer when we start doing.. ARPEGGIOS
+
+-- These are 'broken' chords, where instead of playing the notes at
+-- once, they're played one after another:
+d1 $ arpeggiate $ n "c'maj" # s "superpiano"
+
+-- The arpeggio happens within the 'step' that the chord occupies:
+d1 $ arpeggiate $ n "c'maj e'min7" # s "superpiano"
+
+-- Above, you can hear major chords have three notes, and minor 7
+-- chords have four. You can modify that with ' so they have the same
+-- number, if you want:
+d1 $ arpeggiate $ n "c'maj'4 e'min7'4" # s "superpiano"
+
+-- "arpeggiate" has a shorter, but more flexible cousin "arp", that
+-- allows you to specify a different way of breaking up the chord:
+d1 $ arp "updown thumbup" $ n "<c'maj'4 e'min7'4>" # s "superpiano"
+
+-- Here's the list of currently available arp styles to explore:
+-- up, down, updown, downup, converge, diverge, disconverge, pinkyup,
+-- pinkyupdown, thumbup thumbupdown
+
+-- Lots of fun
+d1 $ jux rev $ arp "<updown thumbup pinkyupdown converge diverge>"
+  $ n "<c4'maj'6 e4'min7'8 g5'maj'5 a5'maj'4>" # s "superpiano"
+  # room 0.3 # sz 0.7

@@ -3,6 +3,7 @@ SuperDirt.start
 ~dirt.loadSoundFiles("/Users/jsimon/Dropbox/SuperCollider/lcode09/../bfsamples/*")
 ~dirt.loadSoundFiles("/Users/jsimon/Dropbox/SuperCollider/sldiwaloops/")
 ~dirt.loadSoundFiles("/Users/jsimon/Dropbox/github_repositories/tidal-jsgit/nmsamples/*")
+~dirt.loadSoundFiles("/Users/jsimon/Documents/ Simon's music/ Big audio files/cybernetic-samples/*")
 
 // once $ s "panic"
 ~dirt.soundLibrary.addSynth(\panic, (play: { ~dirt.orbits.do(_.freeSynths) }));
@@ -62,6 +63,10 @@ Quarks.gui
 
 // nmsamples
 //demung (8) gong (9) kendhang (19) kenong (8) peking (8) saron (8) slenthem (8)
+
+// cybernetic
+// bbox (11) bdoor (4) blackChair (9) bperc (2) bus (8) cabinet (5) custom (3) echobeat (1) elevator (6) expbd (7) falls (1) fizzypop (5) foldbd (6) football (1) fridge (2) ftstep (2) harm (8) i7 (5) icshaker (5) jaguar (1) kettle (7) litefix (6) lxpaper (9) measurecup (6) mixing (1) mstand (4) nperc (4) nutcrack (1) org (17) ovenclaps (11) ovenknob (5) piano (4) ping (3) rad (5) roll (3) s4focus (7) s4shutter (8) sharpener (5) slap (2) squeak (6) sspro (13) stool (2) strum (7) strumUnpitched (9) warble (3) water (3) whiteChair (2)
+
 
 /////// question
 Maybe I'm thinking about this wrong?
