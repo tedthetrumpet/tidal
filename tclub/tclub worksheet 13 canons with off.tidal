@@ -1,0 +1,99 @@
+-- https://club.tidalcycles.org/t/week-6-lesson-1-canons-with-off/1123
+-- https://youtu.be/uWVfteb71vc
+
+
+
+-- Let's start with two notes:
+d1 $ n "c e" # sound "supermandolin"
+
+-- What does 'off' do? Switch between the above and below versions to hear
+-- the difference.
+d1 $ off 0.25 (# crush 4) $ n "c e" # sound "supermandolin"
+
+-- You can hear that the original two notes are untouched, but there is
+-- something else added.
+
+-- 'off' takes three inputs; a number, a function and a pattern.
+-- What it does is leave the original pattern as is, but adds a copy of
+-- it on top. That copy is offset in time by the number given in the first
+-- input - the number. The copy also has the function applied to it.
+-- So we end up with a version of the pattern that 'follows' the original
+-- in time, and is transformed. In this case, it is distorted.
+
+-- Instead of using the bitcrush effect, lets add to the 'n' note, instead.
+d1 $ off "0.25" (|+ n 7) $ n "c e" # sound "supermandolin"
+
+-- Now we hear a simple 'canon' - it sounds like one voice following another.
+
+-- We can swap '0.25' for the shorthand 'q', which stands for a *q*uarter of a
+-- cycle.
+d1 $ off "q" (|+ n 7) $ n "c e" # sound "supermandolin"
+
+-- Lets change that for 'e', which stands for an eighth of a cycle.
+d1 $ off "e" (|+ n 7) $ n "c e" # sound "supermandolin"
+
+-- Here's the current list of shorthands available:
+-- w = 1 (whole)
+-- h = 0.5 (half)
+-- q = 0.25 (quarter)
+-- e = 0.125 (eighth)
+-- s = 0.0624 (sixteenth)
+-- t = 1/3 (third)
+-- f = 0.2 (fifth)
+
+-- You can have multiples of these shorthands by prefixing them with a
+-- number, for example:
+d1 $ off "2f" (|+ n 7) $ n "c a f e" # sound "supermandolin"
+
+-- For a 32nd, you could do 0.5s:
+d1 $ off "0.5s" (|+ n 7) $ n "c a f e" # sound "supermandolin"
+
+-- Let's try with a more complex pattern:
+d1 $ off "e" (|+ n 7) $ n (slow 2 "c(3,8) a(3,8) f(5,8) e*2")
+  # sound "supermandolin"
+
+-- The notes are getting very short now, to match the shorter 'step' sizes
+-- within this denser pattern. To make them proportionally longer we can
+-- use legato, for example to make them all twice as long:
+d1 $ off "e" (|+ n 7) $ n (slow 2 "c(3,8) a(3,8) f(5,8) e*2")
+  # sound "supermandolin"
+  # legato 2
+
+-- Or alternatively we can use sustain for a duration in seconds:
+d1 $ off "e" (|+ n 7) $ n (slow 2 "c(3,8) a(3,8) f(5,8) e*2")
+  # sound "supermandolin"
+  # sustain 0.75
+
+-- We can pattern the 'n' of the transformed version of the pattern:
+d1 $ off "e" (|+ n "<7 12 -5>") $ n (slow 2 "c(3,8) a(3,8) f(5,8) e*2")
+  # sound "supermandolin"
+  # sustain 0.75
+
+-- In the above the 7 - 12 - -5 pattern repeats every third cycle, and the
+-- c a f e one repeats every two cycles (due to the slow 2). The combination
+-- of (or interference between) them repeats lasts six cycles.
+
+-- Lets add another 'off', this time offset by a sixteenth of a cycle, and
+-- dropping the octave.
+d1 $ off "s" (|+ n (-12)) $ off "e" (|+ n "<7 12 -5>") $
+ n (slow 2 "c(3,8) a(3,8) f(5,8) e*2")
+ # sound "supermandolin"
+ # sustain 0.75
+
+-- Note that negative numbers have to be in parenthesis, otherwise Haskell
+-- gets confused and things you're trying to do a subtraction!
+
+-- This isn't the case in the mininotation, so an alternative is to put
+-- all negative numbers in double quotes:
+d1 $ off "s" (|+ n "-12") $ off "e" (|+ n "<7 12 -5>") $
+ n (slow 2 "c(3,8) a(3,8) f(5,8) e*2")
+ # sound "supermandolin"
+ # sustain 0.75
+
+-- The same principles can be applied to percussion, for example:
+d1 $ off "<s q e>" (# squiz 2) $ n "{0 1 [~ 2] 3*2, 5 ~ 3 6 4}"
+  # sound "cpu2"
+  # sustain 0.75
+
+-- Notice the offset is patterned in the above, so the 'following'
+-- pattern shifts forwards and backwards.

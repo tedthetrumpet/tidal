@@ -1,0 +1,31 @@
+-- https://club.tidalcycles.org/t/week-5-lesson-3-adding-and-using-superdirt-synths/1115
+-- https://youtu.be/ZM8OEcjlkzo
+-- https://club.tidalcycles.org/t/synthdefs-for-tidal/1092
+
+-- yaxu example from video
+
+-- https://github.com/diegodorado/tidal-synths/blob/master/cs80lead.scd
+-- just .add that in SC, works immediately in Tidal
+-- he suggested putting it in startup: I think I'll make my own tidalextrasynths file
+-- commented out envelopes in sc: Tidal envelopes still rubbish
+
+d1 $ n "c5*4" # s "cs80lead"
+d1 $ n "c5" # s "cs80lead" # release 2 # attack 0.1
+d1 $ n "c5" # s "cs80lead" # sustain 3 -- in seconds
+d1 $ n "c5" # s "cs80lead" # legato 2 -- actually tenuto per step
+d1 $ n "c5" # s "cs80lead" # legato 2 # release 2 -- ignores legato
+
+-- using other arguments/controls
+
+d1 $ n "c5 *4" # s "cs80lead" # dtune 0.1 -- disnae wurk
+
+-- pF 'a parameter of type floating point'
+d1 $ n "c5 *4" # s "cs80lead" # pF "dtune" 0.1
+-- execute (or put in BootTidal.hs)
+dtune = pF "dtune"
+
+d1 $ n "c5*4" # s "cs80lead" # dtune 0.1 -- wurks
+
+
+
+hush

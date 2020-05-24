@@ -1,0 +1,44 @@
+-- name a pattern of strings with setS
+setS "hello" $ chunk 4 (fast 2) "909(3,8) sd*2"
+
+-- name a pattern of floats with setF
+setF "bang" $ iter 4 "0 1 2 3 4 5 6 7"
+
+-- name a pattern of booleans with setB
+setB "bool" $ "t(<3 5>,8,<0 1>)"
+setB "bool" $ "t f t t t f f t"
+
+-- use in mininotation prefixed by ^
+-- this is going to take some getting used to
+-- maybe code some stuff then move to named patterns as practice?
+
+d1 $ n "^bang" # s "cpu"
+
+d1 $ struct "^bool" $ n "^bang" # s "^hello"
+
+d2 $ struct (rev "^bool") $ s "can"
+
+-------
+-- new stuff for delay
+d1 $ sometimesBy 0.1 (# speed 0.5)
+  $ iter 4 $ n "0 .. 8" # s "cpu" -- oops 8=9 mistake but sounds good!
+  # delay 0.7
+  # dt "x" -- delaytime sixth
+  # dfb "{0.5 0.1 0.9}%6" -- delayfeedback
+  # lock 1 -- locks to cycle instead of seconds
+
+
+-- random question on chat, nothing to do with 1.5.1!
+d1 $ whenmod 8 1 (# silence) $ s "sd!16"
+
+d2 $ s "[909!8, [~ cp]*2]"
+
+
+
+
+
+
+
+
+
+hush

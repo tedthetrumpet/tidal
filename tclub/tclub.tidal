@@ -368,24 +368,28 @@ d1 $ "0 q t" <~ (n "9 8 3 8" # s "cpu") -- shifting in time
 -- https://club.tidalcycles.org/t/sharing-custom-functions/1032/4
 -- Oscillators: Just to livecode faster
 
-let sinosc  min max frq = (fast frq $ range min max sine)   
+let sinosc  min max frq = (fast frq $ range min max sine)
     triosc  min max frq = (fast frq $ range min max tri)
     sqrosc  min max frq = (fast frq $ range min max square)
     sawosc  min max frq = (fast frq $ range min max saw)
     randosc min max = (range min max rand)
+
 -- Usage
-d1 $ s "bd*8" # gain (sinosc 0.4 1 1)
+d1 $ s "bd*8" # gain (sinosc 0.1 1 8)
 
 -- Get random notes in a scale
 
 let randscale sc n f = (|+ note (scale sc (irand n))) f
+
 -- Usage
 d1 $ randscale "phryigian" 7 $ s "arpy(9,16,12)"
+d1 $ randscale "phryigian" 7 $ s "sf!16"
 
 -- Flip your melody/harmony vertically
 
-let invnote n = 0-n
-    invnote' axis x = (2*axis)-n
+let invnote n = 0 - n
+    invnote' axis x = (2*axis) - n
+
 -- Usage
 d1 $ note (invnote' "<5 7>/4" "<c'maj7(5,8) d'm11(<3 [3 5]>,8)>") # s "superpiano" # room 0.5 # velocity 0.8
 
@@ -397,11 +401,18 @@ let roundy p =  (fromIntegral . round) <$> p
     stepr n r1 r2 f = segment n $ range r1 r2 $ f
     stepr' n r1 r2 f = roundy $ stepr n r1 r2 f
     myarp sc r2 f = scale sc (stepr' 32 0 r2 f)
+
 -- ex.)
     setcps 0.2
     d1 $ note (myarp "major" 7 sine) # s "superpiano"
     d1 $ note (myarp "locrian" 12 (fast 2 $ isaw)) # s "superpiano"
     d1 $ note (myarp "dorian" 12 (fast 8 $ (perlin*isaw**2))) # s "superpiano"
+
+----------
+-- bd (24), can (14), db (13), east (9), bbox (11), industrial (32), juno (12), sf (18), speakspell (12), yeah (31)
+
+
+
 
 
 

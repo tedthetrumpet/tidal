@@ -775,8 +775,8 @@ d2 $ n "c3(3,8) cs3(3,8,1)" # s "supersquare" # sustain 0.15 # accelerate 0.01 -
 d2 $ n "c3(3,8) cs3(3,8,1)" # s "supersquare" # sustain 0.15 # semitone 19 -- ? nothing
 d2 $ n "c3(3,8) cs3(3,8,1)" # s "supersquare" # sustain 0.15 # semitone 7 -- subtle
 d2 $ n "c3(3,8) cs3(3,8,1)" # s "supersquare" # sustain 0.15 # semitone 11.9 -- detune, ugly
-d2 $ slow 4 $ n "c3 cs3" # s "supersquare" # sustain 3.8 # rate 4 -- 
-d2 $ slow 4 $ n "c3 cs3" # s "supersquare" # sustain 3.8 # lfo 5 -- 
+d2 $ slow 4 $ n "c3 cs3" # s "supersquare" # sustain 3.8 # rate 4 --
+d2 $ slow 4 $ n "c3 cs3" # s "supersquare" # sustain 3.8 # lfo 5 --
 d2 $ slow 4 $ n "c3 cs3" # s "supersquare" # sustain 3.8 # resonance 0.9
 d2 $ slow 4 $ n "c3 cs3" # s "supersquare" # sustain 3.8 # resonance 0.9 # lfo 5 # rate 0.3
 d2 $ n "c3(3,8) cs3(3,8,1)" # s "supersquare" # sustain 0.15 # voice (range 0.01 0.99 $ slow 4 sine) -- subtle
@@ -793,8 +793,8 @@ d2 $ n "c3(3,8) cs3(3,8,1)" # s "superpwm" # sustain 0.15 # accelerate 0.01 -- n
 d2 $ n "c3(3,8) cs3(3,8,1)" # s "superpwm" # sustain 0.15 # semitone 19 -- very subtle
 d2 $ n "c3(3,8) cs3(3,8,1)" # s "superpwm" # sustain 0.15 # semitone 7 -- subtle
 d2 $ n "c3(3,8) cs3(3,8,1)" # s "superpwm" # sustain 0.15 # semitone 11.9 -- detune, good
-d2 $ slow 4 $ n "c3 cs3" # s "superpwm" # sustain 3.8 # rate 4 -- 
-d2 $ slow 4 $ n "c3 cs3" # s "superpwm" # sustain 3.8 # rate 4 # lfo 5 -- 
+d2 $ slow 4 $ n "c3 cs3" # s "superpwm" # sustain 3.8 # rate 4 --
+d2 $ slow 4 $ n "c3 cs3" # s "superpwm" # sustain 3.8 # rate 4 # lfo 5 --
 d2 $ slow 4 $ n "c3 cs3" # s "superpwm" # sustain 3.8 # rate 0.1 # lfo 5 # resonance 0.97 -- lfo though, not env
 d2 $ n "c3(3,8) cs3(3,8,1)" # s "superpwm" # sustain 0.15 # voice "0.1 0.9" -- not useful
 
@@ -802,7 +802,7 @@ d2 $ n "c3(3,8) cs3(3,8,1)" # s "superpwm" # sustain 0.15 # voice "0.1 0.9" -- n
 
 d2 $ s "supercomparator" -- does nothing, needs n!
 d2 $ n "c3(3,8) cs3(3,8,1)" # s "supercomparator" -- does not pitch correctly in that octave?
-d2 $ n "c4(3,8) cs4(3,8,1)" # s "supercomparator" -- 
+d2 $ n "c4(3,8) cs4(3,8,1)" # s "supercomparator" --
 d2 $ n "c4(3,8) cs4(3,8,1)" # s "supercomparator" # sustain 0.2 -- needs careful tuning
 d2 $ n "c4(3,8) cs4(3,8,1)" # s "supercomparator" # decay 5 -- actually just gets louder
 d2 $ n "c4(3,8) cs4(3,8,1)" # s "supercomparator" # sustain 0.9 # release 0.8 -- hmm
@@ -812,7 +812,7 @@ d2 $ slow 4 $ n "c3 cs3" # s "supercomparator" # sustain 3.8 # rate 4 -- interes
 d2 $ slow 4 $ n "c3 cs3" # s "supercomparator" # sustain 3.8 # rate 4 # lfo 5 -- wub bass! iya
 d2 $ slow 4 $ n "c3 cs3" # s "supercomparator" # sustain 3.8 # rate 0.1 # lfo 5 # resonance 0.97 -- interesting
 d2 $ n "c4(3,8) cs4(3,8,1)" # s "supercomparator" # sustain 0.15 # voice (slow 4 "1 3 5 10")
-d2 $ slow 4 $ n "c3 cs3" # s "supercomparator" # sustain 3.8 # rate 0.1 # lfo 5 # resonance 0.97 # voice 10 
+d2 $ slow 4 $ n "c3 cs3" # s "supercomparator" # sustain 3.8 # rate 0.1 # lfo 5 # resonance 0.97 # voice 10
 
 
 
@@ -830,6 +830,7 @@ https://github.com/overtone/overtone/blob/master/src/overtone/synth/retro.clj
 
 ---------- talbum
 -- superminimal
+bpm 140
 d1 $ slow 2 $ s "808bd" <| n (run 25)
 d1 $ slow 2 $ s "808bd" <| n (run 25) # lpf (fast 5 $ range 100 6000 perlin) # lpq 0.4
 d1 silence
@@ -853,8 +854,6 @@ d3 $ degradeBy 0.1 $ rarely (hurry 2) $ n "{as3@4}%25" # s "supersquare" # susta
 d3 silence
 
 once $ "panic"
-
-
 
 
 -- giant again, really this is a stupid exercise!
@@ -895,5 +894,12 @@ once $ n "ef4'maj7'iiii" # sound "superpiano"
 
 
 'bma7
+
+------------- tidal 1.5.1
+
+d1 $ s "909"
+
+
+
 
 hush

@@ -171,7 +171,7 @@ d1 $ s "noise2" <| n (run 8) -- 8 short noise hits, three much louder than the o
 d1 $ s "notes" <| n (run 15) -- same as newnotes, sines
 d1 $ slow 4 $ s "numbers" <| n (run 9) -- female voice individual numbers
 d1 $ s "oc" <| n (run 4) -- open-closed hats in single hits at four tempi
-d1 $ s "odx" <| n (run 15) -- fairly aggressive kit, not very nice
+d1 $ s "odx" <| n (run 15) -- fairly aggressive kit, not very nice, new order apparently
 d1 $ s "off" -- single short glitchy bass note C#
 d1 $ slow 4 $ s "outdoor" <| n (run 8) -- odd ambient hits, 2 is quite long, interesting
 d1 $ slow 4 $ s "pad" # n 3 -- four very assorted long sounds, not exactly pads

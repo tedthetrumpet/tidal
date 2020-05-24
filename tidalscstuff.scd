@@ -9,6 +9,8 @@ SuperDirt.start
 ~dirt.soundLibrary.addSynth(\panic, (play: { ~dirt.orbits.do(_.freeSynths) }));
 
 
+"/Applications/SuperCollider/examples/demonstrations/stealthissound.scd".ope
+
 SuperDirt.start(path: "/Users/jsimon/Dropbox/SuperCollider/lcode09/../bfsamples/*")
 SuperDirt.start(path:"/Users/jsimon/Dropbox/SuperCollider/sldiwaloops/")
 
