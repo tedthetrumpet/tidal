@@ -1,0 +1,10 @@
+hush
+bpm 152
+
+once $ s "sldiwaloops:65"
+
+d1 $ loopAt 8 $ chop 32 $ s "sldiwaloops:65"
+
+d1 $ shuffle 8 $ loopAt 8 $ chop 16 $ s "sldiwaloops:65"
+
+d1 $ slice 32 "<3 5>(5,8,<0 1>)" $ s "sldiwaloops:65"
