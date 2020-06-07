@@ -1,28 +1,29 @@
 hush
 bpm 152
 
-asap $ s "sldiwaloops:65" -- plain
-
-asap $ s "sldiwaloops:66" -- with sub
-
-
 d1 $ slow 8 $ slice 32 (run 32) $ s "sldiwaloops:66" -- plain
 d1 $ slow 8 $ slice 32 (run 32) $ s "sldiwaloops:65" -- with sub
-
 d1 $ slow 4 $ slice 32 "3(3,8) 4(3,8) 10(3,8) 10(3,8)" $ s "sldiwaloops:65"
 
-d2 $ repeatCycles 4 $ degradeBy 0.3 $ scramble 8 $ slice 32 (run 16) $ s "[sldiwaloops:65]" # note "[19,24,31]" # silence -- [19.24,31]
+d2 $ repeatCycles 4 $ degradeBy 0.3 $ scramble 8 $ slice 32 (run 16) $ s "[sldiwaloops:65]" # note "[19,24,31]" -- [19.24,31]
 
 d3 $ n "0!4" # s "soh" # note "[0]"
 d3 $ n "11!4" # s "soh" # note "[0,-12]"
 d3 $ n "0!4" # s "909"
 
-d4 $ n "[~ 5]*4" # s "soh" # note "[0,12]"
+d4 $ n "[~ 5]*4" # s "soh" # note "[0,12]" -- [0,12]
 d4 $ n "[~ 5]*4" # s "peri:4"
 
-d5 $ n "[~ 12]*2" # s "soh" # note "[0]" # gain 1.2 -- # squiz 2
+d5 $ n "[~ 12]*2" # s "soh" # note "[0]" # gain 1.2 -- # squiz 2 -- [0,12]
 d5 $ n "[~ 12]*2" # s "drumtraks:1" # note "[5,9]"
 
-d6 $ jux rev $ scramble 16 $ n (run 16) # s "can" # silence
+d6 $ jux rev $ scramble 16 $ n (run 16) # s "can"
 
 unsolo 1
+
+
+
+
+
+
+hush
