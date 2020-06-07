@@ -1,10 +1,12 @@
 hush
 bpm 152
 
-once $ s "sldiwaloops:65"
+d1 $ slow 8 $ s "sldiwaloops:65"
 
-d1 $ loopAt 8 $ chop 32 $ s "sldiwaloops:65"
+d2 $ repeatCycles 4 $ degradeBy 0.3 $ scramble 8 $ slice 32 (run 16) $ s "sldiwaloops:65" # note "19" # squiz 2 # silence
 
-d1 $ shuffle 8 $ loopAt 8 $ chop 16 $ s "sldiwaloops:65"
+d3 $ n "11!4" # s "soh" # note "[-19,0]"
 
-d1 $ slice 32 "<3 5>(5,8,<0 1>)" $ s "sldiwaloops:65"
+d4 $ n "[~ 7]*2" # s "soh" # note "[0,12]"
+
+d5 $ n "[~ 12]*4" # s "soh" # note "[0,12]"
