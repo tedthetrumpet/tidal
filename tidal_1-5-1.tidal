@@ -1,3 +1,92 @@
+
+-- ** Export drawLineSz @mxmxyz
+
+drawLine "x(3,8)"
+
+drawLineSz 80 "x(3,8)"
+
+-- ** tidal-parse additions (bite, splice, pickF, select, squeeze; fixed slice) @dktr0
+
+-- Now usable in 'minitidal' here: https://intramuros.mcmaster.ca/
+
+
+-- ** New, more efficient pseudorandom number generator @dktr0
+
+-- you should't hear the difference..
+d1 $ sound "clap:4*16" # speed (rand + 1)
+
+-- ** Pattern first someCyclesBy param @bgold-cosmos
+
+d1 $ someCyclesBy "<0 1>" (# crush 3) $ sound "bd*8"
+
+d1 $ someCyclesBy "<0.1 0.9>" (# crush 3) $ sound "bd*8"
+
+-- ** Refactored, more flexible OSC targetting @yaxu
+
+-- See here: https://tidalcycles.org/index.php/Custom_OSC
+
+-- ** Simplify tidal-boot-script in tidal.el @jamagin
+
+-- An emacs plugin thing..
+
+-- ** Support state substitution in mininotation #530 @yaxu
+
+-- Name a pattern of strings with setS
+setS "hello" $ chunk 4 (fast 2) "bd(3,8) sd*2"
+
+-- Name a pattern of (floating point) numbers with setF
+setF "bing" $ iter 4 "0 4 3 1*2"
+
+-- Name a pattern of boolean (binary) values with setB
+setB "metre" $ "t(3,8,<0 2>)"
+
+-- The named patterns can then be used in mininotation prefixed by ^
+d1 $ struct "^metre" $ n "^bing" # sound "clap:4 ^hello"
+
+-- You can use the same name in more than one pattern
+d2 $ n (every 3 (fast 2) "^bing") # sound "cpu"
+
+-- Then change the named pattern and all those using it will update
+setF "bing" $ iter 4 "0 4 3 1*2"
+
+-- ** Pattern first parameter of splice #656 @yaxu
+
+d1 $ splice "8 16 4" "0 .. 7" $ sound "break:8"
+
+-- Pattern first parameter of chew @yaxu
+
+d1 $ chew "4 16" "0 .. 7" $ n "0 .. 7" # sound "cpu"
+  # gain 1
+
+-- Add'x' fraction alias for 1/6 @yaxu
+
+d1 $ n "0 .. 7" # sound "cpu"
+  # gain 1
+  # delay 0.6
+  # delayt "x"
+  # delayfb 0.5
+
+-- add dfb alias for delayfeedback param, dt for delaytime @yaxu
+
+d1 $ n "0 .. 7" # sound "cpu"
+  # gain 1
+  # delay 0.6
+  # dt "x"
+  # dfb 0.5
+
+-- add unmuteAll and only to BootTidal.hs @yaxu
+
+d1 $ sound "clap"
+
+d2 $ sound "~ snare"
+
+
+
+
+
+
+
+------------------------------------------------js from video
 -- name a pattern of strings with setS
 setS "hello" $ chunk 4 (fast 2) "909(3,8) sd*2"
 
@@ -32,6 +121,7 @@ d1 $ sometimesBy 0.1 (# speed 0.5)
 d1 $ whenmod 8 1 (# silence) $ s "sd!16"
 
 d2 $ s "[909!8, [~ cp]*2]"
+
 
 
 

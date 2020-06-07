@@ -5,6 +5,9 @@ SuperDirt.start
 ~dirt.loadSoundFiles("/Users/jsimon/Dropbox/github_repositories/tidal-jsgit/nmsamples/*")
 ~dirt.loadSoundFiles("/Users/jsimon/Documents/ Simon's music/ Big audio files/cybernetic-samples/*")
 
+
+~dirt.loadSoundFiles("/Users/jsimon/Desktop/UPLOrc-master/*")
+
 // once $ s "panic"
 ~dirt.soundLibrary.addSynth(\panic, (play: { ~dirt.orbits.do(_.freeSynths) }));
 
@@ -22,6 +25,7 @@ SuperDirt.start(path:"/Users/jsimon/Dropbox/SuperCollider/sldiwaloops/")
 
 "/Users/jsimon/Dropbox/SuperCollider/lcode09/../bfsamples/".openOS
 "/Users/jsimon/Dropbox/SuperCollider/bfsamples/".openOS
+"/Users/jsimon/Library/Application Support/SuperCollider/downloaded-quarks/Dirt-Samples/".openOS
 
 "/Users/jsimon/Dropbox/github_repositories/tidal-jsgit/nmsamples/"
 

@@ -897,8 +897,38 @@ once $ n "ef4'maj7'iiii" # sound "superpiano"
 
 ------------- tidal 1.5.1
 
-d1 $ s "909"
+-- testing js adsr type envelope
+-- not right
+-- need a way to see the events in sc?
 
+d1 $ s "tidal"
+d1 $ s "909"
+d1 $ s "tidal" # sustain 2
+
+bpm 120
+once $ n "c" # s "jul" # sustain 4 -- yeeeees!
+once $ n "c" # s "jul" # sustain 4 # release 0.1 -- no
+once $ n "c" # s "jul" # sustain 4 # rel 0.1 -- no, must already be alias
+-- aha, need to tell it about zort
+zort = pF "zort"
+once $ n "c" # s "jul" # sustain 4 # zort 0.1 -- yeeeees!
+once $ n "c" # s "jul" # sustain 1 # zort 2 -- no
+---------------
+-- Alexandra style, surely a simpler syntax?
+-- on algovoids
+-- slightly bogus style, just dropping two bar reggae loops in and out
+-- plus random percs: works, though
+
+stack [
+whenmod 16 0 (const silence) etc, -- use as a sort of variable mute
+]
+-- what is the point, has # gain on every pattern = 0 is mute
+-- never actually uses the whenmod!
+-- just (# silence) would work, wouldn't it?
+-- ah, wait, whenmod makes stuff drop in and out on correct boundary, hmm
+
+-- also choose, I never use that
+# speed (choose [1,0.5]) -- very typical
 
 
 
