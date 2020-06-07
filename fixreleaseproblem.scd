@@ -1,5 +1,5 @@
 // realisation!
-// even if I get sustain right in the synth, sustain in dirt-gate or DirtEven or wherever
+// even if I get sustain right in the synth, sustain in dirt-gate or DirtEvent or wherever
 // will *not get longer*. So I have to fix the problem there, add release tail in?
 // now trying with his ~tail mod
 // leaving it like that for now, should not actually break anything…
