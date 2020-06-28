@@ -53,7 +53,7 @@ d4 $ s "bass1(3,8)" # legato 0.2
 hush
 
 ---------------------------------
-d1 $ repeatCycles 128 $ (0 ~>) $ s "gab!16" # n (irand 13) # up "10,-13,15,-17" # gain 0.7 -- vary (0 ~>)
+d1 $ repeatCycles 128 $ (0 ~>) $ s "gab!16" # n (irand 13) # up "[10, -13, 15, -17]" # gain 0.7 -- vary (0 ~>)
 d1 silence
 
 d2 $ repeatCycles 128 $ s "bottle!16" # n (irand 13) # up "-24,-13,15,-17" # gain "1"
@@ -818,8 +818,6 @@ d2 $ slow 4 $ n "c3 cs3" # s "supercomparator" # sustain 3.8 # rate 0.1 # lfo 5 
 
 
 
-
-
 -------303
 https://github.com/everythingwillbetakenaway/Main-Supercollider-Files/blob/master/3030303.scd
 https://github.com/samaaron/sonic-pi/blob/master/etc/doc/cheatsheets/synths.md#tb-303-emulation
@@ -929,6 +927,27 @@ whenmod 16 0 (const silence) etc, -- use as a sort of variable mute
 
 -- also choose, I never use that
 # speed (choose [1,0.5]) -- very typical
+
+
+--------------
+-- ellie in estuary, don't work, but not errors either!
+
+```d1 $ s "cp 1"
+d1 $ s "arpy:<1 2 3>"```
+
+-------------- revisit 25 june
+-- octer, #octersub, #octersubsub, #freeze
+-- 1@9 etc for less predictable rhythms
+-- <> is overlay as an operator
+
+d1 $ repeatCycles "<4 3>" $ rarely (# freeze 1) $ s "nl!8" # n (irand 13) # cps (range 0.25 1 $ perlin) # octer 1 # up (range (-12) 12 $ perlin)
+
+
+
+
+
+
+
 
 
 

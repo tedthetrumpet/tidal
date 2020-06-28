@@ -54,6 +54,7 @@ MIDIClient.init
 Quarks.gui
 
 
+
 "file:///Users/jsimon/Library/Haskell/share/doc/x86_64-osx-ghc-8.0.1/index.html".openOS
 
 

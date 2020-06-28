@@ -1,0 +1,103 @@
+-- https://youtu.be/7Y3aKx2w5dQ
+-- https://club.tidalcycles.org/t/week-7-lesson-3-composing-tracks-with-the-ur-function/1340
+
+-- pattern to deconstruct
+
+d1 $ ur 16 "[bdsd, ~ claps, ~ [bass bass:crunch] ~ bass]"
+  [("bdsd", s "bd [~ sd] bd sd" # squiz 2),
+   ("claps", s "clap:4*2 clap:4*3"
+     # delay 0.8 # dt "t" # dfb 0.4
+     # orbit 4 # speed 4
+   ),
+   ("bass", struct "t(3,8)" $ s "dbass" # shape 0.7 # speed "[1, ~ 2]")
+  ]
+  [("crunch", (# crush 3))
+  ]
+
+// deconstruction
+
+d1 $ s "bd [~ sd] bd sd"
+
+-- repeats every 16 cycles
+d1 $ ur 16 "bdsd"
+  [("bdsd", s "bd [~ sd] bd sd")]
+  []
+
+-- every other cycle silence
+d1 $ ur 2 "bdsd ~"
+  [("bdsd", s "bd [~ sd] bd sd")]
+  []
+
+-- add in another pattern (a list of patterns)
+-- "bdsd" is a string, not a pattern
+d1 $ ur 2 "bdsd claps"
+  [("bdsd", s "bd [~ sd] bd sd"),
+  ("claps", s "clap:4*2 clap:4*3"
+    # delay 0.8 # dt "t" # dfb 0.4
+    # orbit 4 # speed 4
+  )
+  ]
+  []
+
+-- parallel
+-- nb specifying orbit 4?
+-- d1 d2 usually go to separate orbits with separate global effects
+-- delay is a global effect (unlike eg speed)
+-- all patterns would go through same d1 = orbit 0
+d1 $ ur 4 "[bdsd claps, bass]"
+  [("bdsd", s "bd [~ sd] bd sd"),
+  ("claps", s "clap:4*2 clap:4*3"
+    # delay 0.8 # dt "t" # dfb 0.4
+    # orbit 4 # speed 4
+  ),
+  ("bass", struct "t(3,8)" $ s "dbass" # shape 0.7 # speed "[1, ~ 2]")
+  ]
+  []
+
+-- simpler example with stack
+
+d1 $ stack [s "off(3,8)",
+            s "clap:4(5,8)" # room 0.3 # sz 0.9
+            ]
+
+d1 $ stack [s "off(3,8)" # room 0, -- disnae wurk
+            s "clap:4(5,8)" # room 0.3 # sz 0.9
+            ]
+
+d1 $ stack [s "off(3,8)" # room 0 # orbit 4,
+            s "clap:4(5,8)" # room 0.3 # sz 0.9
+            ]
+
+-- pattern a function
+d1 $ ur 4 "[bdsd claps, bass]"
+  [("bdsd", s "bd [~ sd] bd sd"),
+  ("claps", s "clap:4*2 clap:4*3"
+    # delay 0.8 # dt "t" # dfb 0.4
+    # orbit 4 # speed 4
+  ),
+  ("bass", struct "t(3,8)" $ s "dbass" # shape 0.7 # speed "[1, ~ 2]")
+  ]
+  [("choprev", rev. chop 32)]
+
+-- colon to apply that function
+d1 $ ur 4 "[bdsd:crunch claps, bass bass:choprev]"
+  [("bdsd", s "bd [~ sd] bd sd"),
+  ("claps", s "clap:4*2 clap:4*3"
+    # delay 0.8 # dt "t" # dfb 0.4
+    # orbit 4 # speed 4
+  ),
+  ("bass", struct "t(3,8)" $ s "dbass" # shape 0.7 # speed "[1, ~ 2]")
+  ]
+  [("choprev", rev. chop 32),
+  ("crunch", (# crush 3))
+  ]
+
+-- eg ur 64 to build up longer
+-- try building up live
+
+
+
+
+
+
+hush

@@ -6,7 +6,7 @@ d1 $ slow 8 $ slice 32 (run 32) $ s "sldiwaloops:66" -- plain
 d1 $ slow 8 $ slice 32 (run 32) $ s "sldiwaloops:65" -- with sub
 d1 $ slow 4 $ slice 32 "3(3,8) 4(3,8) 10(3,8) 10(3,8)" $ s "sldiwaloops:65"
 
-d2 $ repeatCycles 4 $ degradeBy 0.3 $ scramble 8 $ slice 32 (run 16) $ s "[sldiwaloops:65]" # note "[19,24,31]" # gain 0.9 # silence -- [19.24,31]
+d2 $ repeatCycles 4 $ degradeBy 0.3 $ scramble 8 $ slice 32 (run 16) $ s "[sldiwaloops:65]" # note "[19,24,31]" # gain 0.9 -- [19.24,31]
 
 d3 $ n "0!4" # s "soh" # note "[0]"
 d3 $ n "11!4" # s "soh" # note "[0,-12]"
@@ -22,6 +22,30 @@ d6 $ jux rev $ scramble 16 $ n (run 16) # s "can" # silence
 
 solo 1
 
+-- todo: recompose this as a whole piece using seqPLoop?
+-- or rather, as a stem-exporter?
+-- fiddly to livecode! better for making pieces?
+-- qtrigger still not always reliable!
+bpm 140
+
+d1 $ qtrigger 1 $ seqP [
+          (0,4,slow 8 $ slice 32 (run 32) $ s "sldiwaloops:67"),
+          (4,8,slow 8 $ slice 32 (run 32) $ s "sldiwaloops:68"),
+          (8,12,slow 4 $ slice 32 "3(3,8) 4(3,8) 10(3,8) 10(3,8)" $ s "sldiwaloops:68"),
+          (12,16, degradeBy 0.3 $ scramble 8 $ slice 32 (run 16) $ s "[sldiwaloops:65]" # note "[19,24,31]" # gain 0.9),
+          (16,17, n "0!4" # s "soh" # note "[0]"),
+          (17,18,n "11!4" # s "soh" # note "[0]"),
+          (18,19,n "11!4" # s "soh" # note "[0,-12]"),
+          (19,20, n "0!4" # s "909"),
+          (20,21,n "[~ 5]*4" # s "soh" # note "[0]"),
+          (21,22,n "[~ 5]*4" # s "soh" # note "[0, 12]"),
+          (22,23,n "[~ 5]*4" # s "peri:4"),
+          (23,24,n "[~ 12]*2" # s "soh" # note "[0]" # gain 1.2),
+          (24,25, n "[~ 12]*2" # s "drumtraks:1" # note "[5,9]"),
+          (26,30, jux rev $ scramble 16 $ n (run 16) # s "can"),
+          (30,34,slow 8 $ slice 32 (run 32) $ s "sldiwaloops:67"),
+          (34,35,n "[~ 12]*2" # s "soh" # note "[0,12]" # gain 1.2)
+          ]
 
 
 

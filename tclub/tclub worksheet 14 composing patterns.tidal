@@ -1,0 +1,173 @@
+-- https://youtu.be/OcDcTyEZuBs
+-- Week 7 Lesson 1 - Composing patterns together with overlay, stack, append, cat, seqPLoop and seqP
+
+-- Composing patterns together
+
+-- We've already looked at different ways of composing patterns
+-- together. Something as simple as this is a composition:
+
+d1 $ fast "1 2 3 4" $ sound "lt mt ht bd*2"
+
+-- Not a super interesting one, but it composes together a pattern of
+-- densities, and a pattern of sounds, to create a new pattern that is
+-- more than the sum of its parts.
+
+-- In this lesson though we're going to look at ways to compose what
+-- you could call 'independent' patterns, where one isn't used to
+-- manipulate the other.
+
+-- Tidal is often used in live situations, but there are some
+-- functions that help you assemble multiple patterns into something
+-- like a complete 'piece', such as a structured four-minute track.
+
+-- Before we get to that, lets look at some extra-simple ways of
+-- composing patterns together.. as they can be surprisingly useful
+
+-- First, there's `overlay` that simply plays the two given patterns
+-- at the same time:
+d1 $ overlay (fast "1 2 3 4" $ sound "lt mt ht ~")
+             (sound "clap:4(3,8)" # speed 2)
+
+-- Similar to this is `stack`, which lets you overlay any number of
+-- patterns on top of each other. People tend to use this rather than
+-- `overlay`, as it's more flexible:
+d1 $ stack [(fast "1 2 3 4" $ sound "lt mt ht ~"),
+            (sound "clap:4(3,8)" # speed 2),
+            sound "[kick:5(5,8), snare:3(7,16,3)]"
+           ]
+
+-- The above composes a list of three patterns together. You can see that
+-- a list is given using square brackets ('[' and ']'), with the patterns
+-- in the list separated by commas (','). You have to remember *not* to
+-- put a comma at the end of the list, only between the elements.
+
+-- The above might not seem too useful, as you could do the same with
+-- separate patterns. This sounds exactly the same as the above:
+d1 $ fast "1 2 3 4" $ sound "lt mt ht ~"
+d2 $ sound "clap:4(3,8)" # speed 2
+d3 $ sound "[kick:5(5,8), snare:3(7,16,3)]"
+
+-- from video, for effect below could have done done
+all $ (chunk 4 (hurry 2)) -- except doesn't work?
+-- cancel
+all id
+
+-- Remember though that stack combines everything into a single
+-- pattern. This is useful as you can manipulate all those patterns as
+-- one. For example:
+d1 $ chunk 4 (hurry 2) $
+  stack [(fast "1 2 3 4" $ sound "lt mt ht ~"),
+         (sound "clap:4(3,8)" # speed 2),
+         sound "[kick:5(5,8), snare:3(7,16,3)]"
+        ]
+
+-- Or adding a parameter that applies to the whole stack:
+d1 $ stack [(fast "1 2 3 4" $ sound "lt mt ht ~"),
+            (sound "clap:4(3,8)" # speed 2),
+            sound "[kick:5(5,8), snare:3(7,16,3)]"
+           ] # squiz "<0 2>"
+
+-- So `overlay` and `stack` stack things up, so that they happen at
+-- the same time. Howabout sticking things together over time, so they
+-- happen one after another?
+
+-- Like overlay and stack, there is one function, 'append' for
+-- composing two patterns together, and another, 'cat' for composing a
+-- list of patterns together.
+
+-- For two patterns:
+d1 $ append (fast "1 2 3 4" $ sound "lt mt ht ~")
+            (sound "clap:4(3,8)" # speed 2)
+
+-- For a list of patterns:
+d1 $ cat [fast "1 2 3 4" $ sound "lt mt ht ~",
+          sound "clap:4(3,8)" # speed 2,
+          sound "[kick:5(5,8), snare:3(7,16,3)]"
+         ]
+
+-- Again, you'll see `cat` used more often than `append`.
+
+-- `append` and `cat` maintain the original 'density' of the patterns,
+-- taking one cycle per cycle.
+
+-- There are variants `fastappend` and `fastcat`, that take a cycle
+-- from each of the patterns, and squash them all into a single cycle:
+
+-- For two patterns:
+d1 $ fastappend (fast "1 2 3 4" $ sound "lt mt ht ~")
+  (sound "clap:4(3,8)" # speed 2)
+
+-- For a list of patterns:
+d1 $ fastcat [fast "1 2 3 4" $ sound "lt mt ht ~",
+              sound "clap:4(3,8)" # speed 2,
+              sound "[kick:5(5,8), snare:3(7,16,3)]"
+             ]
+
+-- That's fine, but what if you don't want to loop between patterns a
+-- cycle at a time, but have something between a `stack` and a `cat`,
+-- where you can have the patterns overlap? `seqPLoop` is one answer.
+
+-- With `seqPLoop`, you say when each pattern starts and stops.
+-- Lets first emulate the `cat` from earlier, by having each
+-- pattern last one cycle.
+d1 $ seqPLoop [(0, 1, fast "1 2 3 4" $ sound "lt mt ht ~"),
+               (1, 2, sound "clap:4(3,8)" # speed 2),
+               (2, 3, sound "[kick:5(5,8), snare:3(7,16,3)]")
+              ]
+
+-- Now let's adjust the starts and stops, so the first two overlap by
+-- a pattern, then there's a gap of a cycle before the last one plays:
+d1 $ seqPLoop [(0, 2, fast "1 2 3 4" $ sound "lt mt ht ~"),
+               (1, 3, sound "clap:4(3,8)" # speed 2),
+               (5, 6, sound "[kick:5(5,8), snare:3(7,16,3)]")
+              ]
+
+-- If you want to use the same pattern more than once, you can give it a name
+--, like this:
+let florence = fast "1 2 3 4" $ sound "lt mt ht ~"
+in
+d1 $ seqPLoop [(0, 2, florence),
+               (1, 3, sound "clap:4(3,8)" # speed 2),
+               (3, 4, sound "[kick:5(5,8), snare:3(7,16,3)]"),
+               (3, 5, florence # coarse 5)
+              ]
+
+-- If you don't want the pattern sequence to loop, then use
+-- seqP. You'll need to use something like `qtrigger`, so it starts
+-- from cycle 0
+d1 $ qtrigger 1 $ seqP [(0, 2, fast "1 2 3 4" $ sound "lt mt ht ~"),
+                        (1, 3, sound "clap:4(3,8)" # speed 2),
+                        (5, 6, sound "[kick:5(5,8), snare:3(7,16,3)]")
+                       ]
+
+
+
+----------------------------------
+-- play
+-- not much liking this way of working
+-- syntax fiddly
+
+d1 $ stack [
+            rarely (hurry 1.5) $ n "5 6 7 8" # s "pp" # pan 0.1
+            ,
+            sometimes (shuffle 4) $ fast "1.5" $ n "5 6 7 8" # s "peking" # pan 0.9
+            ,
+            fast "<4 8>" $ s "kendhang" # n (choose [3,4,5,6,7,8])
+] # crush "{4 9}%7" # up (slow 4 $ range (-12) 3 perlin)
+
+-- just swap in cat for stack, nice quick easy dramatic change
+
+d1 $ chunk 4 (hurry 2) $ cat [
+            rarely (hurry 1.5) $ n "5 6 7 8" # s "pp" # pan 0.1
+            ,
+            sometimes (shuffle 4) $ fast "1.5" $ n "5 6 7 8" # s "peking" # pan 0.9
+            ,
+            fast "<4 8>" $ s "kendhang" # n (choose [3,4,5,6,7,8])
+] # crush "{4 9}%7" # up (slow 4 $ range (-12) 3 perlin)
+
+
+
+
+
+
+hush

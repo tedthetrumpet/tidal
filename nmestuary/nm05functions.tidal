@@ -1,0 +1,72 @@
+-- some functions
+
+d1 $ n "1 2 3 4 5 4 3 2" # s "saron" # cut 1
+
+d1 $ slow 2 $ n "1 2 3 4 5 4 3 2" # s "saron" # cut 1
+
+d1 $ fast 2 $ n "1 2 3 4 5 4 3 2" # s "saron" # cut 1
+
+d1 $ fast 0.5 $ n "1 2 3 4 5 4 3 2" # s "saron" # cut 1
+
+d1 $ slow "1 2" $ n "1 2 3 4 5 4 3 2" # s "saron" # cut 1
+
+-- 1 2 3 4 5 4 3 2 1 2 3 4 5 4 3 2
+-- 1   2   3   4   5   4   3   2
+
+d1 $ ply 2 $ n "1 2 3 6" # s "saron" # cut 1
+
+d1 $ ply "2 3" $ n "1 2 3 6" # s "saron" # cut 1
+
+d1 $ slow 2 $ ply "2 3" $ n "1 2 3 6" # s "saron" # cut 1
+
+--
+d1 $ rev $ n "1 2 3 6" # s "saron" # cut 1
+
+-- random variation
+d1 $ sometimes rev $ n "1 2 3 6" # s "saron" # cut 1
+d1 $ rarely rev $ n "1 2 3 6" # s "saron" # cut 1
+d1 $ often rev $ n "1 2 3 6" # s "saron" # cut 1
+
+-- may need brackets around a function
+d1 $ sometimes (ply 2) $ n "1 2 3 4 5 4 3 2" # s "saron" # cut 1
+
+d1 $ sometimes (fast 2) $ n "1 2 3 4 5 4 3 2" # s "saron" # cut 1
+
+--
+
+d1 $ every 2 (ply 2) $ n "1 2 3 4 5 4 3 2" # s "saron" # cut 1
+
+-- maybe?
+
+d1 $ s "slenthem demung saron peking"
+d1 $ iter 4 $ s "slenthem demung saron peking"
+
+slenthem demung saron peking
+demung saron peking slenthem
+saron peking slenthem demung
+peking slenthem demung saron
+
+
+
+
+-- changing pitch of samples
+-- save this for another lesson?
+
+d1 $ n "1 2 3 6" # s "saron" # cut 1
+d1 $ n "1 2 3 6" # s "saron" # cut 1 # speed 2
+d1 $ n "1 2 3 6" # s "saron" # cut 1 # speed 0.5
+d1 $ n "1 2 3 6" # s "saron" # cut 1 # speed "0.25 0.5 1 2"
+
+d1 $ n "1 2 3 6" # s "saron" # cut 1 # up 0
+d1 $ n "1 2 3 6" # s "saron" # cut 1 # up 12
+d1 $ n "1 2 3 6" # s "saron" # cut 1 # up (-12)
+d1 $ n "1 2 3 6" # s "saron" # cut 1 # up "-24 -12 0 12"
+
+d1 $ slow 2 $ up "0 0 7 7 9 9 7 ~ 5 5 4 4 2 2 0 ~" # s "saron"
+
+
+
+
+
+
+every, ply, fast, slow, hurry, and patterning them. iter? oh, and up
