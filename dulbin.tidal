@@ -942,13 +942,25 @@ d1 $ s "arpy:<1 2 3>"```
 
 d1 $ repeatCycles "<4 3>" $ rarely (# freeze 1) $ s "nl!8" # n (irand 13) # cps (range 0.25 1 $ perlin) # octer 1 # up (range (-12) 12 $ perlin)
 
+---------- 1 oct!!!!
+-- branard redux
+-- seems to need to be slice 4
+
+setcps 0.5
+
+d1 $ s "cosmicg:1"
+
+d1 $ splice 4 "0 2 1*2 4 3 5 6 7" $ s "cosmicg:1"
+
+d1 $ every 8 (hurry 0.5) $ every 4 rev $ iter 2 $ splice 4 "0 2 1*2 4 3 5 6 7" $ s "cosmicg:1" # vowel "{s a i}%6" # gain 0.8
+
+-- close, sounds in different places
+d2 $ (0.125 ~>) $ s "[bd!4, [~ 808:5]!4, [~ feel:3]*2]"
 
 
+------------- instead of repeatCycles 999
 
-
-
-
-
+loopFirst $ (1 <~) $ n (shuffle 16 $ run 16) # s "peri"
 
 
 hush
