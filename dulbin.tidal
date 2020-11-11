@@ -711,8 +711,6 @@ d2 $ off "1 2 3" ((# s "ppsus") . (# up 7)) $ fast "<2 3 5 7>" $ s "ppsus" # att
 d2 $ off "1 2 3" (# up 7) $ fast "<2 3 5 7>" $ s "ppsus" # attack 1 # release 5 # gain (slow 4 $ range 0.5 0.9 sine) <| n "0 9 11 15" -- iya, lovely!
 
 
-
-
 ---------- allthe synths?
 once $ s "panic"
 
@@ -960,7 +958,7 @@ d2 $ (0.125 ~>) $ s "[bd!4, [~ 808:5]!4, [~ feel:3]*2]"
 
 ------------- instead of repeatCycles 999
 
-loopFirst $ (1 <~) $ n (shuffle 16 $ run 16) # s "peri"
+d1 $ loopFirst $ (1 <~) $ n (shuffle 16 $ run 16) # s "peri"
 
 
 hush

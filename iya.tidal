@@ -1,0 +1,36 @@
+bpm 120
+
+d1 $ loopAt "{2 4}%4" $ chop 16 $ repeatCycles 4 $ shuffle 16 $ s "break:33" # lpf (slow 2 $ range 1000 3000 sine) # lpq (range 0.1 0.6 perlin)
+
+----------------
+-- typewriter sound -> big ambeint
+d2 $ superimpose (hurry 0.125) $ slowstripe 9 $ shuffle 19 (up $ run 19) # s "foley:11" # room 0.4 # sz 1.5 # hpf (range 1000 5000 $ slow "8 4" sine) # hpq 0.5
+
+xfadeIn 2 8 silence -- reverb becomes infinte?
+-- might need to cmd. in sc
+
+do
+  d2 $ s "foley:11" # room 0 # sz 0
+  d2 silence
+
+----------------
+-- guitar open strings
+
+d1 $ "foley:210 foley:221 foley:232 foley:243 foley:254 foley:265"
+
+d1 $ "foley:210 foley:221 foley:232 foley:243 foley:254 foley:265" # note "0 2 2 1 0 0"
+
+d1 $ n "210 221 232 243 254 265" # note "0 2 2 1 0 0" # s "foley"
+
+d1 $ n "210 221 232 243 254 265" # note "0 <2 0> 2 <1 2> <0 2> 0" # s "foley"
+
+-----------------
+
+d1 $ superimpose (slow "[2,4]") $ n "[ 0 .. 32 ]" # s "rash" # note 12
+
+----------------
+-- striate trick, a sample against itself
+d1 $ slow 2 $ loopAt 1 $ striate "<64 57>" $ sound "break:1*4"
+----------------
+d1 $ loopFirst $ n (scale "major" $ struct "t(5,8)" $ irand 8 + 24) # s "rash"
+----------------

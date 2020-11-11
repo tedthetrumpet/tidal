@@ -32,7 +32,7 @@ bpm 90
 bpm 120
 bpm 160
 d1 $ loopAt 4 $ chop 32 $ shuffle 32 $ s "break:0" -- four bars, eights
-d1 $ loopAt 1 $ chop 16 $ shuffle 16 $ s "break:1" -- amen one bar, sixteens
+d1 $ loopAt 2 $ chop 16 $ shuffle 16 $ s "break:1" -- amen one bar, sixteens
 d1 $ loopAt 2 $ chop 32 $ shuffle 32 $ s "break:2" -- two bars same, sixteens
 d1 $ loopAt 2 $ chop 32 $ shuffle 32 $ s "break:3" -- two bars, 16s, iya (funky drummer)
 d1 $ loopAt 1 $ chop 16 $ shuffle 16 $ s "break:4" -- one bar, sixteens
@@ -70,6 +70,8 @@ d1 $ loopAt 2 $ chop 16 $ shuffle 16 $ s "break:30" -- two bars swing 16s
 d1 $ loopAt 2 $ chop 16 $ shuffle 16 $ s "break:31" -- two bars 16s
 d1 $ loopAt 2 $ chop 16 $ shuffle 16 $ s "break:32" -- two bars 16s
 d1 $ loopAt 2 $ chop 16 $ shuffle 16 $ s "break:33" -- two bars 16s, iya
+
+bpm 120
 
 -- play
 d1 $ loopAt "{2 4}%4" $ chop 16 $ repeatCycles 4 $ shuffle 16 $ s "break:33" # lpf (slow 2 $ range 1000 3000 sine) # lpq (range 0.1 0.6 perlin) -- iya
@@ -138,7 +140,7 @@ d1 $ slowstripe 16 $ s "foley:118!4 foley:117!4 foley:116!4" # up (-64) |+ up (r
 
 once $ s "foley:173" -- long quiet thing?
 
--- now sounds like water
+-- now sounds like waterw
 d1 $ hurry (1/4) $ s "foley:173"
 
 oops
@@ -187,7 +189,7 @@ d1 $ n "210 221 232 243 254 265" # note "0 <2 0> 2 <1 2> <0 2> 0" # s "foley"
 
 --------------
 -- ok, it's a synth note over about five octaves
-d1 $ n "[ 0 .. 32 ]" # s "rash"
+d1 $ superimpose (slow "[2,4]") $ n "[ 0 .. 32 ]" # s "rash" # note 12
 
 -- like
 d1 $ hurry 0.25 $ n "[ 0 .. 31 ]" # s "snare"

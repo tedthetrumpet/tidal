@@ -15,12 +15,12 @@ d3 $ n "0!4" # s "909"
 d4 $ n "[~ 5]*4" # s "soh" # note "[0]" -- [0,12]
 d4 $ n "[~ 5]*4" # s "peri:4"
 
-d5 $ n "[~ 12]*2" # s "soh" # note "[0]" # gain 1.2 -- # squiz 2 -- [0,12]
+d5 $ n "[~ 12]*2" # s "soh" # note "[0]" # gain 1.2 # squiz 2 -- [0,12]
 d5 $ n "[~ 12]*2" # s "drumtraks:1" # note "[5,9]"
 
-d6 $ jux rev $ scramble 16 $ n (run 16) # s "can" # silence
+d6 $ jux rev $ scramble 16 $ n (run 16) # s "can" -- # silence
 
-solo 1
+unsolo 6
 
 -- todo: recompose this as a whole piece using seqPLoop?
 -- or rather, as a stem-exporter?
@@ -46,8 +46,6 @@ d1 $ qtrigger 1 $ seqP [
           (30,34,slow 8 $ slice 32 (run 32) $ s "sldiwaloops:67"),
           (34,35,n "[~ 12]*2" # s "soh" # note "[0,12]" # gain 1.2)
           ]
-
-
 
 
 

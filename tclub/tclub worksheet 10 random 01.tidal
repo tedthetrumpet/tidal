@@ -18,7 +18,7 @@ d1 $ fast 8 $ repeatCycles 16 $ n "0!16" # s "cpu" # speed (rand + 2)
 
 d1 $ n (irand 8) # s "rash" -- makes no sound, no structure
 d1 $ n (struct "t(5,8)" $ irand 8 + 24) # s "rash"
-d1 $ n (scale "major" $ struct "t(5,8)" $ irand 8 + 24) # s "rash"
+d1 $ loopFirst $ n (scale "major" $ struct "t(5,8)" $ irand 8 + 24) # s "rash"
 
 -- randomness in mininotation
 -- [|]
