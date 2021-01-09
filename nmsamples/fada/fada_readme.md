@@ -8,15 +8,15 @@ Muireann recorded the song for us: the 32 bars were then split into 8 two-bars s
 
 The lyrics are as follows:
 
-Chuir iad mise dh'eilean leam fhìn
-Chuir iad mise dh'eilean leam fhìn
-Chuir iad mise dh'eilean leam fhìn
-Dh'eilean mara fada bho thìr
+Chuir iad mise dh'eilean leam fhìn\
+Chuir iad mise dh'eilean leam fhìn\
+Chuir iad mise dh'eilean leam fhìn\
+Dh'eilean mara fada bho thìr\
 
-Fada, fada, fada, bho thìr
-Fada, fada, fada, bho thìr
-Fada, fada, fada, bho thìr
-Dh'eilean mara fada bho thìr
+Fada, fada, fada, bho thìr\
+Fada, fada, fada, bho thìr\
+Fada, fada, fada, bho thìr\
+Dh'eilean mara fada bho thìr\
 
 Rough translation: 'They left me here on this island alone, on this island far away'
  
