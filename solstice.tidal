@@ -1,0 +1,54 @@
+https://flok.clic.cf/s/Mjg1ZjNkNDMtMjk3NC00ZjhlLWE5M2YtYjkwZWMyYjRiMjdm?layout=tidal,hydra
+
+
+
+
+
+-- coarse, kendhang, cmi, polyglot, live demung/saron (sound/camera check!)
+-- 1152*720 (mac, base and canvas), video 800kbps, 20fps
+-- JANGAN LUPA! unmute obs for live demung!
+-- bfsamples (includes eg arum, pp, tptm, flext…)
+-- nmsamples (instead of soh), cmi
+
+bpm 100
+
+d1 $ n "[1!4,[~ 7]]" # s "cmidrum" # gain 0
+
+d2
+$ slow 2
+-- $ slow 4
+-- $ loopFirst
+-- $ (1 ~>)
+$ struct (ascii "yaxu")
+$ s "kendhang!19"
+-- $ s "cmidrum!19"
+-- $ s "cmietc!19"
+-- |> n (irand 19)
+|> n (run 19)
+# room 0.6 # orbit 2 # gain 0
+-- # delay 0.6 # delayfb 0.3 # delayt (1/8) # lock 1
+-- # up (range (-12) 12 $ rand)
+
+d3 $ slow 4 $ n "6 2" # s "gong" # room 0.7 # orbit 3 # sz 0.7 # gain 0
+
+d4 $ n "<6 5 3 5 2 3 5 <2 [1 2 3 5 ]>>" # s "slenthem" # gain 0
+
+d5
+-- $ whenmod 4 1 (# silence)
+-- $ slowstripe 8
+$ slow "1"
+-- $ loopFirst $ (4 ~>)
+$ struct "t!16" $ s "{kenong}%9" # n (segment "1 2 3 5" $ irand 8) # gain 1
+
+d6
+
+
+
+
+
+
+
+
+xfadeIn 5 20 silence
+
+hush

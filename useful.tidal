@@ -44,7 +44,7 @@ let notes = timeLoop 1 $ 1 <~ (struct "t*8" $ choose [0,1,2,3,4,5])
 in
 d1 $ note notes # sound "arpy"
 
-do let notes = timeLoop 1 $ 1 <~ (struct "t*8" $ choose [0,1,2,3,4,5])
+do let notes = timeLoop 2 $ "<1 3>" <~ (struct "t(5,8)" $ choose [0,1,2,3,4,5])
    d1 $ note notes # sound "arpy"
 
 
@@ -82,3 +82,25 @@ do
 
 
 hush
+
+---------------
+w whole = 1
+h half = 0.5 etc
+q quarter
+e for eighth, some conflict with e for note?
+s sixteenth
+t third
+f fifth
+
+d1 $ slow 2 $ n "c@w d@h e@2q f@q g@e a@s b@t c@5" # "supersquare"
+
+------ irisS
+let del w t f o = delay w # delaytime t # delayfeedback f # orbit 0
+
+------ munshkr (ish)
+d2
+-- $ slow 2
+$ struct (ascii "simon")
+$ s "ifdrums"
+
+d1 $ s "peri!8" # n (irand 16) -- shorter than usual shuffle/run thing, more flexible with eg struct

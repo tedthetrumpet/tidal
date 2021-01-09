@@ -56,7 +56,7 @@ hush
 d1 $ repeatCycles 128 $ (0 ~>) $ s "gab!16" # n (irand 13) # up "[10, -13, 15, -17]" # gain 0.7 -- vary (0 ~>)
 d1 silence
 
-d2 $ repeatCycles 128 $ s "bottle!16" # n (irand 13) # up "-24,-13,15,-17" # gain "1"
+d2 $ repeatCycles 128 $ s "bottle!16" # n (irand 13) # up "-24 -13 15 -17" # gain "1"
 d2 silence
 
 d3 $ repeatCycles 128 $ s $ scramble 16 "[bd sn cp hh]!2"
@@ -93,7 +93,7 @@ d1 $ s "<tptm!7 tptm!5 tptm!9>*4" # n (irand 3)
 d1 silence
 hush
 
-d1 $ s "ppsus" +| n " 9 15 21" # freeze 1
+d1 $ s "ppsus" +| n " 9 15 21" # freeze 0
 hush
 
 d1 $ fast "1 2? 3 4? 5" $ s "tptm!4" # n (irand 32)
@@ -304,7 +304,7 @@ d1 $ s "superpiano" <| n "c cs d ef e f fs g af a bf b c6"
 -- d1 $ s "arpy" <| n "c cs d ef e f fs g af a bf b c6" not n!
 d1 $ s "arpy" <| up "c cs d ef e f fs g af a bf b c6" -- use up
 
--------------------- chop like slice
+-------------------- chop like slice iya maybe for a gig
 d1 $ slow 2 $ repeatCycles 4 $ shuffle 16 $ chop 16 $ s "sldiwaloops" # n "<0 1>*8"
 
 -------------- different style, 06:23 Sat 21 Mar Ivan Abreu
@@ -400,7 +400,7 @@ jumpIn' 2 0 $ cat [n "c2", n "c3 bf2 g2 bf2 ~ g2 f2 ~"] # gain 0.7 # s "superzow
 
 
 
-------------------- iya during that trashpanda thing
+--------- during that trashpanda thing, liked at the time, not now
 
 d1 $ slowstripe 4 $ slice 128 (shuffle 5 $ run 128) $ s "hmm" # gain 1.5 # speed (slow 2 $ range 4 0.25 $ perlin)
 
@@ -959,6 +959,159 @@ d2 $ (0.125 ~>) $ s "[bd!4, [~ 808:5]!4, [~ feel:3]*2]"
 ------------- instead of repeatCycles 999
 
 d1 $ loopFirst $ (1 <~) $ n (shuffle 16 $ run 16) # s "peri"
+
+
+hush
+
+-- @yaxu repeatCycles will repeat each cycle n times. If you want to repeat the first n cycles forever, then I think outside 4 loopFirst would do that for the first four cycles
+
+------------- SuperClean test
+
+d1 $ s "mmd"
+
+hush
+
+
+--- to try # smear # scram (spectral stuff)
+-- all $ (# binshift 7)
+-- all id
+bpm 140
+
+d1 $ chunk 4 (hurry 0.5)
+  $ fast 2
+  $ s "808bd"
+  <| n "0 1 2 3 4 5 6 7"
+  # binshift (run 7)
+
+d2 $ fast 2
+  $ struct "t(5,8)"
+  $ scramble 8
+  $ s "hitz02:4"
+  <| scram (segment 8 $ range 0 4 $ sine)
+  # room 0.3
+
+d3
+  $ slow 8
+  $ striate' 128 (1/2)
+  $ s "fada"
+  # n "<0 1 2 3>"
+  # attack 0.5
+  # release 0.5
+  # binshift "0.3"
+  # scram 0.1
+
+--------------
+hush
+
+d1 $ slow 10 $ n "[ ~*3] [7!3 6!3 5!3]!4" # s "peking"
+
+d1 $ slow 10 $ n " ~*3 7*3 6*3 5*3 7*3 6*3 5*3 7*3 6*3 5*3 7*3 6*3 5*3  "# s "peking"
+
+d2 $ s "blip!4"
+
+Muireann,
+
+I'm not quite sure what you're trying to get. You sort of can't have an 'upbeat' in Tidal, as there is not really a 'downbeat'! Or rather: what you have is a cycle going round and round forever, of a fixed length. It would only really make sense to talk about an upbeat if you mark the downbeat in some way:
+
+bpm 120
+
+d1 $ stack[
+n "7!3 6!3 5!3" # s "peking",
+s "blip"
+]
+
+-- z
+There are a couple of other ways to control the length of sound in Tidal. The @ sign shows what fraction of a cycle a sound should take up:
+
+d1 $ slow 4 $ up (scale "major" "0 1 2 3 4@2 5@2 3@8 3 2 1 0 0@3 -3 -3@1.33 0@1.33 4@1.33 0@2 1@2") # s "demung:7"
+
+--
+
+d1 $ sound "arpy*4" # up (range 1 2 rand)
+
+d1 $ sound "arpy*4" # speed (range 1 2 rand)
+
+--- iris munshkr jam
+
+d1 $ stack [
+sometimesBy 0.33 (rotL 0.12)
+$ sometimesBy 0.25 (# del 0.7 0.25 0.95 9 )
+$ s "noise2(12,16, 0.125)"
+# end 0.125
+# octave 4
+# up (scale "major" "[6 7 8 ] [ 9 2 7 ] [ 2 7 8 4 7 ]")
+# gain 0
+,
+every 2 (jux((# speed "-1").(rotL 0.25)))
+$ s "house(<[4 2][4 2 8]>,8)"
+-- # squiz (range 0 2 $ rand)
+# les 2 8
+# gain 0
+,
+-- segment 8 $ n (scale "major" $ choose [0,1,2,3,4,5])
+struct (ascii "ab") $ n (scale "major" $ choose [0,1,2,3,4,5])
+# s "supercomparator"
+# octave 5
+# legato 1.2
+# gain 1
+]
+
+let del w t f o = delay w # delaytime t # delayfeedback f # orbit 0
+
+let les l o = leslie l # orbit 0
+
+d2
+$ slow 4
+$ struct (ascii "munshkr")
+$ s "ifdrums"
+
+-----------cmi
+
+d1
+$ slow 2
+$ foldEvery [2,3,4] (0.25 ~>)
+$ n (run 16)
+# s "cmikey" -- iya
+-- # cut 1 -- variation
+
+d2
+$ fast "2 1 0.5"
+-- $ foldEvery [1,2,3,4] (0.25 ~>)
+$ up (scale "hexSus" "9 2 7 4 8 2 7 9")
+# s "cmistring"
+# n 4
+# end 0.2
+# octave 3
+# room 0.3
+# leslie 2
+
+d3 $ up (scale "major" "<1 ~ > 2 [3 2 3] <5 4>") # s "cmietc:5" # cut 0 # gain 1
+
+-- for tpt impro
+
+d3 $ slow 2 $ up "<e4'min7 a3'dom7'ii>" # s "cmietc:5" # room 0.6 # attack 0.01 # release 2 # delay 0.7 # delaytime (1/6) # lock 1 # delayfb 0.8 # orbit 1 # gain 0.8 |+ up "<0 3>/4"
+
+d4 $ slow 2 $ up "e [~ b4] [d e] ~ [a6 g6] [~ e6] [~ b4] d" # s "cmistring" # n "43" |- up 4 # gain 1.2 # cut 2 |+ up "<0 3>/4"
+
+d5 $ n "3 <7 7*2>" # s "cmidrum"
+
+-- coarse?
+
+-- from https://www.youtube.com/watch?v=8wQmsfj4OAw
+
+let chorder p = p |+ "[2,4]" :: Pattern Int
+
+d2 $ s "superpiano" # n (scale "phrygian" $ sometimes (superimpose chorder) "<-2 0 4>")
+
+-- swing?
+
+bpm 100
+
+d1 $ swingBy (1/6) 8 $ n "0 ~ ~ 0  11 ~ 0 ~  ~ ~ 0 ~  11 ~ ~ ~" # s "cmidrum" # room 0.3 # up "[0,-12]"
+
+d2 $ swingBy (1/6) 8 $ n "11!32" # s "cmikey" # up "<c3 [c3 e3 ef3 d3] c3 [c3 a2 as2 b2]>" # release 0.3
+
+d3 $ fast 2 $  up "<[~ c5'minor c5'minor'ii c5'minor]!3 [~ f4'dom7'ii f4'dom7'iii f4'dom7'ii]>" # s "cmikey:5" # release 0.2 # room 0.7
 
 
 hush

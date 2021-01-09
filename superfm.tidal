@@ -1,0 +1,160 @@
+// need to initialise variables!
+// https://gist.githubusercontent.com/loopier/2535109e5d64cc43f56475d902cda905/raw/ecedabe9fcf650b86cc024564a670c7269958711/superfm-variables.tidal
+// execute that in tidal first
+
+d1
+  $ s "superfm"
+  # n 0
+  # amp1 1 -- makes this operator a carrier (ie produces output)
+  # amp2 2
+  # amp3 0
+  # amp4 0
+  # amp5 0
+  # amp6 0
+  <| ratio1 "0.5 1 2" -- ratio to base frequency
+
+-- hammond sound, fm synthesis without modulation
+d1
+  $ s "superfm"
+  # n 0
+  # amp1 1
+  # amp2 0.5
+  # amp3 0.4
+  # amp4 0.3
+  # amp5 0.2
+  # amp6 0.1
+  # ratio1 1
+  # ratio2 2
+  # ratio3 3
+  # ratio4 4
+  # ratio5 5
+  # ratio6 6
+
+--
+
+d1
+  $ s "superfm"
+  # n 0
+  # amp1 1
+  # amp2 0
+  # amp3 0
+  # amp4 0
+  # amp5 0
+  # amp6 0
+  <| mod12 "0 1 2 3 5 6" -- amount of modulation
+
+-- vibrato
+
+d1
+  $ s "superfm"
+  # n 0
+  # amp1 1
+  # amp2 0
+  # amp3 0
+  # amp4 0
+  # amp5 0
+  # amp6 0
+  # mod12 2
+  # ratio2 0.01
+
+-- audio rate modulation
+
+d1
+  $ s "superfm"
+  # n 0
+  # amp1 1
+  # amp2 0
+  # amp3 0
+  # amp4 0
+  # amp5 0
+  # amp6 0
+  # mod12 5
+  <| ratio2 "0.2 0.3 0.4 0.6"
+
+-- sawtooth wave (more or less)
+d1
+  $ s "superfm"
+  # n 0
+  # amp1 1
+  # amp2 0
+  # amp3 0
+  # amp4 0
+  # amp5 0
+  # amp6 0
+  # mod12 1
+  # ratio1 1
+  # ratio2 1
+
+
+-- pulse wave
+
+d1
+  $ s "superfm"
+  # n 0
+  # amp1 1
+  # amp2 0
+  # amp3 0
+  # amp4 0
+  # amp5 0
+  # amp6 0
+  # mod12 1
+  # ratio1 1
+  # ratio2 2
+
+-- prophet sound, two sawtooths
+d1
+  $ s "superfm"
+  # n 0
+  # amp1 1
+  # amp2 0
+  # amp3 1
+  # amp4 0
+  # amp5 0
+  # amp6 0
+  # mod12 1
+  # mod34 1
+  # ratio1 1
+  # ratio2 1 -- or 2 for square wave
+  # ratio3 1.01
+  # ratio4 1 -- or 2 for square wave
+
+--chan of modulation 3-2-1
+d1
+  $ s "superfm"
+  # n 0
+  # amp1 1
+  # amp2 0
+  # amp3 0
+  # amp4 0
+  # amp5 0
+  # amp6 0
+  # mod12 1
+  # mod23 1
+
+-- operator modulating itself
+
+d1
+  $ s "superfm"
+  # n 0
+  # amp1 1
+  # amp2 0
+  # amp3 0
+  # amp4 0
+  # amp5 0
+  # amp6 0
+  # mod11 1
+  # feedback 1 -- multiplier
+
+-- noise
+d1
+  $ s "superfm"
+  # n 0
+  # amp1 0
+  # amp2 1
+  # amp3 0
+  # amp4 0
+  # amp5 0
+  # amp6 0
+  # mod22 6
+  # feedback 1
+  # ratio2 0
