@@ -1,10 +1,10 @@
 bpm 120
 
--- actually not that interesting
+-- nice enough
 d1 $ loopAt "{2 4}%4" $ chop 16 $ repeatCycles 4 $ shuffle 16 $ s "break:33" # lpf (slow 2 $ range 1000 3000 sine) # lpq (range 0.1 0.6 perlin)
 
 --------- ha, oddly enough, reasonably interesting with beat above!
--- typewriter sound -> big ambeint
+-- typewriter sound -> big ambient
 d2 $ superimpose (hurry 0.125) $ slowstripe 9 $ shuffle 19 (up $ run 19) # s "foley:11" # room 0.4 # sz 1.5 # hpf (range 1000 5000 $ slow "8 4" sine) # hpq 0.5
 
 xfadeIn 2 8 silence -- reverb becomes infinte?

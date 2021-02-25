@@ -1113,5 +1113,38 @@ d2 $ swingBy (1/6) 8 $ n "11!32" # s "cmikey" # up "<c3 [c3 e3 ef3 d3] c3 [c3 a2
 
 d3 $ fast 2 $  up "<[~ c5'minor c5'minor'ii c5'minor]!3 [~ f4'dom7'ii f4'dom7'iii f4'dom7'ii]>" # s "cmikey:5" # release 0.2 # room 0.7
 
+-- quick example for posting
+
+d1 $ slow 2 $ note "[g2, f, a, c, f5] [g2, f, af, b, e5] [c2, e, a, b, g5]@2" # s "superpiano"
+
 
 hush
+
+-- tidal 1.7
+
+-- A simple sax sound
+d1 $ sound "sax" # legato 1
+
+-- This doesn't do anything different
+d1 $ sound "sax" # legato 1 # squiz "0 1.5 0 1.5"
+
+-- A workaround is to chop up the sounds into parts:
+d1 $ chop 4 $ sound "sax" # legato 1 # squiz "0 1.5 0 1.5"
+
+-- But now you can use a bus to change a single sound while it plays:
+d1 $ sound "sax" # legato 1 # squizbus 1 "0 1.5 0 1.5"
+
+-- You can add a bus to most things but have to take care to give each thing a different bus number:
+d1 $ sound "sax" # legato 1 # squizbus 1 "0 1.5 0 1.5" # lpfbus 2 "400 2000 3000" # lpq 0.2
+
+-- You can pattern things within bus patterns:
+d1 $ sound "sax" # legato 1 # squizbus 1 (chunk 4 (fast 4) "0 1.5 0 1.5")
+
+-- A big limitation is that bus patterns are monophonic. So if you do some patterning that layers them up, you'll be disappointed with the results:
+d1 $ jux rev $ s "sax" # ampbus 1 ("[1 0 [1 0] 1]*6") # legato 1
+
+-- A workaround is to add 1 to the bus number, and 0 to the value:
+d1 $ jux (rev . (|+ ampbus 1 0)) $ s "sax" # ampbus 1 ("[1 0 [1 0] 1]*6") # legato 1
+
+-- Or replace the control using a different bus number with `#`
+d1 $ jux (rev . (# ampbus 2 "1 0 1 0")) $ s "sax" # ampbus 1 ("[1 0 [1 0] 1]*6") # legato 1 
