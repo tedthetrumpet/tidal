@@ -26,7 +26,7 @@ d1 $ slow 4 $ s "arpy" <| n (run 11) -- as below
 d2 $ slow 4 $ s "superpiano" <| n "c d f g a c6 d6 f6 g6 a6 c7"
 d1 $ s "arpy" <| up "c d e f g a b c6" -- aha!
 d1 $ slow 2 $ s "arpy" <| up "c'maj(3,8) f'maj(3,8) ef'maj(3,8,1) bf4'maj(3,8)" -- iya
-d1 $ s "arpy" -- in estuary arpy comes out a tone too high in D major! can subtract 2
+d1 $ s "arpy" -- in estuary arpy comes out a tone too high in D major! can subtract 2 maybe fixed now
 d1 $ slow 4 $ s "auto" <| n (run 11) -- various effected drum sounds
 d1 $ slow 4 $ s "baa" <| n (run 7) -- sheep sounds, why?!?
 d1 $ slow 4 $ s "baa2" <| n (run 7) -- rather simlar to the above? same?

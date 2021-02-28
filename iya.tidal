@@ -166,4 +166,13 @@ d3 $ degradeBy 0.1 $ rarely (hurry 2) $ n "{as3@4}%25" # s "supersquare" # susta
 d3 silence
 
 ------------------
+
+d1 $ swingBy (1/6) 8 $ n "0 ~ ~ 0  11 ~ 0 ~  ~ ~ 0 ~  11 ~ ~ ~" # s "cmidrum" # room 0.3 # up "[0,-12]"
+
+-- bass is shit, but rest of this has potential
+-- d2 $ swingBy (1/6) 8 $ n "11!32" # s "cmikey" # up "<c3 [c3 e3 ef3 d3] c3 [c3 a2 as2 b2]>" # release 0.3
+
+d3 $ fast 2 $  up "<[~ c5'minor c5'minor'ii c5'minor]!3 [~ f4'dom7'ii f4'dom7'iii f4'dom7'ii]>" # s "cmikey:5" # release 0.2 # room 0.7
+
+------------------
 hush

@@ -1,0 +1,125 @@
+-- Guru Wilangan lan Guru Lagu : 8i 8a 8e 8a 7a 8u 8a
+-- 2 1 6 5
+-- 8a, ends with cadence to 5, 8 bars
+bpm 70
+
+d1 $ s "demung" <| n "<[~!4][~!4][~!4][~!4][~!4][~!4][~!4][2 1 6 5]>"
+
+-- high/low octave?
+-- demung only has seven notes, so either up or use second instrument
+-- hmm, how about a multi-octave instrument called balungan?
+-- but only one of those octaves would actually read correctly for pelog numbers
+d3 $ s "demung" <| n "<[2 1 6 5]>" # silence
+
+-- actually, this works perfectly well
+-- but numbers not correct, of course
+
+d1 $ s "demung:7" <| up "3 2 -2 -3"
+
+d2 $ (0.25 <~ ) $  s "gong:5"
+
+-- umm, in the real world, this is quite easy to use
+-- don't think I could do microtonal here though
+d1 $ s "demung:7" <| up "ef5 d5 bf a"
+
+
+-- ji ro lu pat mo nem pi
+-- j r l t m n p -- but maybe meanings already in mininotation?
+-- also probably can't hack this in estuary
+
+-- from userbase
+let scale = getScale (scaleTable ++ [("techno", [0,2,3,5,7,8,10])
+                                    ])
+
+d1 $ n (scale "techno" "0 1 2 3 4 5 6 7") # sound "superpiano"
+
+-- from minitidal experiments
+d1 $ up (toScale [0, 2, 3.3, 4.9 ,7.9 ,9, 10.3, 12] "1 2 3 4 5 6 7 ~") # s "gtr" # cut 1
+
+d2 $ n "1 2 3 4 5 6 7 ~" # s "demung" # cut 2
+
+let scale = getScale (scaleTable ++ [("pl", [0, 2, 3.3, 4.9 ,7.9 ,9, 10.3, 12])])
+
+d1 $ up (scale "pl" "1 2 3 4 5 6 7 ~") # s "gtr" # cut 1
+
+--in the simple case this was easy!
+
+d1 $ n "2 1 6 5" # s "saron demung"
+
+d2 $ (0.25 <~ ) $  s "gong:5"
+
+d1 $ n "2 1 6 5 2 1 6 5" # s "saron demung!2 slenthem"
+
+d2 $ (0.125 <~ ) $ s "gong:1 gong:5"
+
+d1 $ n "2 1 6 5 2 1 6 5" # s "saron demung!2 slenthem" # vowel "{a s m a r a n d a n a}%8"
+
+-- this is quite interesting
+-- probably wouldn't work in Estuary, though
+bpm 70
+
+d1 $ slow 8 $ struct (ascii "asmarandana") $ n "2 1 6 5 2 1 6 5" # s "saron demung!2 slenthem" # vowel "{i a e a a u a}%8" # attack 0.2 # release 1
+
+-- gong sort of in a western place still
+d2 $ slow 8 $ (0.125 <~ ) $ s "gong:1 gong:5" # attack 0.2 # release 4 |+ up "[0, -12]"
+
+-- 88 notes in asmarandna struct, this is better
+
+d2 $ slow 8 $ ((1/88) <~ ) $ s "gong:1 gong:5" # attack 0.2 # release 4 |+ up "[0, -12]"
+
+-- ok, now I need to make a variation for that for the preceding i
+-- i ends on 1
+-- 8i 8a 8e 8a 7a 8u 8a
+
+d3 $ slow 2 $ n "6 5 6 2 1 5 6 1 " # s "slenthem!3 demung!4 saron"
+
+d3 $ slow 4 $ struct (ascii "candrarini") $ n "6 5 6 2 1 5 6 1 " # s "slenthem!3 demung!4 saron" # vowel "{i a e a a u a}%8" # attack 0.2 # release 1
+
+d4 $ slow 4 $ ((1/80) <~ ) $ s "gong:2 gong:1" # attack 0.2 # release 4 |+ up "[0, -12]"
+
+
+-- nae idea!
+let lagu =
+      [
+        ("8a", stack [ slow 4 $ struct (ascii "asmarandana") $ n "2 1 6 5 2 1 6 5" # s "saron demung!2 slenthem" # vowel "{i a e a a u a}%8" # attack 0.2 # release 1,
+                     slow 4 $ ((1/88) <~ ) $ s "gong:1 gong:5" # attack 0.2 # release 4 |+ up "[0, -12]"
+                     ]
+        ),
+        ("8i", stack [ slow 4 $ struct (ascii "candrarini") $ n "6 5 6 2 1 5 6 1 " # s "slenthem!3 demung!4 saron" # vowel "{i a e a a u a}%8" # attack 0.2 # release 1,
+                     slow 4 $ ((1/80) <~ ) $ s "gong:2 gong:1" # attack 0.2 # release 4 |+ up "[0, -12]"
+                     ]
+        )
+      ]
+in
+d1 $ ur 2 "8a 8i" lagu []
+
+------ just work up the basics
+bpm 70
+
+d1
+$ slow 4
+$ n "6 5 6 2 1 5 6 1    2 1 6 5 2 1 6 5"
+# s "slenthem!3 demung!4 saron saron demung!2 slenthem"
+|+ up "[0, -12]"
+
+d2 $ slow 4 $ ((1/8) <~ ) $ s "gong:2 gong:1" |+ up "[0, -12]"
+
+-- jumping between instruments not really working
+
+-- first two lines 8i 8a
+-- oh, and btw this is probably pl5 (lima) not pl6 (nem) oops
+bpm 70
+
+d1
+$ slow 4
+$ n "6 5 6 2  1 5 6 1    2 1 6 5  2 1 6 5"
+# s "demung"
+|+ up "-12 -12 -12 0  0 0 0 12    12 12 0 0  0 0 -12 -12 "
+|+ up "[0, 12]"
+
+d2
+$ slow 4
+$ ((3/16) ~> )
+$ n "2 1 5 0"
+# s "gong"
+|+ up "[0, -12]"

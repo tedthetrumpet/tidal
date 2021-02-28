@@ -960,10 +960,13 @@ d2 $ (0.125 ~>) $ s "[bd!4, [~ 808:5]!4, [~ feel:3]*2]"
 
 d1 $ loopFirst $ (1 <~) $ n (shuffle 16 $ run 16) # s "peri"
 
-
 hush
 
 -- @yaxu repeatCycles will repeat each cycle n times. If you want to repeat the first n cycles forever, then I think outside 4 loopFirst would do that for the first four cycles
+
+d1 $ outside 2 loopFirst $ n (shuffle 16 $ run 16) # s "peri" -- iya
+
+d1 $ outside 2 loopFirst $ (2 <~) $ n (shuffle 16 $ run 16) # s "peri" -- iya
 
 ------------- SuperClean test
 
@@ -1032,6 +1035,9 @@ d1 $ sound "arpy*4" # up (range 1 2 rand)
 d1 $ sound "arpy*4" # speed (range 1 2 rand)
 
 --- iris munshkr jam
+let del w t f o = delay w # delaytime t # delayfeedback f # orbit 0
+
+let les l o = leslie l # orbit 0
 
 d1 $ stack [
 sometimesBy 0.33 (rotL 0.12)
@@ -1040,13 +1046,13 @@ $ s "noise2(12,16, 0.125)"
 # end 0.125
 # octave 4
 # up (scale "major" "[6 7 8 ] [ 9 2 7 ] [ 2 7 8 4 7 ]")
-# gain 0
+# gain 1
 ,
 every 2 (jux((# speed "-1").(rotL 0.25)))
 $ s "house(<[4 2][4 2 8]>,8)"
 -- # squiz (range 0 2 $ rand)
 # les 2 8
-# gain 0
+# gain 1
 ,
 -- segment 8 $ n (scale "major" $ choose [0,1,2,3,4,5])
 struct (ascii "ab") $ n (scale "major" $ choose [0,1,2,3,4,5])
@@ -1056,9 +1062,6 @@ struct (ascii "ab") $ n (scale "major" $ choose [0,1,2,3,4,5])
 # gain 1
 ]
 
-let del w t f o = delay w # delaytime t # delayfeedback f # orbit 0
-
-let les l o = leslie l # orbit 0
 
 d2
 $ slow 4
@@ -1088,6 +1091,7 @@ $ up (scale "hexSus" "9 2 7 4 8 2 7 9")
 d3 $ up (scale "major" "<1 ~ > 2 [3 2 3] <5 4>") # s "cmietc:5" # cut 0 # gain 1
 
 -- for tpt impro
+bpm 140
 
 d3 $ slow 2 $ up "<e4'min7 a3'dom7'ii>" # s "cmietc:5" # room 0.6 # attack 0.01 # release 2 # delay 0.7 # delaytime (1/6) # lock 1 # delayfb 0.8 # orbit 1 # gain 0.8 |+ up "<0 3>/4"
 
@@ -1103,15 +1107,7 @@ let chorder p = p |+ "[2,4]" :: Pattern Int
 
 d2 $ s "superpiano" # n (scale "phrygian" $ sometimes (superimpose chorder) "<-2 0 4>")
 
--- swing?
 
-bpm 100
-
-d1 $ swingBy (1/6) 8 $ n "0 ~ ~ 0  11 ~ 0 ~  ~ ~ 0 ~  11 ~ ~ ~" # s "cmidrum" # room 0.3 # up "[0,-12]"
-
-d2 $ swingBy (1/6) 8 $ n "11!32" # s "cmikey" # up "<c3 [c3 e3 ef3 d3] c3 [c3 a2 as2 b2]>" # release 0.3
-
-d3 $ fast 2 $  up "<[~ c5'minor c5'minor'ii c5'minor]!3 [~ f4'dom7'ii f4'dom7'iii f4'dom7'ii]>" # s "cmikey:5" # release 0.2 # room 0.7
 
 -- quick example for posting
 
@@ -1147,4 +1143,4 @@ d1 $ jux rev $ s "sax" # ampbus 1 ("[1 0 [1 0] 1]*6") # legato 1
 d1 $ jux (rev . (|+ ampbus 1 0)) $ s "sax" # ampbus 1 ("[1 0 [1 0] 1]*6") # legato 1
 
 -- Or replace the control using a different bus number with `#`
-d1 $ jux (rev . (# ampbus 2 "1 0 1 0")) $ s "sax" # ampbus 1 ("[1 0 [1 0] 1]*6") # legato 1 
+d1 $ jux (rev . (# ampbus 2 "1 0 1 0")) $ s "sax" # ampbus 1 ("[1 0 [1 0] 1]*6") # legato 1
