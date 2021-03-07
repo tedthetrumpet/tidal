@@ -1,5 +1,5 @@
 
-These samples are all from these instruments:
+The samples are all from these instruments:
 
 https://www.youtube.com/watch?v=1gZaZRgvh88
 
