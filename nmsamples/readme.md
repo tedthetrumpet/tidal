@@ -3,7 +3,7 @@ The samples are all from these instruments:
 
 https://www.youtube.com/watch?v=1gZaZRgvh88
 
-This is the pelog half of Glasgow’s ‘Spirit of Hope’ set of instruments, used by [Naga Mas]([title](https://www.example.com)), the Glasgow Gamelan Group. ‘Pelog’ is the name of the tuning. Our instruments are *approximately* D, Eb, F, G#, A, Bb, C – some notes are sharper or flatter than they would be in equal temperament A=440. This is not standardised: two different ‘pelog’ gamelans will have a roughly similar set of seven notes, but there may be significant differences of detail in the exact pitches.
+This is the pelog half of Glasgow’s ‘Spirit of Hope’ set of instruments, used by [Naga Mas](https://www.example.com), the Glasgow Gamelan Group. ‘Pelog’ is the name of the tuning. Our instruments are *approximately* D, Eb, F, G#, A, Bb, C – some notes are sharper or flatter than they would be in equal temperament A=440. This is not standardised: two different ‘pelog’ gamelans will have a roughly similar set of seven notes, but there may be significant differences of detail in the exact pitches.
 
 The names of the individual banks are (mostly) the names of the instruments: peking, saron, demung, slenthem, kendhang, kenong and gong.
 
