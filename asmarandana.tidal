@@ -123,3 +123,6 @@ $ ((3/16) ~> )
 $ n "2 1 5 0"
 # s "gong"
 |+ up "[0, -12]"
+
+-- tried that in estuary: the up-ped demung notes are noticeably shorter
+-- sounds rubbish there

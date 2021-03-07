@@ -1144,3 +1144,27 @@ d1 $ jux (rev . (|+ ampbus 1 0)) $ s "sax" # ampbus 1 ("[1 0 [1 0] 1]*6") # lega
 
 -- Or replace the control using a different bus number with `#`
 d1 $ jux (rev . (# ampbus 2 "1 0 1 0")) $ s "sax" # ampbus 1 ("[1 0 [1 0] 1]*6") # legato 1
+
+------------------
+-- 2021-03-01 0203 sleepless (to 0239)
+bpm 90
+
+d1 $ qtrigger 1 $ slow 4 $ up "c6@3 d6@13 f5@3 g5@13 d6@3 e6@13 g5@3 a5@13" # s "supercomparator" |+ up "[0,-12]" # gain 1.2
+
+d2 $ s "bd:4!4" # gain 1.4
+
+d3 $ up "d2!16" # s "superzow" # legato 0.8 |+ up "[12,0]" # gain 1
+
+d4 $ fast 2 $ s "~ industrial:8" # gain 1.3 # room 1 # up "[0]" # sz 0.9
+
+d5 $ spin 2 $ whenmod 4 3 ((hurry 2).(scramble 16)) $ n "[0 .. 15]" # s "peri" # gain 1.4 # up "12"
+
+do
+  xfade 1 silence
+  xfade 2 silence
+  xfade 3 silence
+  xfade 4 silence
+  xfade 5 silence
+
+
+hush

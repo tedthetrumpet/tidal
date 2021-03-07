@@ -121,3 +121,10 @@ cabal v1-install tidal-1.6.1 -- or whatever version you prefer
 Perhaps you have quite an old version of ghc? In that case, miss off the v1-, i.e. cabal update; cabal install https://hackage.haskell.org/package/tidal-1.7/candidate/tidal-1.7.tar.gz
 
 Quarks.checkForUpdates({Quarks.install("SuperDirt", "v1.7.2"); thisProcess.recompile()})
+
+
+-- delete and reinstall my haskell
+-- yes, done, actually a bit more complicated
+-- original install was using homebrew, files all over the shop!
+
+You can delete haskell by removing .ghcup, .ghc and .cabal from your home folder.
