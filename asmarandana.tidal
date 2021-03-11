@@ -126,3 +126,32 @@ $ n "2 1 5 0"
 
 -- tried that in estuary: the up-ped demung notes are noticeably shorter
 -- sounds rubbish there
+
+=======================================================
+-- from Estuary
+bpm 120
+
+d1 $ slow 2 $ trunc (3/81) $ n (outside 4 loopFirst $ shuffle 81 $ run 81) #s "{demung saron peking}%64" # up "-24" # gain 0.8 # vowel "i a e a a u a"
+
+d2 $ slow 4 $ struct (binary "88 88 7 88") $ s "{sf kendhang peri ul glitch}%8" # n (run 19)
+
+
+d1 $ stack[
+slow 2 $ trunc (3/81) $ n (outside 4 loopFirst $ shuffle 81 $ run 81) #s "{demung saron peking}%64" # up "-24" # gain 0.8 # vowel "i a e a a u a"
+, slow 4 $ struct (binary "88 88 7 88") $ s "{sf kendhang peri ul glitch}%8" # n (run 19)
+]
+
+-- test that thing of Sen's
+
+d1 $ stack [
+n ""
+-- , n "1*8 2 1*7"# s "numbers" # up "[12,-12]" # gain (0.7)
+-- , slow 2 $ ply 2 $ n "6 5 3 2" # s "peking" # gain (0.7)
+-- , n "3 2 6 5" # s "peking" # gain (0.7)
+, sometimes rev $ sometimes (ply 2) $ n "[6 [5 2] 7 [1 3] 6 [4 9] 8 4, 5 [7 2] 1 2 5 2 [2 3] [6 7]]" # s "[juno] " # up "[-12, -2, 18]" # cut 1 # gain (0.7)
+-- , n "1*16" # s "juno" # up "[12, -12]" # gain (0.7)
+]
+
+
+
+hush

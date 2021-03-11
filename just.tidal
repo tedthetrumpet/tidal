@@ -1,0 +1,38 @@
+d1 $ s "just:0"
+
+d1 $ s "just!4"
+
+d1 $ s "just!4" # up (loopFirst $ irand 12)
+
+d1 $ s "just!8" # up (loopFirst $ irand 12) |- up 12
+
+d1 $ struct "t(5,16)" $ s "just!8" # up (loopFirst $ irand 12) |- up 24
+
+d1 $ struct "t(7,16)" $ s "just" # up (loopFirst $ irand 12) # n (run 5)
+
+d1 $ struct "t(5,16,<0 2>)" $ s "just" # up (loopFirst $ irand 12) |- up 12 # n "<1 2 3 4>"
+
+d1 $ slow 4 $ struct (ascii "justyna") $ n "{0 1 2 3 4}%56" # s "just" # up "{1 2 3}%5" |- up "[0,7]"
+
+--
+d1 $ s "just" # up "[-7, -19]" # delaytime 0.125 # delay 0.6 # delayfb 0.6 # orbit 1 # lock 1
+
+d2 $ slow 2 $ rotL 0.125 $ struct (ascii "just") $ n "{0 1 2 3 4}%32" # s "just" # up "{1 2 3}%4" |+ up "[0,7]" # orbit 2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+hush
