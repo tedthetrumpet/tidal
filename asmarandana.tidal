@@ -152,6 +152,79 @@ n ""
 -- , n "1*16" # s "juno" # up "[12, -12]" # gain (0.7)
 ]
 
+------------------- new direction 20 mar
+
+bpm 480
+
+d1 $ mask "1 0!15" $ fast 8 $ trunc (3/8) $ n (loopFirst $ shuffle 8 $ run 8) # s "{demung saron peking}%8" # gain 0.8 # up "-12"
+
+-- this just doesn't work!
+d1 $ mask "1 0!15" $ fast 8 $ trunc (2/8) $ struct "t!8" $ n (outside 2 ((repeatCycles 99).(rotL 5)) $ scramble 15 $ run 15) # s "{demung saron}%8" # gain "{0.8 0.8}%8" # up "0"
+
+d2 $ s "~ em2:6 east:2 em2:6" # gain 0.7
+
+d3 $ slow 2 $ struct (binary "88 88 7 88") $ s "{sf kendhang peri ul glitch}%8" # n (run 19) # gain 0.8
+
+d4 $ slow 4 $ s "gong:6 gong:2" # up "-12 7" # gain 0.6
+
+-- back to basics
+bpm 160
+
+-- outside controls cycle length, rotL to access variation
+d1 $ outside 2 loopFirst $ rotR 6 $ struct "t!8" $ n (shuffle 8 $ "{1 2 3 4 5 6}%8")# s "demung"
+
+-- now we want four notes from the pattern, followed by a rest
+d1 $ trunc (1/2) $ outside 4 loopFirst $ rotR 6 $ struct "t!8" $ n (shuffle 8 $ "{1 2 3 4 5 6}%8")# s "demung"
+
+-- three notes from the pattern, to work towards a chord
+-- this correct, four different chords
+d1 $ trunc (1/3) $ outside 4 loopFirst $ rotR 5 $ struct "t!8" $ n (shuffle 8 $ "{1 2 3 4 5 6}%8")# s "demung"
+
+-- aha, %9 works for three instruments
+d1 $ trunc (1/3) $ outside 4 loopFirst $ rotR 5 $ struct "t!8" $ n (shuffle 8 $ "{1 2 3 4 5 6}%8")# s "{demung saron peking}%9"
+
+-- now speed up to make chord, but somehow get longer gap
+-- this works but only get two different chords as others masked off
+d1 $ mask "1 0" $ fast 2 $ trunc (1/3) $ outside 4 loopFirst $ rotR 5 $ struct "t!8" $ n (shuffle 8 $ "{1 2 3 4 5 6}%8")# s "{demung saron peking}%9"
+
+-- amazingly this is identical!
+d1 $ fast "2 1" $ trunc (1/3) $ outside 4 loopFirst $ rotR 5 $ struct "t!8" $ n (shuffle 8 $ "{1 2 3 4 5 6}%8")# s "{demung saron peking}%9"
+
+-- ok, four different chords
+d1 $ fast "2 1" $ trunc (1/3) $ outside 8 loopFirst $ rotR 5 $ struct "t!8" $ n (shuffle 8 $ "{1 2 3 4 5 6}%8")# s "{demung saron peking}%9"
+
+-- ok faster? not quite, get an extra note
+d1 $ fast "4 1!3" $ trunc (1/3) $ outside 8 loopFirst $ rotR 5 $ struct "t!8" $ n (shuffle 8 $ "{1 2 3 4 5 6}%8")# s "{demung saron peking}%9"
+
+-- just two chords
+d1 $ mask "1 0 0 0 " $ fast 4 $ trunc (1/3) $ outside 8 loopFirst $ rotR 5 $ struct "t!8" $ n (shuffle 8 $ "{1 2 3 4 5 6}%8")# s "{demung saron peking}%9"
+
+--------------------------
+-- more outside fixes, this might be right for four different chords
+d1 $ mask "1 0!7 " $ fast 8 $ trunc (1/3) $ outside 32 loopFirst $ rotR 4 $ struct "t!8" $ n (shuffle 8 $ "{1 2 3 4 5 6}%8")# s "{demung saron peking}%9" # up "-24"
+
+
+---------------this is right. too right?
+-- listen to various versions using rotR
+
+bpm 50
+bpm 200 -- testing
+
+d3 $ slow 2 $ struct (binary "88 88 7 88") $ s "{sf kendhang peri ul glitch}%8" # n (run 19) # gain 1
+
+d2 $ s "~ em2:6 east:2 em2:6" # gain 1 # up "2.7" -- 2.7
+
+-- longer gong pattern
+d4 $ slow 8 $ s "gong:6 gong:2 gong:3 gong:2" # up "-12 7 0 7" # gain 1
+
+-- eight chords, yes
+d2 $ mask "1 0!7 " $ fast 8 $ trunc (1/3) $ outside 64 loopFirst $ rotR 2 $ struct "t!8" $ n (shuffle 8 $ "{1 2 3 4 5 6}%8") # s "{demung saron peking}%9" # up "0" # vowel "i a e a a u a" # pan 1
+
+----- estuary version, had to put outside code in n pattern
+d1 $ mask "1 0!7 " $ fast 8 $ trunc (1/3) $ struct "t!8" $ n (outside 64 loopFirst $ rotR 2 $ shuffle 8 $ "{1 2 3 4 5 6}%8") # s "{demung saron peking}%9" # up "0" # vowel "i a e a a u a" # pan 0
+
+slow 8 $ s "gong:6 gong:6 gong:3 gong:6" # up "[-12,-24] 0 0 0" # gain 1
+
 
 
 hush

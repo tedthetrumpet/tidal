@@ -128,3 +128,11 @@ Quarks.checkForUpdates({Quarks.install("SuperDirt", "v1.7.2"); thisProcess.recom
 -- original install was using homebrew, files all over the shop!
 
 You can delete haskell by removing .ghcup, .ghc and .cabal from your home folder.
+
+
+--------------- discord https://discord.com/channels/779427371270275082/779427371270275086/825802882087387156
+For anyone else who has been suffering from #cut related clicks and pops. #fadeTime is the fade in and out of an audio grain, unless you're using #begin at a value > 0, in which case #fadeInTime replaces the attack. The default is set to 0.001 so sometimes add unwanted artefacts. Both are unavailable in Tidal out of the box so I've had to add them to my boot file with
+let fadeTime = pI "fadeTime"
+let fadeInTime = pI "fadeInTime" etc.
+
+https://tidalcycles.org/fadeTime

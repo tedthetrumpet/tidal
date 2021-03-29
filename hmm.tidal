@@ -12,5 +12,36 @@ do
   d1 $ s "bev" # begin (0/16) # end (2/16) <| speed "4 2 1"
 
 
+-- kemanak sounds
+
+
+d1 $ n "~ 0 2 0 " # s "808"
+
+d1 $ n "~ 0 1 0 " # s "bin" # up "~ 12 7 12"
+
+can:0 can:3 can:5 # up 12 can:9
+
+d1 $ n "~ 5 0 5 " # s "can" # up "~ -5 7 -5" # gain 1.2
+
+d1 $ n "2!4" # s "east" # up "2" -- at right pitch, perfect for damp!
+
+d1 $ n "6!4" # s "em2"
+
+d1 $ s "~ em2:6 east:2 em2:6" -- ok, very pitched, close to p4
+
+
+bpm 60
+
+
+
+
+
+
+
+
+
+
+
+
 
 hush
