@@ -33,7 +33,7 @@ d1 $ s "~ em2:6 east:2 em2:6" -- ok, very pitched, close to p4
 bpm 60
 
 
-
+d1 $ s "gtr!8" # up (range 0 20 sine)
 
 
 
