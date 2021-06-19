@@ -1,0 +1,1 @@
+d1 $ jux rev $ ghost $ superimpose (|+ up "{12 -12}%5") $ mask (binary "23 45") $ up (segment 16 $ irand 8) # s "kenong kendhang" # speed "{0.75 1}%7" # room 0.1 # sz 0.9 # pan (slow 0.5 $ range (-0.7) 0.7 sine) # silence
