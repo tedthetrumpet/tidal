@@ -1168,3 +1168,14 @@ do
 
 
 hush
+
+--------------
+-- answering question
+
+d1 $ mask "<1 0!7>" $ s "sn*2 ~ sn sn?"
+
+d2 $ s "bd cp!3"
+
+d3 $ whenmod 8 1 (# silence) $ s "sn*2 ~ sn sn?" # silence
+
+d1 $ mask "<1? 0!7>" $ s "sn*2 ~ sn sn?"

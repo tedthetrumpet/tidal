@@ -175,4 +175,24 @@ d1 $ swingBy (1/6) 8 $ n "0 ~ ~ 0  11 ~ 0 ~  ~ ~ 0 ~  11 ~ ~ ~" # s "cmidrum" # 
 d3 $ fast 2 $  up "<[~ c5'minor c5'minor'ii c5'minor]!3 [~ f4'dom7'ii f4'dom7'iii f4'dom7'ii]>" # s "cmikey:5" # release 0.2 # room 0.7
 
 ------------------
+-- cairnbaan 2021-08-01
+bpm 160
+bpm 60 -- maybe better
+
+d1 $ s "gtr!8" # up (range 0 20 sine)
+d1 $ s "gtr!8" # up (slow 2 $ range 0 20 sine)
+d1 $ s "gtr!8" # up (slow "2 0.5" $ range 0 20 sine)
+d1 $ s "gtr!8" # up (slow 2 $ range (sine) 20 sine)
+d1 $ s "gtr!8" # up (slow "<2 0.25>" $ range (sine) 20 sine)
+d1 $ s "gtr!8" # up (slow "<2 0.25>" $ range (slow 4 $ sine) 20 sine)
+
+-- rhythms get boring, still syncopated 160bpm stuff
+-- bpm 60 actually much more interesting
+-- needs a second line
+-- sounds like a qanun improvisation
+d1 $ struct (ascii "<j simon van d w>")
+   $ s "gtr"
+   # up (slow "<2.1 0.25>" $ range (fast 4.3 $ range 0 10 sine) (fast 4.7 $ range 20 30 sine) sine)
+
+-------------------
 hush

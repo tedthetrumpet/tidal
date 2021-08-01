@@ -8,7 +8,6 @@
 -- bye all…………
 
 
-
 d1 $ s "[bd*4]" # n 8
 d1 $ s "[bd*4,[~ cp]*2]" # n 8 # gain 1.1
 d1 $ s "bd(3,8)!2" # n 8 # crush "<3 4 2 7>"

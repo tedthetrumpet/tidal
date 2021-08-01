@@ -12,7 +12,7 @@ https://flok.clic.cf/s/Mjg1ZjNkNDMtMjk3NC00ZjhlLWE5M2YtYjkwZWMyYjRiMjdm?layout=t
 
 bpm 100
 
-d1 $ n "[1!4,[~ 7]]" # s "cmidrum" # gain 1
+d1 $ n "[1!4, [~ 7]]" # s "cmidrum" # gain 1
 
 d2
 $ slow 2
