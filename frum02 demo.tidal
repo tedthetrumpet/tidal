@@ -1,0 +1,42 @@
+setcps (135/240)
+d1 $ slowstripe 3 $ slow "4" $ n (run 2) # sound "ppsus" # speed (range 0.25 2 rand)
+d1 $ slowstripe 3 $ slow "4 0.25" $ n (run 4) # sound "ppsus" # speed (range 0.25 2 rand)
+d1 $ slowstripe 3 $ n (scramble 8 $ run 8 + 5 ) # sound "ppsus" # speed (range 0.125 2 rand)
+d1 $ slowstripe 3 $ n (scramble 8 $ run 8 + 9 ) # sound "ppsus" # speed (sometimes (* (-1)) $ range 0.125 2 rand)
+d1 $ n (scramble 8 $ run 8 + 20 ) # sound "ppsus" # speed (range 0.125 2 rand)
+d1 $ n (repeatCycles 4 $ scramble 8 $ run 8 + 20 ) # sound "ppsus" # speed (range 0.125 2 rand)
+d1 $ n (repeatCycles 4 $ scramble 8 $ run 8 + 20 ) # sound "ppsus"
+-- some groove now
+d1 $ n (repeatCycles 1024 $ (3 ~>) $ scramble 8 $ run 8 + 20 ) # sound "ppsus"
+jumpIn' 1 0 $ n (repeatCycles 1024 $ (0 ~>) $ scramble 8 $ run 8 + 20 ) # sound "threequal" # gain 1.2
+
+-- d2
+jumpIn' 2 0 $ s "909!4" # gain 1.3
+jumpIn' 2 0 $ s "[909!4, [~ cp]!2]" # gain 1.6
+
+-- d1 more active
+jumpIn' 1 0 $ n (repeatCycles 1024 $ (6 ~>) $ scramble 16 $ run 16 ) # sound "peri" # gain 1.2 # speed "1 0.5"
+
+d2 silence
+
+-- acid chords
+
+do
+  solo 3
+  jumpIn' 3 0 $ slow 2 $ s "superreese" <| up "c'min(3,8) ef'min(3,8) e'min(3,8) f'maj(3,8,2)" # legato 2 # release 1 # gain 1.1
+
+
+-- d4 is bassline
+do
+  unsolo 3
+  jumpIn' 4 0 $ s "superhoover!16" # up "<a4 c4 f4 e4>" # legato 0.8
+
+
+unsolo 4
+
+d4 silence
+d3 silence
+
+
+
+hush
