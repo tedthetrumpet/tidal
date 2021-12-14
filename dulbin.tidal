@@ -364,10 +364,26 @@ In the slicing sampler I use in SC, I have a fast attack but a release tail at t
 -- (effectively, this is a bit like dice, but not as good)
 d1 $ slice 16 "0" $ s "sldiwaloops" # n 0
 
--- also sustain, still not right
-d1 $ s "sldiwaloops" # n 0 # begin (0/16) # sustain (1/16) # release 1
+-- looking into again 2021
+-- this is slightly better, but sound too short
+d1 $ slice 16 "0" $ s "sldiwaloops" # n 0 # att 0.01 # rel 0.2
 
-d1 $ s "sldiwaloops" # n 0 # begin (0/16)
+
+-- this is the closest yet
+d1 $ s "sldiwaloops" # n 0 # begin (0/16) # sustain (4/16) # att 0.01 # rel 0.2
+
+-- ok, useable!
+d1 $ s "sldiwaloops" # n 0 <| begin ((timeLoop 2 $ shuffle 16 $ run 16)/16) # sustain (4/16) # att 0.01 # rel 0.2
+
+d1 $ s "sldiwaloops" # n "<0!3 3>" <| begin ((timeLoop 2 $ shuffle 16 $ run 16)/16) # sustain (4/16) # att 0.01 # rel 0.3
+
+-- oh wait, sustain is not doing anything?
+-- or maybe can't hear clearly once all going
+-- but release is quite sensitive
+d1 $ s "sldiwaloops" # n "<0!3 3>" <| begin ((timeLoop 2 $ shuffle 16 $ run 16)/16) # att 0.01 # rel 0.3
+
+d1 $ mask (ascii "simon") $ s "sldiwaloops" # n "<0!3 3>" <| begin ((timeLoop 2 $ shuffle 16 $ run 16)/16) # att 0.01 # rel 0.3
+
 
 -- do synths release correctly?
 -- computer says no
@@ -1179,3 +1195,23 @@ d2 $ s "bd cp!3"
 d3 $ whenmod 8 1 (# silence) $ s "sn*2 ~ sn sn?" # silence
 
 d1 $ mask "<1? 0!7>" $ s "sn*2 ~ sn sn?"
+
+-------- back to release problems
+
+
+-- ok, useable!
+d1 $ s "sldiwaloops" # n 0 <| begin ((timeLoop 2 $ shuffle 16 $ run 16)/16) # sustain (4/16) # att 0.01 # rel 0.2
+
+d1 $ s "sldiwaloops" # n "<0!3 3>" <| begin ((timeLoop 2 $ shuffle 16 $ run 16)/16) # sustain (4/16) # att 0.01 # rel 0.3
+
+-- oh wait, sustain is not doing anything?
+-- or maybe can't hear clearly once all going
+-- but release is quite sensitive
+d1 $ s "sldiwaloops" # n "<0!3 3>" <| begin ((timeLoop 2 $ shuffle 16 $ run 16)/16) # att 0.01 # rel 0.3
+
+d1 $ mask (ascii "simon") $ s "sldiwaloops" # n "<0!3 3>" <| begin ((timeLoop 2 $ shuffle 16 $ run 16)/16) # att 0.01 # rel 0.3
+
+d1 $ mask (ascii "sim on") $ s "sldiwaloops" # n "<0!3 3>" <| begin ((timeLoop 2 $ shuffle 16 $ run 16)/16) # att 0.1 # rel 0.3
+
+-- don't need att
+d1 $ mask (ascii "sim on") $ s "sldiwaloops" # n "<0!3 3>" <| begin ((timeLoop 2 $ shuffle 16 $ run 16)/16) # rel 0.3

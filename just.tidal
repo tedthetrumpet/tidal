@@ -1,3 +1,5 @@
+bpm 160
+
 d1 $ s "just:0"
 
 d1 $ s "just!4"
