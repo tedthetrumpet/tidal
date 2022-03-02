@@ -33,6 +33,8 @@ d1 $ s "~ em2:6 east:2 em2:6" -- ok, very pitched, close to p4
 -- Tom's click problem
 
 d1 $ s "slenthem" # up 12 -- fine in tidal!
+d1 $ s "gtr" # up 24 -- ah that clicks
+
 
 d1 $ s "slenthem" # up 12 # legato 0.2 -- clicks badly
 
@@ -45,6 +47,7 @@ d1 $ s "slenthem" # up 12 # att 0.1 # rel 1 # legato 0.1 -- click
 d1 $ s "slenthem" # up 12 # att 0.1 # rel 0.05 # legato 0.1 -- rel < legato
 
 --
+
 
 
 
