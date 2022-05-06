@@ -259,7 +259,7 @@ d1 silence
 
 -- yaxu
 d1 $ fast (scramble 4 "7 9 3 5") $ s "bass3:2" |> up (quantise 1 $ range 0 28 perlin)
-
+hush
 ----------------- sldi
 
 d1 $ repeatCycles 4 $ fast 4 $ loopAt 2 $ shuffle 8 $ chop 8 $ s "sldiwaloops:0" # cut 1 # speed "2 1 0.5" # n "<0 1 2 3>" -- iya
