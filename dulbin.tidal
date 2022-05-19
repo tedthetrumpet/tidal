@@ -1215,3 +1215,18 @@ d1 $ mask (ascii "sim on") $ s "sldiwaloops" # n "<0!3 3>" <| begin ((timeLoop 2
 
 -- don't need att
 d1 $ mask (ascii "sim on") $ s "sldiwaloops" # n "<0!3 3>" <| begin ((timeLoop 2 $ shuffle 16 $ run 16)/16) # rel 0.3
+
+
+------- question
+
+d1 $ s "arpy*<4 7>"
+d1 $ s "arpy*4"
+d1 $ s "arpy*7"
+d1 $ s "arpy!<4 7>"
+d1 $ s "arpy!4"
+d1 $ s "arpy!7"
+
+d1 $ s "<[arpy arpy 4] [arpy arpy 7]>"
+d1 $ s "arpy arpy 4"
+d1 $ s "arpy arpy 7"
+d1 $ s "4"
