@@ -1,11 +1,11 @@
 SuperDirt.start
 
 ~dirt.loadSoundFiles("/home/jsimon/Dropbox/SuperCollider/bfsamples/*")
-~dirt.loadSoundFiles("/home/jsimon/Dropbox/github_repositories/tidal-jsgit/nmsamples/*")
+//~dirt.loadSoundFiles("/home/jsimon/Dropbox/github_repositories/tidal-jsgit/nmsamples/*")
 ~dirt.loadSoundFiles("/home/jsimon/Dropbox/SuperCollider/sldiwaloops/")
 ~dirt.loadSoundFiles("/home/jsimon/Dropbox/github_repositories/tidal-jsgit/nmsamples/fada/")
 
-
+~dirt.loadSoundFiles("/Users/jsimon/Dropbox/github_repositories/testpage/nmsamples/")
 
 
 

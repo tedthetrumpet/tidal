@@ -1119,6 +1119,8 @@ d5 $ n "3 <7 7*2>" # s "cmidrum"
 
 -- from https://www.youtube.com/watch?v=8wQmsfj4OAw
 
+bpm 140
+
 let chorder p = p |+ "[2,4]" :: Pattern Int
 
 d2 $ s "superpiano" # n (scale "phrygian" $ sometimes (superimpose chorder) "<-2 0 4>")

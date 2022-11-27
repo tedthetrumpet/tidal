@@ -1,14 +1,13 @@
 SuperDirt.start
 
 ~dirt.loadSoundFiles("/Users/jsimon/Dropbox/SuperCollider/lcode09/../bfsamples/*")
-~dirt.loadSoundFiles("/Users/jsimon/Dropbox/github_repositories/tidal-jsgit/nmsamples/*")
+~dirt.loadSoundFiles("/Users/jsimon/Dropbox/github_repositories/testpage/nmsamples/*")
 ~dirt.loadSoundFiles("/Users/jsimon/Documents/ Simon's music/ Big audio files/cmi/*")
 
 ~dirt.loadSoundFiles("/Users/jsimon/Documents/ Simon's music/ Big audio files/samples-extra/*")
 ~dirt.loadSoundFiles("/Users/jsimon/Dropbox/SuperCollider/sldiwaloops/")
 ~dirt.loadSoundFiles("/Users/jsimon/Documents/ Simon's music/ Big audio files/cybernetic-samples/*")
 ~dirt.loadSoundFiles("/Users/jsimon/Dropbox/github_repositories/tidal-jsgit/nmsamples/fada/")
-
 
 
 ~dirt.loadSoundFiles("/Users/jsimon/Desktop/UPLOrc-master/*")
