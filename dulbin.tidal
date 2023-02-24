@@ -1232,3 +1232,7 @@ d1 $ s "<[arpy arpy 4] [arpy arpy 7]>"
 d1 $ s "arpy arpy 4"
 d1 $ s "arpy arpy 7"
 d1 $ s "4"
+
+----------
+
+d1 $ $ n (loopFirst $ shuffle 8 $ run 8) # s "peri"

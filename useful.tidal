@@ -135,4 +135,34 @@ For anyone else who has been suffering from #cut related clicks and pops. #fadeT
 let fadeTime = pI "fadeTime"
 let fadeInTime = pI "fadeInTime" etc.
 
-https://tidalcycles.org/fadeTime
+
+-- https://tidalcycles.org/fadeTime not There
+
+https://tidalcycles.org/docs/patternlib/tutorials/course2/#julian-rohrhuber-commentary
+
+https://tidalcycles.org/docs/configuration/adding_synthesizers/#i-can-hear-clicks
+
+~dirt.orbits[3].set(\fadeTime, 0.01);
+~dirt.orbits[4].set(\fadeTime, 0.1);
+
+d1 $ s "bev" # n 0 # begin (0/16) # end (1/16) # release 0.5
+
+d1 $ slice 16 3 $ s "bev" -- why click not so bad?
+
+d1 $ slice 16 3 $ s "bev" # fadeTime "1"
+
+-- https://discord.com/channels/779427371270275082/779427371270275086/1058127573248376863
+-- cleary
+-- In order to get that sc waveform it's a matter of working with the density of events, and length of the sliced sample:
+
+d1 $ stack [
+  slice 16 "[<3 8 2 6>!8]" $ s "bev" # attack 0.1 # hold 0.2 # rel 0.1 # gain 1.2 # shape 0.5
+  , every' 16 15 (bite "4 16" "3*8 3*12") $ someCyclesBy 0.12 rev $ s "amencutup" <| n (run 8)
+]
+
+
+d1 $ slice 16 (scramble 16 $ run 16) $ s "bev" # attack 0.01 # hold 0.2 # rel 0.01
+
+let crossfade =
+
+--

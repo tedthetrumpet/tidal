@@ -1,3 +1,25 @@
+-----------talbum redux
+-- superminimal, but now has own file
+bpm 140
+
+d1 $ slow 2 $ s "808bd" <| n (run 25) # up "0.4"
+d1 $ silence
+
+d2 $ slow 2 $ s "808sd" <| n (run 25)
+d2 $ slow 2 $ s "808sd" <| n (run 25) # lpf (fast 5 $ range 100 6000 perlin) # lpq 0.4
+d2 $ slow 2 $ s "808sd" <| n "{0 1 2 3 4}%25" |+ n "<0 6 12 18>/2"
+d2 $ slow 2 $ s "808sd" <| n "{0 1 2 3 4 5}%25" |+ n "<0 6 12 18>/2"
+d2 $ slow 2 $ s "808sd" <| n "{0 1 2 3 4 5}%25" |+ n "<0 6 12 18>/2" # speed 0.5
+d2 silence
+
+d1 $ mask "t(<15 13>,25)" $ slow 2 $ s "808bd" <| n (run 25)
+d2 $ mask "f(<15 13>,25)" $ slow 2 $ s "808sd" <| n (run 25)
+
+d1 $ slow 2 $ s "808bd" <| n (run 25) # djf ((4 <~) $ slow 4 sine)
+d2 $ slow 2 $ s "808sd" <| n (run 25) # djf (slow 4 sine)
+
+--------
+
 bpm 120
 
 -- nice enough
@@ -140,25 +162,7 @@ d2 $ off "1 2 3" (# up 7) $ fast "<2 3 5 7>" $ s "ppsus" # attack 1 # release 5 
 ------------ that's all it is
 d2 $ n "c3(3,8) cs3(3,8,1)" # s "supersaw" # sustain 0.2 # voice (slow 4 sine) -- iya
 
------------talbum nearly
--- superminimal
-bpm 140
-d1 $ slow 2 $ s "808bd" <| n (run 25)
-d1 $ slow 2 $ s "808bd" <| n (run 25) # lpf (fast 5 $ range 100 6000 perlin) # lpq 0.4
-d1 silence
 
-d2 $ slow 2 $ s "808sd" <| n (run 25)
-d2 $ slow 2 $ s "808sd" <| n (run 25) # lpf (fast 5 $ range 100 6000 perlin) # lpq 0.4
-d2 $ slow 2 $ s "808sd" <| n "{0 1 2 3 4}%25" |+ n "<0 6 12 18>/2"
-d2 $ slow 2 $ s "808sd" <| n "{0 1 2 3 4 5}%25" |+ n "<0 6 12 18>/2"
-d2 $ slow 2 $ s "808sd" <| n "{0 1 2 3 4 5}%25" |+ n "<0 6 12 18>/2" # speed 0.5
-d2 silence
-
-d1 $ mask "t(<15 13>,25)" $ slow 2 $ s "808bd" <| n (run 25)
-d2 $ mask "f(<15 13>,25)" $ slow 2 $ s "808sd" <| n (run 25)
-
-d1 $ slow 2 $ s "808bd" <| n (run 25) # djf ((4 <~) $ slow 4 sine)
-d2 $ slow 2 $ s "808sd" <| n (run 25) # djf (slow 4 sine)
 
 -- not yet
 d3 $ degradeBy 0.1 $ rarely (hurry 2) $ n "{as3@4}%25" # s "supersquare" # sustain 0.1 # gain 0.7

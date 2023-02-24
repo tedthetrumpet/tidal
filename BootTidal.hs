@@ -1,3 +1,6 @@
+-- this is an older boot file that I made
+-- but attempting to update using the one with the plugin breaks something…
+
 :set -XOverloadedStrings
 :set prompt ""
 
@@ -78,3 +81,6 @@ let bpm x = setcps (x/120/2)
 
 :set prompt "tidal> "
 :set prompt-cont ""
+
+let fadeTime = pI "fadeTime"
+let fadeInTime = pI "fadeInTime"

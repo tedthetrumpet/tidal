@@ -47,12 +47,30 @@ d1 $ s "slenthem" # up 12 # att 0.1 # rel 1 # legato 0.1 -- click
 d1 $ s "slenthem" # up 12 # att 0.1 # rel 0.05 # legato 0.1 -- rel < legato
 
 --
+d1 $ s "bd!8" # vowel "a | e | i | o | x"
+
+d1 $ s "bd!8" # speed "1 | 2 | 3"
+
+d1 $ s "[bd | cp | hh]*8"
+
+d1 $ struct "t!8 " $ n "[1 | 2 | 3]*8" # s "arpy"
+
+d1 $ s "bd!8" # vowel "[a | e | i | o | x]*8"
 
 
+-----------
 
 
+[20:59]cleary: # attack 0.1 # hold 0.2 # rel 0.1 ?
+[21:01]cleary: In order to get that sc waveform it's a matter of working with the density of events, and length of the sliced sample:
+d1 $ stack [
+  slice 16 "[<3 8 2 6>!8]" $ s "bev" # attack 0.1 # hold 0.2 # rel 0.1 # gain 1.2 # shape 0.5
+  , every' 16 15 (bite "4 16" "3*8 3*12") $ someCyclesBy 0.12 rev $ s "amencutup" <| n (run 8)
+]
 
-
+[23:07]tedthetrumpet: Ah, thanks. Hmm. So… could one create a single controller called, say, crossfade that took a float value in seconds and used that to calculate the three needed for attack, hold, and release?
+[23:08]tedthetrumpet: so I would just write crossfade 0.1?
+[23:33]cleary: yeah I guess so - I think there really are quite a variety of things to consider though - you've got sample length which may be shorter than the envelope you are building, you've got event/subdivision length which these parameters don't really care about, they are purely a fixed time reference. I think it'd be trivial to build something fit for a specific requirement though 🙂
 
 
 

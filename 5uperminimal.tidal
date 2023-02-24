@@ -1,0 +1,33 @@
+-- 5uperminimal
+
+bpm 140
+setcps (140/120/2)
+
+-- length of one cycle at slow 2
+1 / (140/120/2) * 2
+
+-- crotchet bpm
+60 / (1 / (140/120/2) * 2) * 25 / 2
+-- 218.75 bpm
+
+d1 $ slow 2 $ s "808bd" <| n (run 25)
+d1 $ silence
+
+-- hmm, lets work with this
+-- going off this sound, too much like a tuba
+do
+  let notes = "<gs2 b2 fs2 cs3 e3>*16"
+  d2 $ slow 2 $ struct "[1@2 1@3]!5" $ s "superzow" # up notes # decay 0.95 |+ up "[0,-12]" # detune 0.01 # gain 1.1 # djf 0.2 # room 0.2 # sz 0.8
+
+-- not quite right, some repeated notes
+do
+  let notes = "<[af2 bf2] [ef3 df3] [af2 g2] [a2 d3] [e3 b2] d2!5>*8"
+  d2 $ slow 4 $ struct "[1@2 1@3]!10" $ s "superpiano" # up notes # legato 0.7 # decay 0.7 |+ up "[0,12,24]" # detune 0.01 # gain 0.8 # djf 0.3 # room 0.2 # sz 0.8
+
+bpm 140
+
+once $ s "superzow" # up "b2"
+
+let notes = "<[bf2 ef3] [df3 af2] [g2 a2] [d3 e3] [b2 d2] d2!10 [d2 af2]>*8"
+
+d2 $ silence

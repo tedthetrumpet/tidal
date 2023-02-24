@@ -33,7 +33,26 @@ SuperDirt.start(path:"/Users/jsimon/Dropbox/SuperCollider/sldiwaloops/")
 
 "/Users/jsimon/Dropbox/github_repositories/tidal-jsgit/nmsamples/"
 
+/////////////
+// https://tidalcycles.org/docs/configuration/adding_synthesizers/#i-can-hear-clicks
+// ~dirt.orbits[3].set(\fadeTime, 0.01);
+// ~dirt.orbits[4].set(\fadeTime, 0.1);
 
+~dirt.orbits[0].get(\fadeTime)
+~dirt.orbits.collect(_.get(\fadeTime))
+~dirt.orbits.do(_.set(\fadeTime, 0.001)) // default
+~dirt.orbits.do(_.set(\fadeTime, 0.01))
+~dirt.orbits.do(_.set(\fadeTime, 0.1))
+
+~dirt.orbits[0].get(\fadeInTime) // fadeInTime nil?
+~dirt.orbits.collect(_.get(\fadeTime))
+~dirt.orbits.do(_.set(\fadeTime, 0.01))
+~dirt.orbits.do(_.set(\fadeTime, 0.1))
+
+
+
+
+////////////
 
 ~dirt.freeAllSoundFiles
 ~dirt.postSampleInfo
